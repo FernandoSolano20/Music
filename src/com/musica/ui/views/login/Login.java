@@ -1,6 +1,7 @@
 package com.musica.ui.views.login;
 
 import com.musica.ui.AlertHelper;
+import com.musica.ui.MusicUI;
 import com.musica.ui.ShowView;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -18,9 +19,7 @@ import javafx.stage.Window;
 
 import java.io.IOException;
 
-public class Login {
-
-    private ShowView show = new ShowView();
+public class Login extends MusicUI {
 
     @FXML
     private GridPane rootPane;
@@ -58,7 +57,7 @@ public class Login {
 
     @FXML
     protected void showRegisterView(ActionEvent event) throws IOException{
-        show.ShowWindow(event,"./views/registro/registro.fxml", "Registro");
+        show.ShowWindow(event,"views/registro/registro.fxml", "Registro");
     }
 }
 
