@@ -1,7 +1,6 @@
 package com.musica.ui.views.registro;
 
 import com.musica.ui.MusicUI;
-import com.musica.ui.ShowView;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.*;
@@ -40,7 +39,7 @@ public class Registro extends MusicUI {
         int id = Integer.parseInt(this.id.getText());
         String name = this.name.getText();
         String lastName = this.lastName.getText();
-        String old = this.old.getText();
+        int old = Integer.parseInt(this.old.getText());
         String country = (String) this.country.getValue();
         String email = this.email.getText();
         String pass = this.pass.getText();

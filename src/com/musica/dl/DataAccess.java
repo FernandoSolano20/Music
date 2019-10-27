@@ -1,20 +1,17 @@
 package com.musica.dl;
 
-import java.sql.Connection;
-import java.sql.DriverManager;
-import java.sql.SQLException;
+import java.sql.*;
 
 public class DataAccess {
-
-    public String connectionDB(){
-        String status = "";
+    private Connection connection = null;
+    public Connection connectionDB(){
         try (Connection conn = DriverManager.getConnection(
                 "jdbc:mysql://127.0.0.1:3306/Music?useSSL=false", "root", "password123$")) {
 
             if (conn != null) {
-                status = "Connected to the database!";
+                connection = conn;
             } else {
-                status = "Failed to make connection!";
+                connection = null;
             }
 
         } catch (SQLException e) {
@@ -22,6 +19,35 @@ public class DataAccess {
         } catch (Exception e) {
             e.printStackTrace();
         }
-        return status;
+        return connection;
+    }
+
+    public String insertData(String statement){
+        try {
+            Statement st = connection.createStatement();
+            // note that i'm leaving "date_created" out of this insert statement
+            st.executeUpdate(statement);
+            st.close();
+            return "Action done";
+        }
+        catch (Exception e)
+        {
+            return "Error";
+        }
+    }
+
+    public ResultSet selectData(String statement){
+        ResultSet resultSet = null;
+        try {
+            Statement st = connection.createStatement();
+
+            resultSet = st.executeQuery(statement);
+            st.close();
+        }
+        catch (Exception e)
+        {
+            resultSet = null;
+        }
+        return resultSet;
     }
 }
