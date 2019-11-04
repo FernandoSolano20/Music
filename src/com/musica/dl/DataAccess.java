@@ -1,53 +1,65 @@
 package com.musica.dl;
 
+import com.sun.rowset.CachedRowSetImpl;
+
 import java.sql.*;
 
 public class DataAccess {
-    private Connection connection = null;
-    public Connection connectionDB(){
-        try (Connection conn = DriverManager.getConnection(
-                "jdbc:mysql://127.0.0.1:3306/Music?useSSL=false", "root", "password123$")) {
+    Connection connection = null;
 
-            if (conn != null) {
-                connection = conn;
-            } else {
-                connection = null;
-            }
-
-        } catch (SQLException e) {
-            System.err.format("SQL State: %s\n%s", e.getSQLState(), e.getMessage());
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
-        return connection;
+    private Connection getConnection() throws SQLException {
+        Connection conn;
+        conn = ConnectionFactory.getInstance().getConnection();
+        return conn;
     }
 
     public String insertData(String statement){
         try {
+            connection = getConnection();
             Statement st = connection.createStatement();
             // note that i'm leaving "date_created" out of this insert statement
             st.executeUpdate(statement);
+            connection.close();
             st.close();
             return "Action done";
         }
         catch (Exception e)
         {
-            return "Error";
+            return "Error " + e.getMessage();
         }
     }
 
     public ResultSet selectData(String statement){
         ResultSet resultSet = null;
+        Statement st = null;
+        CachedRowSetImpl crs = null;
         try {
-            Statement st = connection.createStatement();
-
+            connection = getConnection();
+            st = connection.createStatement();
             resultSet = st.executeQuery(statement);
-            st.close();
+            crs = new CachedRowSetImpl();
+            crs.populate(resultSet);
         }
         catch (Exception e)
         {
             resultSet = null;
         }
-        return resultSet;
+        finally {
+            try {
+                if (resultSet != null) {
+                    resultSet.close();
+                }
+                if (st != null) {
+                    st.close();
+                }
+                if (connection != null) {
+                    connection.close();
+                }
+            }
+            catch (Exception e){
+                e.getMessage();
+            }
+        }
+        return crs;
     }
 }

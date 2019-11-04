@@ -1,5 +1,7 @@
 package com.musica.bl.User;
 
+import java.util.Objects;
+
 public abstract class User {
     private int id;
     private String userName;
@@ -8,6 +10,7 @@ public abstract class User {
     private String email;
     private String pass;
     private String image;
+    private String type;
 
     public User(int id, String userName, String name, String lastName, String email, String pass, String image) {
         this.id = id;
@@ -73,5 +76,35 @@ public abstract class User {
 
     public void setImage(String image) {
         this.image = image;
+    }
+
+    public String getType() {
+        return type;
+    }
+
+    public void setType(String type) {
+        this.type = type;
+    }
+
+    @Override
+    public String toString() {
+        return "User{" +
+                "id=" + id +
+                ", userName='" + userName + '\'' +
+                ", name='" + name + '\'' +
+                ", lastName='" + lastName + '\'' +
+                ", email='" + email + '\'' +
+                ", pass='" + pass + '\'' +
+                ", image='" + image + '\'' +
+                ", type='" + type + '\'' +
+                '}';
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || !(o instanceof User)) return false;
+        User user = (User) o;
+        return id == user.id;
     }
 }
