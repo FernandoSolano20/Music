@@ -30,8 +30,10 @@ public class Login extends MusicUI {
     @FXML
     protected void handleSubmitButtonAction(ActionEvent event) throws IOException {
         Window owner = submitButton.getScene().getWindow();
+        String email = emailField.getText();
+        String pass = passwordField.getText();
 
-        if(emailField.getText().isEmpty()) {
+        if(email.isEmpty()) {
             AlertHelper.showAlert(Alert.AlertType.ERROR, owner, "Error!",
                     "Digite su correo");
             return;
@@ -43,10 +45,20 @@ public class Login extends MusicUI {
             return;
         }
 
-        AlertHelper.showAlert(Alert.AlertType.CONFIRMATION, owner, "Bienvenido!",
-                "Bienvenido " + emailField.getText());
+        boolean response = controller.login(email,pass);
+        if(response){
+            AlertHelper.showAlert(Alert.AlertType.CONFIRMATION, owner, "Bienvenido!",
+                    "Bienvenido " + emailField.getText());
+            show.ShowWindow(event,"./views/registro/registro.fxml", "Musica");
+        }
+        else{
+            AlertHelper.showAlert(Alert.AlertType.ERROR, owner, "No encontrado",
+                    "Usuario o contraseña incorrecta");
+        }
 
-        show.ShowWindow(event,"./views/registro/registro.fxml", "Musica");
+
+
+
     }
 
     @FXML

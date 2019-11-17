@@ -40,10 +40,20 @@ public class Register extends MusicUI {
         String lastName = this.lastName.getText();
         String email = this.email.getText();
         String pass = this.pass.getText();
+        if (!controller.validatePassword(pass)){
+            AlertHelper.showAlert(Alert.AlertType.ERROR, owner, "Error!",
+                    "La contraseña no cumple con formato");
+            return;
+        }
         String userName = this.userName.getText();
         String image = this.image.getText();
-        AlertHelper.showAlert(Alert.AlertType.ERROR, owner, "Error!",controller.registerAdmin(id,name,lastName,email,pass,userName,image));
-        controller.getAllUser();
-        //show.ShowWindow(event,"./views/login/login.fxml", "Iniciar Sesión");
+        boolean response = controller.registerAdmin(id,name,lastName,email,pass,userName,image);
+        if (response == true){
+            AlertHelper.showAlert(Alert.AlertType.CONFIRMATION, owner, "Exitoso", "Usuario almacenado");
+            show.ShowWindow(event,"./views/login/login.fxml", "Iniciar Sesión");
+        }
+        else {
+            AlertHelper.showAlert(Alert.AlertType.ERROR, owner, "Error", "El usuario no se pudo almacenar");
+        }
     }
 }

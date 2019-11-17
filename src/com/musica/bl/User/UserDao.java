@@ -50,8 +50,8 @@ public class UserDao implements Dao<User> {
     }
 
     @Override
-    public String save(User user) {
-        String message = "";
+    public boolean save(User user) {
+        boolean message = false;
         String queryString = "INSERT INTO User(id, name, lastName, email, password, userName, image, type";
 
         String queryValues = ") VALUES("+ user.getId() +", '"+ user.getName() +"', '"+ user.getLastName() +"', '"+ user.getEmail() +"', '"+ user.getPass() +
@@ -67,25 +67,42 @@ public class UserDao implements Dao<User> {
         try {
             message = dataAccess.insertData(queryString+queryValues);
         } catch (Exception e) {
-            message = "Error";
+            message = false;
         }
         return message;
     }
 
     @Override
-    public String update(User user) {
-        return null;
+    public boolean update(User user) {
+        return false;
     }
 
     @Override
-    public String delete(User user) {
-        return null;
+    public boolean delete(User user) {
+        return false;
     }
 
     public boolean isAdminOnDB(){
         int count = 0;
         String queryString = "SELECT id FROM User " +
                 "WHERE type = 'Administrador'";
+        ResultSet result = dataAccess.selectData(queryString);
+        try{
+            while (result.next())
+            {
+                count++;
+            }
+        }
+        catch (Exception e){
+            return true;
+        }
+        return count > 0;
+    }
+
+    public boolean login(String email, String pass){
+        int count = 0;
+            String queryString = "SELECT * FROM User " +
+                    "WHERE email = '"+ email +"' AND password = '"+ pass +"'";
         ResultSet result = dataAccess.selectData(queryString);
         try{
             while (result.next())

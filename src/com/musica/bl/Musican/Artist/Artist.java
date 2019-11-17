@@ -1,26 +1,35 @@
-package com.musica.bl.Artist;
+package com.musica.bl.Musican.Artist;
 
+import com.musica.bl.Country.Country;
+import com.musica.bl.Gender.Gender;
+import com.musica.bl.Musican.Musican;
 import com.musica.bl.Person;
 
 import java.time.LocalDate;
 import java.util.Objects;
 
-public class Artist extends Person {
+public class Artist extends Musican {
     private LocalDate born;
     private LocalDate dead;
-    private Country country;
-    private int old;
     private String reference;
     private String description;
     private Gender gender;
     private String artist;
 
     public Artist(int id, String name, String lastName, LocalDate born, LocalDate dead, Country country, int old, String reference, String description, Gender gender, String artist) {
-        super(id,name,lastName);
+        super(id,name,lastName,country,old);
         this.born = born;
         this.dead = dead;
-        this.country = country;
-        this.old = old;
+        this.reference = reference;
+        this.description = description;
+        this.gender = gender;
+        this.artist = artist;
+    }
+
+    public Artist(String name, String lastName, Country country, int old, LocalDate born, LocalDate dead, String reference, String description, Gender gender, String artist) {
+        super(name, lastName, country, old);
+        this.born = born;
+        this.dead = dead;
         this.reference = reference;
         this.description = description;
         this.gender = gender;
@@ -41,22 +50,6 @@ public class Artist extends Person {
 
     public void setDead(LocalDate dead) {
         this.dead = dead;
-    }
-
-    public Country getCountry() {
-        return country;
-    }
-
-    public void setCountry(Country country) {
-        this.country = country;
-    }
-
-    public int getOld() {
-        return old;
-    }
-
-    public void setOld(int old) {
-        this.old = old;
     }
 
     public String getReference() {
@@ -96,8 +89,6 @@ public class Artist extends Person {
         return "Artist{" +
                 ", born=" + born +
                 ", dead=" + dead +
-                ", country=" + country +
-                ", old=" + old +
                 ", reference='" + reference + '\'' +
                 ", description='" + description + '\'' +
                 ", gender=" + gender +
@@ -110,10 +101,8 @@ public class Artist extends Person {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
         Artist artist1 = (Artist) o;
-        return  old == artist1.old &&
-                Objects.equals(born, artist1.born) &&
+        return  Objects.equals(born, artist1.born) &&
                 Objects.equals(dead, artist1.dead) &&
-                Objects.equals(country, artist1.country) &&
                 Objects.equals(reference, artist1.reference) &&
                 Objects.equals(description, artist1.description) &&
                 Objects.equals(gender, artist1.gender) &&

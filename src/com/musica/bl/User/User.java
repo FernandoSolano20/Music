@@ -1,33 +1,22 @@
 package com.musica.bl.User;
 
+import com.musica.bl.Person;
+
 import java.util.Objects;
 
-public abstract class User {
-    private int id;
+public abstract class User extends Person {
     private String userName;
-    private String name;
-    private String lastName;
     private String email;
     private String pass;
     private String image;
     private String type;
 
     public User(int id, String userName, String name, String lastName, String email, String pass, String image) {
-        this.id = id;
+        super(id,name,lastName);
         this.userName = userName;
-        this.name = name;
-        this.lastName = lastName;
         this.email = email;
         this.pass = pass;
         this.image = image;
-    }
-
-    public int getId() {
-        return id;
-    }
-
-    public void setId(int id) {
-        this.id = id;
     }
 
     public String getUserName() {
@@ -36,22 +25,6 @@ public abstract class User {
 
     public void setUserName(String userName) {
         this.userName = userName;
-    }
-
-    public String getName() {
-        return name;
-    }
-
-    public void setName(String name) {
-        this.name = name;
-    }
-
-    public String getLastName() {
-        return lastName;
-    }
-
-    public void setLastName(String lastName) {
-        this.lastName = lastName;
     }
 
     public String getEmail() {
@@ -89,10 +62,7 @@ public abstract class User {
     @Override
     public String toString() {
         return "User{" +
-                "id=" + id +
                 ", userName='" + userName + '\'' +
-                ", name='" + name + '\'' +
-                ", lastName='" + lastName + '\'' +
                 ", email='" + email + '\'' +
                 ", pass='" + pass + '\'' +
                 ", image='" + image + '\'' +
@@ -105,6 +75,6 @@ public abstract class User {
         if (this == o) return true;
         if (o == null || !(o instanceof User)) return false;
         User user = (User) o;
-        return id == user.id;
+        return super.equals(user);
     }
 }

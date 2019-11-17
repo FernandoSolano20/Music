@@ -1,8 +1,10 @@
 package com.musica.dl;
 
+import com.musica.bl.Gender.Gender;
 import com.sun.rowset.CachedRowSetImpl;
 
 import java.sql.*;
+import java.util.ArrayList;
 
 public class DataAccess {
     Connection connection = null;
@@ -13,7 +15,7 @@ public class DataAccess {
         return conn;
     }
 
-    public String insertData(String statement){
+    public boolean insertData(String statement){
         try {
             connection = getConnection();
             Statement st = connection.createStatement();
@@ -21,11 +23,11 @@ public class DataAccess {
             st.executeUpdate(statement);
             connection.close();
             st.close();
-            return "Action done";
+            return true;
         }
         catch (Exception e)
         {
-            return "Error " + e.getMessage();
+            return false;
         }
     }
 
@@ -61,5 +63,6 @@ public class DataAccess {
             }
         }
         return crs;
+        ///^(?=.*[a-z])(?=.*[A-Z])(?=.*\W).{8,10}$/
     }
 }
