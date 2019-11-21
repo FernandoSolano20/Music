@@ -13,11 +13,21 @@ public class Album {
     private String image;
     private ArrayList<Artist> artists = new ArrayList<>();
 
+    public Album(String name, LocalDate releaseDate, String image) {
+        this.name = name;
+        this.releaseDate = releaseDate;
+        this.image = image;
+    }
+
     public Album(int id, String name, LocalDate releaseDate, String image) {
         this.id = id;
         this.name = name;
         this.releaseDate = releaseDate;
         this.image = image;
+    }
+
+    public Album(int id) {
+        this.id = id;
     }
 
     public int getId() {

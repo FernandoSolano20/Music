@@ -6,7 +6,7 @@ public interface Dao<T> {
 
     List<T> getAll();
 
-    boolean save(T t);
+    int save(T t);
 
     boolean update(T t);
 

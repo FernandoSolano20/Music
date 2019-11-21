@@ -50,8 +50,8 @@ public class Register extends MusicUI {
         int score = Integer.parseInt(this.score.getText());
         String song = "Path";
 
-        boolean response = controller.registerSong(name,gender,artist,compositor,year,month,day,album,score,song);
-        if (response == true){
+        int response = controller.registerSong(name,gender,artist,compositor,year,month,day,album,score,song);
+        if (response == 1){
             AlertHelper.showAlert(Alert.AlertType.CONFIRMATION, owner, "Exitoso", "Cancion almacenado");
             show.ShowWindow(event,"./views/login/login.fxml", "Iniciar Sesión");
         }

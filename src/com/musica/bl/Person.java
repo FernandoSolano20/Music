@@ -18,6 +18,10 @@ public abstract class Person {
         this.lastName = lastName;
     }
 
+    public Person(int id) {
+        this.id = id;
+    }
+
     public int getId() {
         return id;
     }

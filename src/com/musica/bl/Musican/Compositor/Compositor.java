@@ -16,6 +16,14 @@ public class Compositor extends Musican {
         super(id, name, lastName, country, old);
     }
 
+    public Compositor(String name, String lastName, Country country, int old) {
+        super(name, lastName, country, old);
+    }
+
+    public Compositor(int id) {
+        super(id);
+    }
+
     public ArrayList<Gender> getGenders() {
         return genders;
     }

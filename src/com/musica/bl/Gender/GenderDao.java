@@ -4,24 +4,43 @@ import com.musica.bl.Dao;
 import com.musica.bl.Song.Song;
 import com.musica.dl.DataAccess;
 
+import java.sql.ResultSet;
+import java.util.ArrayList;
 import java.util.List;
 
 public class GenderDao implements Dao<Gender> {
     private DataAccess dataAccess = new DataAccess();
     @Override
     public List<Gender> getAll() {
-        return null;
+        List<Gender> genders = new ArrayList<>();
+        Gender gender = null;
+        String queryString = "SELECT * FROM Gender";
+        ResultSet result = dataAccess.selectData(queryString);
+        try{
+            while (result.next())
+            {
+                int id = result.getInt("id");
+                String name = result.getString("name");
+                String description = result.getString("description");
+                gender = new Gender(id,name,description);
+                genders.add(gender);
+            }
+        }
+        catch (Exception e){
+            genders = null;
+        }
+        return genders;
     }
 
     @Override
-    public boolean save(Gender gender) {
-        boolean message = false;
+    public int save(Gender gender) {
+        int message = -1;
         String queryString = "INSERT INTO Gender(name, description) " +
                 "VALUES('"+ gender.getName() +"', '"+ gender.getDescription() +"')";
         try {
-            message = dataAccess.insertData(queryString);
+            message = dataAccess.insertIntoData(queryString);
         } catch (Exception e) {
-            message = false;
+            message = -1;
         }
         return message;
     }

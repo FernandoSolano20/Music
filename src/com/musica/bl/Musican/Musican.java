@@ -21,6 +21,10 @@ public abstract class Musican  extends Person {
         this.old = old;
     }
 
+    public Musican(int id) {
+        super(id);
+    }
+
     public Country getCountry() {
         return country;
     }

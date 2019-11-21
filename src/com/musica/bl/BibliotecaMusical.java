@@ -1,28 +1,42 @@
 package com.musica.bl;
 
+import com.musica.bl.Album.Album;
+import com.musica.bl.Album.AlbumDao;
 import com.musica.bl.Country.Country;
 import com.musica.bl.Gender.Gender;
 import com.musica.bl.Gender.GenderDao;
 import com.musica.bl.Musican.Artist.Artist;
 import com.musica.bl.Musican.Artist.ArtistDao;
+import com.musica.bl.Musican.Compositor.Compositor;
+import com.musica.bl.Musican.Compositor.CompositorDao;
+import com.musica.bl.ReproductionList.ReproductionList;
+import com.musica.bl.ReproductionList.ReproductionListDao;
 import com.musica.bl.Song.Song;
 import com.musica.bl.Song.SongDao;
 import com.musica.bl.User.User;
 import com.musica.bl.User.UserDao;
-import com.musica.dl.DataAccess;
 
 import java.util.ArrayList;
 import java.util.List;
 
 public class BibliotecaMusical {
-    private DataAccess dl = new DataAccess();
-    private ArrayList<Gender> genders = new ArrayList<>();
-    private ArrayList<Country> countries = new ArrayList<>();
-    Dao dao;
+    private static User actualUserId;
+    private List<Gender> genders = new GenderDao().getAll();
+    private List<Country> countries =  new ArrayList<>();
+    private List<Compositor> compositors = new CompositorDao().getAll();
+    private List<Artist> artists = new ArtistDao().getAll();
+    private List<Album> albums = new AlbumDao().getAll();
+    private List<Song> songs = getAllSongs();
+    private List<ReproductionList> reproductionLists;
+    private Dao dao;
+
+    public User getActualUser(){
+        return actualUserId;
+    }
 
     public boolean registerUser(User user){
         dao = new UserDao();
-        return dao.save(user);
+        return dao.save(user) == 1 ? true : false;
     }
 
     public List<String> getAllUser(){
@@ -45,7 +59,13 @@ public class BibliotecaMusical {
     }
 
     public boolean login(String email, String pass) {
-        return new UserDao().login(email,pass);
+        UserDao dao = new UserDao();
+         User user = dao.login(email,pass);
+         if (user != null){
+             BibliotecaMusical.actualUserId = user;
+             return true;
+         }
+         return false;
     }
 
     public boolean validateYears(int old) {
@@ -58,24 +78,42 @@ public class BibliotecaMusical {
 
     public boolean registerSong(Song song) {
         dao = new SongDao();
-        return dao.save(song);
+        return dao.save(song) == 0 ? false : true;
     }
 
     public boolean registerGender(Gender gender) {
         dao = new GenderDao();
-        return dao.save(gender);
+        boolean response = dao.save(gender) == 0 ? false : true;
+        if(response == true){
+            genders = dao.getAll();
+        }
+        return response;
     }
 
     public boolean registerArtist(Artist artist) {
         dao = new ArtistDao();
-        return dao.save(artist);
+        boolean response =  dao.save(artist) == 0 ? false : true;
+        if(response == true){
+            genders = dao.getAll();
+        }
+        return response;
     }
 
     public Gender searchGenderByName(String name){
-        genders.add(new Gender(1,"Romance","Hola"));
         Gender gen = null;
         for (Gender gender:genders) {
             if (gender.getName().equals(name)){
+                gen = gender;
+                break;
+            }
+        }
+        return gen;
+    }
+
+    public Gender searchGenderById(int id){
+        Gender gen = null;
+        for (Gender gender:genders) {
+            if (gender.getId() == id){
                 gen = gender;
                 break;
             }
@@ -93,5 +131,169 @@ public class BibliotecaMusical {
             }
         }
         return coun;
+    }
+
+    public boolean registerCompositor(Compositor compositor) {
+        CompositorDao dao = new CompositorDao();
+        boolean response = false;
+        int id = dao.save(compositor);
+        compositor.setId(id);
+        response = id == 0 ? false : true;
+        if (response){
+            response = dao.saveGenders(compositor);
+        }
+        else {
+            response = false;
+        }
+        compositors = dao.getAll();
+        return response;
+    }
+
+    public Compositor searchCompositorByNameAndLastName(String name){
+        Compositor comp = null;
+        for (Compositor compositor:compositors) {
+            if (name.equals(compositor.getName() + " " + compositor.getLastName())){
+                comp = compositor;
+                break;
+            }
+        }
+        return comp;
+    }
+
+    public Compositor searchCompositorById(int id){
+        Compositor comp = null;
+        for (Compositor compositor:compositors) {
+            if (compositor.getId() == id){
+                comp = compositor;
+                break;
+            }
+        }
+        return comp;
+    }
+
+    public int countGenders(){
+        return genders.size();
+    }
+
+    /*public int countContries(){
+        return countries.size();
+    }*/
+
+    public int countCompositors(){
+        return compositors.size();
+    }
+
+    public int countArtists(){
+        return artists.size();
+    }
+
+    public Artist searchArtistByArtistName(String artist) {
+        Artist art = null;
+        for (Artist artist1:artists) {
+            if (artist1.getArtist().equals(artist)){
+                art = artist1;
+                break;
+            }
+        }
+        return art;
+    }
+
+    public Artist searchArtistById(int id) {
+        Artist art = null;
+        for (Artist artist1:artists) {
+            if (artist1.getId() == id){
+                art = artist1;
+                break;
+            }
+        }
+        return art;
+    }
+
+    public boolean registerAlbum(Album album) {
+        AlbumDao dao = new AlbumDao();
+        boolean response = false;
+        int id = dao.save(album);
+        album.setId(id);
+        response = id == 0 ? false : true;
+        if (response){
+            response = dao.saveArtists(album);
+        }
+        else {
+            response = false;
+        }
+        albums = dao.getAll();
+        return response;
+    }
+
+    public Album searchAlbumByName(String name){
+        Album album = null;
+        for (Album album1:albums) {
+            if (name.equals(album1.getName())){
+                album = album1;
+                break;
+            }
+        }
+        return album;
+    }
+
+    public Album searchAlbumById(int id){
+        Album album = null;
+        for (Album album1:albums) {
+            if (album1.getId() == id){
+                album = album1;
+                break;
+            }
+        }
+        return album;
+    }
+
+    private List<Song> getAllSongs() {
+        dao = new SongDao();
+        List<Song> songs = dao.getAll();
+        for (Song song:songs) {
+            song.setGender(searchGenderById(song.getGender().getId()));
+            song.setCompositor(searchCompositorById(song.getCompositor().getId()));
+            song.setArtist(searchArtistById(song.getArtist().getId()));
+            song.setAlbum(searchAlbumById(song.getAlbum().getId()));
+        }
+        return songs;
+    }
+
+    public Song searchSongByName(String name){
+        Song song = null;
+        for (Song song1:songs) {
+            if (name.equals(song1.getName())){
+                song = song1;
+                break;
+            }
+        }
+        return song;
+    }
+
+    public Song searchSongById(int id){
+        Song song = null;
+        for (Song song1:songs) {
+            if (song1.getId() == id){
+                song = song1;
+                break;
+            }
+        }
+        return song;
+    }
+
+    public boolean registerReproductionList(ReproductionList reproductionList) {
+        ReproductionListDao dao = new ReproductionListDao();
+        boolean response = false;
+        int id = dao.save(reproductionList);
+        reproductionList.setId(id);
+        response = id == 0 ? false : true;
+        if (response){
+            response = dao.saveSongs(reproductionList);
+        }
+        else {
+            response = false;
+        }
+        reproductionLists = dao.getAll();
+        return response;
     }
 }

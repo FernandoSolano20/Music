@@ -1,9 +1,12 @@
 package com.musica.tl;
 
+import com.musica.bl.Album.Album;
 import com.musica.bl.BibliotecaMusical;
 import com.musica.bl.Country.Country;
 import com.musica.bl.Gender.Gender;
 import com.musica.bl.Musican.Artist.Artist;
+import com.musica.bl.Musican.Compositor.Compositor;
+import com.musica.bl.ReproductionList.ReproductionList;
 import com.musica.bl.Song.Song;
 import com.musica.bl.User.Admin.Admin;
 import com.musica.bl.User.Client.Client;
@@ -53,10 +56,26 @@ public class Controller {
         return logic.validatePassword(pass);
     }
 
-    public boolean registerSong(String name, String gender, String artist, String compositor, int year, int month, int day, String album, int score, String pathSong) {
-        //Song song = new Song(0,name,gender,artist,compositor, LocalDate.of(year,month,day),album,score,pathSong);
-        //return logic.registerSong(song);
-        return false;
+    public int registerSong(String name, String gender, String artist, String compositor, int year, int month, int day, String album, int score, String pathSong) {
+        Album album1 = logic.searchAlbumByName(album);
+        if(album1 != null){
+            Gender gen = logic.searchGenderByName(gender);
+            if(gen != null){
+                Artist artist1 = logic.searchArtistByArtistName(artist);
+                if(artist1 != null){
+                    Compositor compositor1 = logic.searchCompositorByNameAndLastName(compositor);
+                    if(compositor1 != null){
+                        Song song = new Song(name,gen,artist1,compositor1, LocalDate.of(year,month,day),album1,score,pathSong,logic.getActualUser().getId());
+                        int response  = logic.registerSong(song) ? 1 : 0;
+                        return response;
+                    }
+                    return -1;
+                }
+                return -2;
+            }
+            return -3;
+        }
+        return -4;
     }
 
     public boolean registerGender(String name, String description) {
@@ -74,5 +93,43 @@ public class Controller {
             return logic.registerArtist(artist);
         }
         return false;
+    }
+
+    public boolean registerCompositor(String name, String lastName, String country, int old, String[] genders) {
+        Country coun = logic.searchCountryByName(country);
+        if(coun != null){
+            Compositor compositor = new Compositor(name,lastName,coun,old);
+            for (String gender:genders) {
+                Gender gen = logic.searchGenderByName(gender);
+                if(gen != null){
+                    compositor.setGenders(gen);
+                }
+            }
+            return logic.registerCompositor(compositor);
+        }
+        return false;
+    }
+
+    public boolean registerAlbum(String name, LocalDate release, String image, String[] artists) {
+        Album album = new Album(name,release,image);
+        for (String artist:artists) {
+            Artist art = logic.searchArtistByArtistName(artist);
+            if(art != null){
+                album.setArtists(art);
+            }
+        }
+        return logic.registerAlbum(album);
+    }
+
+    public boolean registerReproductionList(String name, int year, int month, int day, String[] songs) {
+        ReproductionList reproductionList = new ReproductionList(LocalDate.of(year,month,day),name,logic.getActualUser());
+        for (String song:songs) {
+            Song son = logic.searchSongByName(song);
+            if(son != null){
+                reproductionList.setSongs(son);
+            }
+        }
+        reproductionList.setScore();
+        return logic.registerReproductionList(reproductionList);
     }
 }

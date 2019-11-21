@@ -15,12 +15,35 @@ public class DataAccess {
         return conn;
     }
 
+    public int insertIntoData(String statement){
+        int id = 0;
+        try {
+            connection = getConnection();
+            Statement st = connection.createStatement(ResultSet.TYPE_SCROLL_INSENSITIVE,
+                    ResultSet.CONCUR_UPDATABLE,
+                    Statement.RETURN_GENERATED_KEYS);
+            // note that i'm leaving "date_created" out of this insert statement
+            st.executeUpdate(statement,Statement.RETURN_GENERATED_KEYS);
+            ResultSet rs = st.getGeneratedKeys();
+            if (rs.next()) {
+                id = rs.getInt(1);
+            }
+            connection.close();
+            st.close();
+            return id;
+        }
+        catch (Exception e)
+        {
+            return 0;
+        }
+    }
+
     public boolean insertData(String statement){
         try {
             connection = getConnection();
             Statement st = connection.createStatement();
             // note that i'm leaving "date_created" out of this insert statement
-            st.executeUpdate(statement);
+            st.executeUpdate(statement,Statement.RETURN_GENERATED_KEYS);
             connection.close();
             st.close();
             return true;

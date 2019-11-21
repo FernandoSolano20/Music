@@ -4,6 +4,7 @@ import com.musica.bl.Album.Album;
 import com.musica.bl.Gender.Gender;
 import com.musica.bl.Musican.Artist.Artist;
 import com.musica.bl.Musican.Compositor.Compositor;
+import com.musica.bl.User.User;
 
 import java.time.LocalDate;
 import java.util.Objects;
@@ -18,8 +19,21 @@ public class Song {
     private Album album;
     private int score;
     private String song;
+    private int creator;
 
-    public Song(int id, String name, Gender gender, Artist artist, Compositor compositor, LocalDate release, Album album, int score, String song) {
+    public Song(String name, Gender gender, Artist artist, Compositor compositor, LocalDate release, Album album, int score, String song, int creator) {
+        this.name = name;
+        this.gender = gender;
+        this.artist = artist;
+        this.compositor = compositor;
+        this.release = release;
+        this.album = album;
+        this.score = score;
+        this.song = song;
+        this.creator = creator;
+    }
+
+    public Song(int id, String name, LocalDate release, int score, int creator, String song, Gender gender, Compositor compositor, Artist artist, Album album) {
         this.id = id;
         this.name = name;
         this.gender = gender;
@@ -29,6 +43,7 @@ public class Song {
         this.album = album;
         this.score = score;
         this.song = song;
+        this.creator = creator;
     }
 
     public int getId() {
@@ -101,6 +116,14 @@ public class Song {
 
     public void setSong(String song) {
         this.song = song;
+    }
+
+    public int getCreator() {
+        return creator;
+    }
+
+    public void setCreator(int creator) {
+        this.creator = creator;
     }
 
     @Override
