@@ -56,12 +56,14 @@
                 <Font size="20.0" />
             </font>
         </Label>
-      <TextField fx:id="compositor" GridPane.columnIndex="2" GridPane.rowIndex="13" />
+      <TextField fx:id="nameComp" prefHeight="31.0" prefWidth="87.0" GridPane.columnIndex="2" GridPane.rowIndex="13" />
       <TextField fx:id="album" GridPane.columnIndex="4" GridPane.rowIndex="10" />
-        <Button fx:id="song" mnemonicParsing="false" onAction="#uploadSong" prefHeight="31.0" prefWidth="194.0" text="Canción" GridPane.columnIndex="2" GridPane.rowIndex="15" />
+        <Button fx:id="song" mnemonicParsing="false" onAction="#uploadSong" prefHeight="31.0" prefWidth="194.0" text="Canción" GridPane.columnIndex="2" GridPane.rowIndex="17" />
       <Label alignment="CENTER" prefHeight="21.0" prefWidth="196.0" text="Mes de lazamiento" GridPane.columnIndex="4" GridPane.rowIndex="5" />
       <TextField fx:id="month" GridPane.columnIndex="4" GridPane.rowIndex="6" />
       <Label alignment="CENTER" prefHeight="21.0" prefWidth="211.0" text="Dia de lazamiento" GridPane.columnIndex="4" GridPane.rowIndex="7" />
       <TextField fx:id="day" GridPane.columnIndex="4" GridPane.rowIndex="8" />
+      <Label alignment="CENTER" prefHeight="21.0" prefWidth="195.0" text="Apellido Compositor" GridPane.columnIndex="2" GridPane.rowIndex="14" />
+      <TextField fx:id="lastNameComp" GridPane.columnIndex="2" GridPane.rowIndex="15" />
     </children>
 </GridPane>

@@ -1,7 +1,9 @@
 package com.musica.bl.ReproductionList;
 
 import com.musica.bl.Dao;
+import com.musica.bl.Gender.Gender;
 import com.musica.bl.Song.Song;
+import com.musica.bl.User.User;
 import com.musica.dl.DataAccess;
 
 import java.sql.ResultSet;
@@ -9,12 +11,12 @@ import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
 
-public class ReproductionListDao implements Dao<ReproductionList> {
+public class ReproductionListDao implements IReproductionListDao {
     private DataAccess dataAccess = new DataAccess();
     @Override
     public List<ReproductionList> getAll() {
         List<ReproductionList> reproductionLists = new ArrayList<>();
-        /*ReproductionList reproductionList = null;
+        ReproductionList reproductionList = null;
         String queryString = "SELECT * FROM ReproductionList as rl " +
                 "INNER JOIN User as u ON rl.idUser = u.id";
         ResultSet result = dataAccess.selectData(queryString);
@@ -25,16 +27,32 @@ public class ReproductionListDao implements Dao<ReproductionList> {
                 LocalDate create = result.getDate("create").toLocalDate();
                 String name = result.getString("name");
                 double score = result.getDouble("score");
-                int idGender = result.getInt("idGender");
-                Gender genderSong = new Gender(idGender,"","");
-
-                song = new Song(id,name,release,score,creator,songPath,genderSong,compositor,artist,album);
-                songs.add(song);
+                int idUser = result.getInt("idUser");
+                User user = new User(idUser);
+                reproductionList = new ReproductionList(id,create,name,score,user);
+                Song song = null;
+                String queryStringGender = "SELECT * FROM ReproductionListSong as rls    " +
+                        "INNER JOIN Song as s " +
+                        "ON rls.idSong = s.id " +
+                        "WHERE idReproductionList = " + reproductionList.getId();
+                ResultSet resultSong = dataAccess.selectData(queryStringGender);
+                try{
+                    while (resultSong.next())
+                    {
+                        int idSong = resultSong.getInt("id");
+                        song = new Song(idSong);
+                        reproductionList.setSongs(song);
+                    }
+                }
+                catch (Exception e){
+                    song = null;
+                }
+                reproductionLists.add(reproductionList);
             }
         }
         catch (Exception e){
-            songs = null;
-        }*/
+            reproductionLists = null;
+        }
         return reproductionLists;
     }
 

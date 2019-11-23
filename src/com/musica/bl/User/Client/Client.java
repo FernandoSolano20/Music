@@ -1,11 +1,15 @@
 package com.musica.bl.User.Client;
 
-import com.musica.bl.User.IUser;
+import com.musica.bl.Song.Song;
 import com.musica.bl.User.User;
 
-public class Client extends User implements IUser {
+import java.util.ArrayList;
+import java.util.List;
+
+public class Client extends User {
     private int old;
     private String country;
+    private List<Song> catalog = new ArrayList<>();
 
     public Client(int id, String userName, String name, String lastName, String email, String pass, String image, int old, String country) {
         super(id, userName, name, lastName, email, pass, image);
@@ -30,6 +34,14 @@ public class Client extends User implements IUser {
         this.country = country;
     }
 
+    public List<Song> getCatalog() {
+        return catalog;
+    }
+
+    public void setSongOnCatalog(Song song) {
+        catalog.add(song);
+    }
+
     @Override
     public String toString() {
         return "Client{" +
@@ -45,5 +57,13 @@ public class Client extends User implements IUser {
         if (o == null || !(o instanceof Client)) return false;
         Client client = (Client) o;
         return super.equals(client);
+    }
+
+    public void replaceSong(Song song) {
+        for(int i = 0; i < catalog.size(); i++) {
+            if(catalog.get(i).getId() == song.getId()) {
+                catalog.set(i,song);
+            }
+        }
     }
 }

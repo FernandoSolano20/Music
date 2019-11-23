@@ -16,7 +16,7 @@ public class DataAccess {
     }
 
     public int insertIntoData(String statement){
-        int id = 0;
+        int id = -1;
         try {
             connection = getConnection();
             Statement st = connection.createStatement(ResultSet.TYPE_SCROLL_INSENSITIVE,
@@ -34,7 +34,7 @@ public class DataAccess {
         }
         catch (Exception e)
         {
-            return 0;
+            return -1;
         }
     }
 

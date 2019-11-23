@@ -19,9 +19,9 @@ public class Song {
     private Album album;
     private int score;
     private String song;
-    private int creator;
+    private User creator;
 
-    public Song(String name, Gender gender, Artist artist, Compositor compositor, LocalDate release, Album album, int score, String song, int creator) {
+    public Song(String name, Gender gender, Artist artist, Compositor compositor, LocalDate release, Album album, int score, String song, User creator) {
         this.name = name;
         this.gender = gender;
         this.artist = artist;
@@ -33,7 +33,7 @@ public class Song {
         this.creator = creator;
     }
 
-    public Song(int id, String name, LocalDate release, int score, int creator, String song, Gender gender, Compositor compositor, Artist artist, Album album) {
+    public Song(int id, String name, LocalDate release, int score, User creator, String song, Gender gender, Compositor compositor, Artist artist, Album album) {
         this.id = id;
         this.name = name;
         this.gender = gender;
@@ -44,6 +44,10 @@ public class Song {
         this.score = score;
         this.song = song;
         this.creator = creator;
+    }
+
+    public Song(int id) {
+        this.id = id;
     }
 
     public int getId() {
@@ -118,11 +122,11 @@ public class Song {
         this.song = song;
     }
 
-    public int getCreator() {
+    public User getCreator() {
         return creator;
     }
 
-    public void setCreator(int creator) {
+    public void setCreator(User creator) {
         this.creator = creator;
     }
 

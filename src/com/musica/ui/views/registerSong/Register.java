@@ -17,7 +17,8 @@ public class Register extends MusicUI {
     @FXML private TextField name;
     @FXML private TextField gender;
     @FXML private TextField artist;
-    @FXML private TextField compositor;
+    @FXML private TextField nameComp;
+    @FXML private TextField lastNameComp;
     @FXML private TextField year;
     @FXML private TextField month;
     @FXML private TextField day;
@@ -42,7 +43,8 @@ public class Register extends MusicUI {
         String name = this.name.getText();
         String gender = this.gender.getText();
         String artist = this.artist.getText();
-        String compositor = this.compositor.getText();
+        String nameComp = this.nameComp.getText();
+        String lastNameComp = this.lastNameComp.getText();
         int year = Integer.parseInt(this.year.getText());
         int month = Integer.parseInt(this.month.getText());
         int day = Integer.parseInt(this.day.getText());
@@ -50,7 +52,7 @@ public class Register extends MusicUI {
         int score = Integer.parseInt(this.score.getText());
         String song = "Path";
 
-        int response = controller.registerSong(name,gender,artist,compositor,year,month,day,album,score,song);
+        int response = controller.registerSong(name,gender,artist,nameComp,lastNameComp,year,month,day,album,score,song);
         if (response == 1){
             AlertHelper.showAlert(Alert.AlertType.CONFIRMATION, owner, "Exitoso", "Cancion almacenado");
             show.ShowWindow(event,"./views/login/login.fxml", "Iniciar Sesión");

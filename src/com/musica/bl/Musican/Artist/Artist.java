@@ -1,6 +1,5 @@
 package com.musica.bl.Musican.Artist;
 
-import com.musica.bl.Country.Country;
 import com.musica.bl.Gender.Gender;
 import com.musica.bl.Musican.Musican;
 import com.musica.bl.Person;
@@ -16,7 +15,7 @@ public class Artist extends Musican {
     private Gender gender;
     private String artist;
 
-    public Artist(int id, String name, String lastName, Country country, int old, LocalDate born, LocalDate dead, String reference, String description, Gender gender, String artist) {
+    public Artist(int id, String name, String lastName, String country, int old, LocalDate born, LocalDate dead, String reference, String description, Gender gender, String artist) {
         super(id,name,lastName,country,old);
         this.born = born;
         this.dead = dead;
@@ -26,7 +25,7 @@ public class Artist extends Musican {
         this.artist = artist;
     }
 
-    public Artist(String name, String lastName, Country country, int old, LocalDate born, LocalDate dead, String reference, String description, Gender gender, String artist) {
+    public Artist(String name, String lastName, String country, int old, LocalDate born, LocalDate dead, String reference, String description, Gender gender, String artist) {
         super(name, lastName, country, old);
         this.born = born;
         this.dead = dead;
@@ -36,7 +35,7 @@ public class Artist extends Musican {
         this.artist = artist;
     }
 
-    public Artist(int id) {
+    public Artist(int id){
         super(id);
     }
 

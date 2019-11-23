@@ -1,7 +1,5 @@
 package com.musica.bl.Album;
 
-import com.musica.bl.Country.Country;
-import com.musica.bl.Dao;
 import com.musica.bl.Gender.Gender;
 import com.musica.bl.Musican.Artist.Artist;
 import com.musica.dl.DataAccess;
@@ -12,7 +10,7 @@ import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
 
-public class AlbumDao implements Dao<Album> {
+public class AlbumDao implements IAlbumDao {
     private DataAccess dataAccess = new DataAccess();
     @Override
     public List<Album> getAll() {
@@ -46,8 +44,7 @@ public class AlbumDao implements Dao<Album> {
                         if(dateDead != null){
                             dead = dateDead.toLocalDate();
                         }
-                        String coun = resultArtist.getString("country");
-                        Country country = new Country(coun);
+                        String country = resultArtist.getString("country");
                         int old = resultArtist.getInt("old");
                         String reference = resultArtist.getString("reference");
                         String description = resultArtist.getString("description");
@@ -108,5 +105,61 @@ public class AlbumDao implements Dao<Album> {
             }
         }
         return message;
+    }
+
+    @Override
+    public Album searchAlbumByName(String name) {
+        Album album = null;
+        String queryString = "SELECT * FROM Album " +
+                "WHERE name = '" + name + "'";
+        ResultSet result = dataAccess.selectData(queryString);
+        try{
+            while (result.next())
+            {
+                int id = result.getInt("id");
+                String albumName = result.getString("name");
+                LocalDate release = result.getDate("releaseDate").toLocalDate();
+                String image = result.getString("image");
+                album = new Album(id,albumName,release,image);
+                Artist artist = null;
+                String queryStringGender = "SELECT * FROM AlbumArtist as aa " +
+                        "INNER JOIN Artist as a ON aa.idArtist = a.id " +
+                        "INNER JOIN Gender as g ON a.idGender= g.id " +
+                        "WHERE idAlbum = " + album.getId();
+                ResultSet resultArtist = dataAccess.selectData(queryStringGender);
+                try{
+                    while (resultArtist.next())
+                    {
+                        int idArtist = resultArtist.getInt("id");
+                        String nameArtist = resultArtist.getString("name");
+                        String lastName = resultArtist.getString("lastName");
+                        LocalDate born = resultArtist.getDate("born").toLocalDate();
+                        Date dateDead = resultArtist.getDate("dead");
+                        LocalDate dead = null;
+                        if(dateDead != null){
+                            dead = dateDead.toLocalDate();
+                        }
+                        String country = resultArtist.getString("country");
+                        int old = resultArtist.getInt("old");
+                        String reference = resultArtist.getString("reference");
+                        String description = resultArtist.getString("description");
+                        int idGender = resultArtist.getInt("idGender");
+                        String nameGender = resultArtist.getString(15);
+                        String descriptionGender = resultArtist.getString(16);
+                        Gender gender = new Gender(idGender,nameGender,descriptionGender);
+                        String artistName = resultArtist.getString("artistName");
+                        artist = new Artist(id,name,lastName,country,old,born,dead,reference,description,gender,artistName);
+                        album.setArtists(artist);
+                    }
+                }
+                catch (Exception e){
+                    artist = null;
+                }
+            }
+        }
+        catch (Exception e){
+            album = null;
+        }
+        return album;
     }
 }

@@ -1,6 +1,7 @@
 package com.musica.bl.User;
 
 import com.musica.bl.Dao;
+import com.musica.bl.Song.Song;
 import com.musica.bl.User.Admin.Admin;
 import com.musica.bl.User.Client.Client;
 import com.musica.dl.DataAccess;
@@ -10,7 +11,7 @@ import java.sql.ResultSet;
 import java.util.ArrayList;
 import java.util.List;
 
-public class UserDao implements Dao<User> {
+public class UserDao implements IUserDao {
     private DataAccess dataAccess = new DataAccess();
 
     @Override
@@ -37,6 +38,27 @@ public class UserDao implements Dao<User> {
                     old = result.getInt("yearsOld");
                     country = result.getString("country");
                     user = new Client(id, userName, name, lastName, email, pass, image, old, country);
+
+                    List<Song> songs = new ArrayList<>();
+                    Song song = null;
+                    String queryStringSong = "SELECT * FROM UserListSong as uls" +
+                            "INNER JOIN Song as s " +
+                            "ON uls.idSong = s.id " +
+                            "WHERE idUserList = " + user.getId();
+                    ResultSet resultSongs = dataAccess.selectData(queryString);
+                    try{
+                        while (resultSongs.next())
+                        {
+                            int idSong = result.getInt("idSong");
+                            Song songUser = new Song(idSong);
+                            ((Client)users).setSongOnCatalog(songUser);
+                        }
+                    }
+                    catch (Exception e){
+                        users = null;
+                    }
+                    return users;
+                    /**/
                 }
                 else {
                     user = new Admin(id, userName, name, lastName, email, pass, image);
@@ -70,7 +92,7 @@ public class UserDao implements Dao<User> {
         } catch (Exception e) {
             message = false;
         }
-        return message == true ? 1 : 0;
+        return message ? 1 : -1;
     }
 
     @Override

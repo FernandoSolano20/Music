@@ -1,21 +1,20 @@
 package com.musica.bl.Musican;
 
-import com.musica.bl.Country.Country;
 import com.musica.bl.Person;
 
 import java.util.Objects;
 
 public abstract class Musican  extends Person {
-    private Country country;
+    private String country;
     private int old;
 
-    public Musican(int id, String name, String lastName, Country country, int old) {
+    public Musican(int id, String name, String lastName, String country, int old) {
         super(id, name, lastName);
         this.country = country;
         this.old = old;
     }
 
-    public Musican(String name, String lastName, Country country, int old) {
+    public Musican(String name, String lastName, String country, int old) {
         super(name, lastName);
         this.country = country;
         this.old = old;
@@ -25,11 +24,12 @@ public abstract class Musican  extends Person {
         super(id);
     }
 
-    public Country getCountry() {
+
+    public String getCountry() {
         return country;
     }
 
-    public void setCountry(Country country) {
+    public void setCountry(String country) {
         this.country = country;
     }
 

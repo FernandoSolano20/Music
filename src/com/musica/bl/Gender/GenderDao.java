@@ -8,7 +8,7 @@ import java.sql.ResultSet;
 import java.util.ArrayList;
 import java.util.List;
 
-public class GenderDao implements Dao<Gender> {
+public class GenderDao implements IGenderDao {
     private DataAccess dataAccess = new DataAccess();
     @Override
     public List<Gender> getAll() {
@@ -53,5 +53,26 @@ public class GenderDao implements Dao<Gender> {
     @Override
     public boolean delete(Gender gender) {
         return false;
+    }
+
+    @Override
+    public Gender searchGenderByName(String name) {
+        Gender gender = null;
+        String queryString = "SELECT * FROM Gender " +
+                "WHERE name = '"+ name + "'";
+        ResultSet result = dataAccess.selectData(queryString);
+        try{
+            while (result.next())
+            {
+                int id = result.getInt("id");
+                String nameGender = result.getString("name");
+                String description = result.getString("description");
+                gender = new Gender(id,nameGender,description);
+            }
+        }
+        catch (Exception e){
+            gender = null;
+        }
+        return gender;
     }
 }

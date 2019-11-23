@@ -1,33 +1,20 @@
 package com.musica.bl;
 
-import com.musica.bl.Album.Album;
-import com.musica.bl.Album.AlbumDao;
-import com.musica.bl.Country.Country;
-import com.musica.bl.Gender.Gender;
-import com.musica.bl.Gender.GenderDao;
-import com.musica.bl.Musican.Artist.Artist;
-import com.musica.bl.Musican.Artist.ArtistDao;
-import com.musica.bl.Musican.Compositor.Compositor;
-import com.musica.bl.Musican.Compositor.CompositorDao;
-import com.musica.bl.ReproductionList.ReproductionList;
-import com.musica.bl.ReproductionList.ReproductionListDao;
-import com.musica.bl.Song.Song;
-import com.musica.bl.Song.SongDao;
-import com.musica.bl.User.User;
-import com.musica.bl.User.UserDao;
-
 import java.util.ArrayList;
 import java.util.List;
 
-public class BibliotecaMusical {
+public class BibliotecaMusical {/*
     private static User actualUserId;
     private List<Gender> genders = new GenderDao().getAll();
+    private List<User> users = new UserDao().getAll();
     private List<Country> countries =  new ArrayList<>();
     private List<Compositor> compositors = new CompositorDao().getAll();
     private List<Artist> artists = new ArtistDao().getAll();
     private List<Album> albums = new AlbumDao().getAll();
+    //private Lit
     private List<Song> songs = getAllSongs();
-    private List<ReproductionList> reproductionLists;
+    private List<ReproductionList> reproductionLists = getReproductionLists();
+
     private Dao dao;
 
     public User getActualUser(){
@@ -36,7 +23,15 @@ public class BibliotecaMusical {
 
     public boolean registerUser(User user){
         dao = new UserDao();
-        return dao.save(user) == 1 ? true : false;
+        boolean response = dao.save(user) == 1 ? true : false;
+        if(response && user instanceof Client){
+            Client client = (Client) user;
+            List<Song> songs = client.getCatalog();
+            for (Song song: songs) {
+                client.replaceSong(song);
+            }
+        }
+        return response;
     }
 
     public List<String> getAllUser(){
@@ -178,7 +173,7 @@ public class BibliotecaMusical {
     /*public int countContries(){
         return countries.size();
     }*/
-
+/*
     public int countCompositors(){
         return compositors.size();
     }
@@ -281,6 +276,17 @@ public class BibliotecaMusical {
         return song;
     }
 
+    public User searchUserById(int id){
+        User u = null;
+        for (User user:users) {
+            if (user.getId() == id){
+                u = user;
+                break;
+            }
+        }
+        return u;
+    }
+
     public boolean registerReproductionList(ReproductionList reproductionList) {
         ReproductionListDao dao = new ReproductionListDao();
         boolean response = false;
@@ -296,4 +302,27 @@ public class BibliotecaMusical {
         reproductionLists = dao.getAll();
         return response;
     }
+
+    private List<ReproductionList> getReproductionLists() {
+        dao = new ReproductionListDao();
+        List<ReproductionList> reproductionLists = dao.getAll();
+        for (ReproductionList reproList:reproductionLists) {
+            reproList.setUser(searchUserById(reproList.getUser().getId()));
+            List<Song> songs = reproList.getSongs();
+            for (Song song:songs){
+                Song s = searchSongById(song.getId());
+                reproList.replaceSong(s);
+            }
+        }
+        return reproductionLists;
+    }
+
+    public boolean addSongToCatalog(Song song, User actualUser) {
+        ClientDao dao = new ClientDao();
+        boolean response = dao.save(actualUser, song) == 1 ? true : false;
+        if(response){
+            users = new UserDao().getAll();
+        }
+        return response;
+    }*/
 }

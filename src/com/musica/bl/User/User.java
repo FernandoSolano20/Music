@@ -4,12 +4,13 @@ import com.musica.bl.Person;
 
 import java.util.Objects;
 
-public abstract class User extends Person {
+public class User extends Person {
     private String userName;
     private String email;
     private String pass;
     private String image;
     private String type;
+    public static User actualUser;
 
     public User(int id, String userName, String name, String lastName, String email, String pass, String image) {
         super(id,name,lastName);
@@ -17,6 +18,10 @@ public abstract class User extends Person {
         this.email = email;
         this.pass = pass;
         this.image = image;
+    }
+
+    public User(int id) {
+        super(id);
     }
 
     public String getUserName() {
@@ -57,6 +62,14 @@ public abstract class User extends Person {
 
     public void setType(String type) {
         this.type = type;
+    }
+
+    public static User getActualUser() {
+        return actualUser;
+    }
+
+    public static void setActualUser(User actualUser) {
+        User.actualUser = actualUser;
     }
 
     @Override

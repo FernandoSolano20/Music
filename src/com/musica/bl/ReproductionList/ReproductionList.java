@@ -25,6 +25,14 @@ public class ReproductionList {
         this.songs = songs;
     }
 
+    public ReproductionList(int id, LocalDate create, String name, double score, User user) {
+        this.id = id;
+        this.create = create;
+        this.name = name;
+        this.score = score;
+        this.user = user;
+    }
+
     public ReproductionList(LocalDate create, String name, User user) {
         this.create = create;
         this.name = name;
@@ -112,5 +120,13 @@ public class ReproductionList {
                 Objects.equals(create, that.create) &&
                 Objects.equals(name, that.name) &&
                 Objects.equals(user, that.user);
+    }
+
+    public void replaceSong(Song song) {
+        for(int i = 0; i < songs.size(); i++) {
+            if(songs.get(i).getId() == song.getId()) {
+                songs.set(i,song);
+            }
+        }
     }
 }

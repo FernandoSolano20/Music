@@ -1,6 +1,5 @@
 package com.musica.bl.Musican.Compositor;
 
-import com.musica.bl.Country.Country;
 import com.musica.bl.Gender.Gender;
 import com.musica.bl.Musican.Musican;
 import com.musica.bl.Person;
@@ -12,11 +11,11 @@ public class Compositor extends Musican {
 
     private ArrayList<Gender> genders = new ArrayList<Gender>();
 
-    public Compositor(int id, String name, String lastName, Country country, int old) {
+    public Compositor(int id, String name, String lastName, String country, int old) {
         super(id, name, lastName, country, old);
     }
 
-    public Compositor(String name, String lastName, Country country, int old) {
+    public Compositor(String name, String lastName, String country, int old) {
         super(name, lastName, country, old);
     }
 

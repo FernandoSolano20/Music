@@ -1,7 +1,5 @@
 package com.musica.bl.Musican.Compositor;
 
-import com.musica.bl.Country.Country;
-import com.musica.bl.Dao;
 import com.musica.bl.Gender.Gender;
 import com.musica.bl.Musican.Artist.Artist;
 import com.musica.dl.DataAccess;
@@ -10,7 +8,7 @@ import java.sql.ResultSet;
 import java.util.ArrayList;
 import java.util.List;
 
-public class CompositorDao implements Dao<Compositor> {
+public class CompositorDao implements ICompositorDao {
     private DataAccess dataAccess = new DataAccess();
     @Override
     public List<Compositor> getAll() {
@@ -26,8 +24,7 @@ public class CompositorDao implements Dao<Compositor> {
                 String lastName = result.getString("lastName");
                 String country = result.getString("country");
                 int old = result.getInt("old");
-                Country coun = new Country(country);
-                compositor = new Compositor(id,name,lastName,coun,old);
+                compositor = new Compositor(id,name,lastName,country,old);
 
                 Gender gender = null;
                 String queryStringGender = "SELECT * FROM GenderCompositor as gc " +
@@ -62,7 +59,7 @@ public class CompositorDao implements Dao<Compositor> {
     public int save(Compositor compositor) {
         int message = -1;
         String queryString = "INSERT INTO Compositor(name, lastName, country, old) " +
-                "VALUES('"+ compositor.getName() +"', '" + compositor.getLastName() + "', '"  + compositor.getCountry().getName() + "', '"
+                "VALUES('"+ compositor.getName() +"', '" + compositor.getLastName() + "', '"  + compositor.getCountry() + "', '"
                 + compositor.getOld() +"')";
         try {
             message = dataAccess.insertIntoData(queryString);
@@ -95,5 +92,48 @@ public class CompositorDao implements Dao<Compositor> {
             }
         }
         return message;
+    }
+
+    @Override
+    public Compositor searchCompositorByNameAndLastName(String name, String lastName) {
+        Compositor compositor = null;
+        String queryString = "SELECT * FROM Compositor " +
+                "WHERE name = '" + name + "' AND lastName = '" + lastName + "'";
+        ResultSet result = dataAccess.selectData(queryString);
+        try{
+            while (result.next())
+            {
+                int id = result.getInt("id");
+                String nameCompositor = result.getString("name");
+                String lastNameCompositor = result.getString("lastName");
+                String country = result.getString("country");
+                int old = result.getInt("old");
+                compositor = new Compositor(id,nameCompositor,lastNameCompositor,country,old);
+
+                Gender gender = null;
+                String queryStringGender = "SELECT * FROM GenderCompositor as gc " +
+                        "INNER JOIN Gender as g " +
+                        "ON gc.idGender = g.id " +
+                        "WHERE idCompositor = " + compositor.getId();
+                ResultSet resultGender = dataAccess.selectData(queryStringGender);
+                try{
+                    while (resultGender.next())
+                    {
+                        int idGender = resultGender.getInt("id");
+                        String nameGender = resultGender.getString("name");
+                        String description = resultGender.getString("description");
+                        gender = new Gender(idGender,nameGender,description);
+                        compositor.setGenders(gender);
+                    }
+                }
+                catch (Exception e){
+                    gender = null;
+                }
+            }
+        }
+        catch (Exception e){
+            compositor = null;
+        }
+        return compositor;
     }
 }
