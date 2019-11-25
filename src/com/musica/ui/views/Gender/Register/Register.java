@@ -28,7 +28,7 @@ public class Register extends MusicUI {
         boolean response = controller.registerGender(name,description);
         if (response == true){
             AlertHelper.showAlert(Alert.AlertType.CONFIRMATION, owner, "Exitoso", "Genero almacenado");
-            show.ShowWindow(event,"./views/login/login.fxml", "Iniciar Sesión");
+            super.index(event);
         }
         else {
             AlertHelper.showAlert(Alert.AlertType.ERROR, owner, "Error", "El genero no se pudo almacenar");

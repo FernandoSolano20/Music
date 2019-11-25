@@ -2,6 +2,7 @@ package com.musica.bl.User;
 
 import com.musica.bl.Dao;
 import com.musica.bl.Song.Song;
+import com.musica.bl.Song.SongDao;
 import com.musica.bl.User.Admin.Admin;
 import com.musica.bl.User.Client.Client;
 import com.musica.dl.DataAccess;
@@ -41,24 +42,23 @@ public class UserDao implements IUserDao {
 
                     List<Song> songs = new ArrayList<>();
                     Song song = null;
-                    String queryStringSong = "SELECT * FROM UserListSong as uls" +
+                    String queryStringSong = "SELECT * FROM Catalog as c" +
                             "INNER JOIN Song as s " +
-                            "ON uls.idSong = s.id " +
-                            "WHERE idUserList = " + user.getId();
+                            "ON c.idSong = s.id " +
+                            "WHERE idUser = " + user.getId();
                     ResultSet resultSongs = dataAccess.selectData(queryString);
                     try{
                         while (resultSongs.next())
                         {
                             int idSong = result.getInt("idSong");
-                            Song songUser = new Song(idSong);
-                            ((Client)users).setSongOnCatalog(songUser);
+                            SongDao songDao = new SongDao();
+                            ((Client)users).setSongOnCatalog(songDao.searchSongById(idSong));
                         }
                     }
                     catch (Exception e){
                         users = null;
                     }
                     return users;
-                    /**/
                 }
                 else {
                     user = new Admin(id, userName, name, lastName, email, pass, image);

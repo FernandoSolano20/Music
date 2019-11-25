@@ -12,12 +12,7 @@ public class Main extends Application {
     @Override
     public void start(Stage primaryStage) throws Exception{
         Controller controller = new Controller();
-        Parent page = FXMLLoader.load(getClass().getResource("views/reproductionList/Register/Register.fxml"));
-        Scene scene = new Scene(page);
-        primaryStage.setTitle("Iniciar Sesión");
-        primaryStage.setScene(scene);
-        primaryStage.show();
-        /*if(controller.isAdminOnDB()){
+        if(controller.isAdminOnDB()){
             Parent page = FXMLLoader.load(getClass().getResource("views/login/login.fxml"));
             Scene scene = new Scene(page);
             primaryStage.setTitle("Iniciar Sesión");
@@ -30,7 +25,7 @@ public class Main extends Application {
             primaryStage.setTitle("Registro Administrador");
             primaryStage.setScene(scene);
             primaryStage.show();
-        }*/
+        }
     }
 
 

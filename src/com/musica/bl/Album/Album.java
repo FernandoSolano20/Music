@@ -1,9 +1,12 @@
 package com.musica.bl.Album;
 
 import com.musica.bl.Musican.Artist.Artist;
+import com.musica.bl.Song.Song;
+import org.omg.CORBA.PRIVATE_MEMBER;
 
 import java.time.LocalDate;
 import java.util.ArrayList;
+import java.util.List;
 import java.util.Objects;
 
 public class Album {
@@ -12,6 +15,7 @@ public class Album {
     private LocalDate releaseDate;
     private String image;
     private ArrayList<Artist> artists = new ArrayList<>();
+    private List<Song> songs = new ArrayList<>();
 
     public Album(String name, LocalDate releaseDate, String image) {
         this.name = name;
@@ -68,6 +72,18 @@ public class Album {
 
     public void setArtists(Artist artist) {
         this.artists.add(artist);
+    }
+
+    public List<Song> getSongs() {
+        return songs;
+    }
+
+    public void setSongs(List<Song> songs) {
+        this.songs = songs;
+    }
+
+    public void setSongs(Song song) {
+        this.songs.add(song);
     }
 
     @Override

@@ -100,14 +100,12 @@ public class ReproductionList {
 
     @Override
     public String toString() {
-        return "ReproductionList{" +
-                "id=" + id +
-                ", create=" + create +
-                ", name='" + name + '\'' +
-                ", score=" + score +
-                ", user=" + user +
-                ", songs=" + songs +
-                '}';
+        return id +
+                "," + create +
+                "," + name  +
+                "," + score +
+                "," + user +
+                "," + songs;
     }
 
     @Override

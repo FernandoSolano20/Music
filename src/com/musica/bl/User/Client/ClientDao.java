@@ -9,7 +9,7 @@ public class ClientDao implements IClientDao {
     @Override
     public boolean addSongToCatalog(User client, Song song) {
         boolean message = false;
-        String queryString = "INSERT INTO UserListSong(idUserList, idSong) " +
+        String queryString = "INSERT INTO Catalog(idUser, idSong) " +
                 "VALUES("+ client.getId() +", "+ song.getId() + ")";
         try {
             message = dataAccess.insertData(queryString);

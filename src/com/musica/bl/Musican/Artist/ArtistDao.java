@@ -74,9 +74,47 @@ public class ArtistDao implements IArtistDao {
     }
 
     @Override
+    public List<Artist> searchArtist(String seacher) {
+        List<Artist> artists = new ArrayList<>();
+        Artist artist = null;
+        String queryString = "SELECT * FROM Artist as a INNER JOIN Gender as g ON a.idGender = g.id " +
+                "WHERE name + ' ' + lastName = '" + seacher + "' AND country = '" + seacher + "' AND artistName = '" + seacher + "' ";
+        ResultSet result = dataAccess.selectData(queryString);
+        try{
+            while (result.next())
+            {
+                int id = result.getInt("id");
+                String nameArtist = result.getString("name");
+                String lastNameArtist = result.getString("lastName");
+                LocalDate born = result.getDate("born").toLocalDate();
+                Date dateDead = result.getDate("dead");
+                LocalDate dead = null;
+                if(dateDead != null){
+                    dead = dateDead.toLocalDate();
+                }
+                String country = result.getString("country");
+                int old = result.getInt("old");
+                String reference = result.getString("reference");
+                String description = result.getString("description");
+                int idGender = result.getInt("idGender");
+                String nameGender = result.getString(13);
+                String descriptionGender = result.getString(14);
+                String artistName = result.getString("artistName");
+                Gender gender = new Gender(idGender,nameGender,descriptionGender);
+                artist = new Artist(id,nameArtist,lastNameArtist,country,old,born,dead,reference,description,gender,artistName);
+            }
+            artists.add(artist);
+        }
+        catch (Exception e){
+            artists = null;
+        }
+        return artists;
+    }
+
+    @Override
     public Artist searchArtistByArtistName(String name) {
         Artist artist = null;
-        String queryString = "SELECT * FROM Artist " +
+        String queryString = "SELECT * FROM Artist as a INNER JOIN Gender as g ON a.idGender = g.id " +
                 "WHERE artistName = '"+ name + "'";
         ResultSet result = dataAccess.selectData(queryString);
         try{
@@ -101,6 +139,42 @@ public class ArtistDao implements IArtistDao {
                 String artistName = result.getString("artistName");
                 Gender gender = new Gender(idGender,nameGender,descriptionGender);
                 artist = new Artist(id,nameArtist,lastName,country,old,born,dead,reference,description,gender,artistName);
+            }
+        }
+        catch (Exception e){
+            artist = null;
+        }
+        return artist;
+    }
+
+    @Override
+    public Artist searchArtistById(int id) {
+        Artist artist = null;
+        String queryString = "SELECT * FROM Artist as a INNER JOIN Gender as g ON a.idGender = g.id " +
+                "WHERE id = "+ id + "";
+        ResultSet result = dataAccess.selectData(queryString);
+        try{
+            while (result.next())
+            {
+                int idArtist = result.getInt("id");
+                String nameArtist = result.getString("name");
+                String lastName = result.getString("lastName");
+                LocalDate born = result.getDate("born").toLocalDate();
+                Date dateDead = result.getDate("dead");
+                LocalDate dead = null;
+                if(dateDead != null){
+                    dead = dateDead.toLocalDate();
+                }
+                String country = result.getString("country");
+                int old = result.getInt("old");
+                String reference = result.getString("reference");
+                String description = result.getString("description");
+                int idGender = result.getInt("idGender");
+                String nameGender = result.getString(13);
+                String descriptionGender = result.getString(14);
+                String artistName = result.getString("artistName");
+                Gender gender = new Gender(idGender,nameGender,descriptionGender);
+                artist = new Artist(idArtist,nameArtist,lastName,country,old,born,dead,reference,description,gender,artistName);
             }
         }
         catch (Exception e){

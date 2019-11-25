@@ -45,20 +45,16 @@ public class Login extends MusicUI {
             return;
         }
 
-        boolean response = controller.login(email,pass);
-        if(response){
+        String type = controller.login(email,pass);
+        if(type != null){
             AlertHelper.showAlert(Alert.AlertType.CONFIRMATION, owner, "Bienvenido!",
                     "Bienvenido " + emailField.getText());
-            show.ShowWindow(event,"./views/registro/registro.fxml", "Musica");
+            super.index(event);
         }
         else{
             AlertHelper.showAlert(Alert.AlertType.ERROR, owner, "No encontrado",
                     "Usuario o contraseña incorrecta");
         }
-
-
-
-
     }
 
     @FXML

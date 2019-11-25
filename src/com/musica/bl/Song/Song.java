@@ -20,8 +20,9 @@ public class Song {
     private int score;
     private String song;
     private User creator;
+    private int price;
 
-    public Song(String name, Gender gender, Artist artist, Compositor compositor, LocalDate release, Album album, int score, String song, User creator) {
+    public Song(String name, Gender gender, Artist artist, Compositor compositor, LocalDate release, Album album, int score, String song, User creator, int price) {
         this.name = name;
         this.gender = gender;
         this.artist = artist;
@@ -31,9 +32,10 @@ public class Song {
         this.score = score;
         this.song = song;
         this.creator = creator;
+        this.price = price;
     }
 
-    public Song(int id, String name, LocalDate release, int score, User creator, String song, Gender gender, Compositor compositor, Artist artist, Album album) {
+    public Song(int id, String name, LocalDate release, int score, User creator, String song, Gender gender, Compositor compositor, Artist artist, Album album, int price) {
         this.id = id;
         this.name = name;
         this.gender = gender;
@@ -44,6 +46,7 @@ public class Song {
         this.score = score;
         this.song = song;
         this.creator = creator;
+        this.price = price;
     }
 
     public Song(int id) {
@@ -128,6 +131,14 @@ public class Song {
 
     public void setCreator(User creator) {
         this.creator = creator;
+    }
+
+    public int getPrice() {
+        return price;
+    }
+
+    public void setPrice(int price) {
+        this.price = price;
     }
 
     @Override

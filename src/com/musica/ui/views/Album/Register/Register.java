@@ -47,11 +47,11 @@ public class Register extends MusicUI {
 
         boolean response = controller.registerAlbum(name,release,image,artists);
         if (response == true){
-            AlertHelper.showAlert(Alert.AlertType.CONFIRMATION, owner, "Exitoso", "Usuario almacenado");
-            show.ShowWindow(event,"./views/login/login.fxml", "Iniciar Sesión");
+            AlertHelper.showAlert(Alert.AlertType.CONFIRMATION, owner, "Exitoso", "Album almacenado");
+            super.index(event);
         }
         else {
-            AlertHelper.showAlert(Alert.AlertType.ERROR, owner, "Error", "El usuario no se pudo almacenar");
+            AlertHelper.showAlert(Alert.AlertType.ERROR, owner, "Error", "El album no se pudo almacenar");
         }
     }
 }

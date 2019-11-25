@@ -95,10 +95,10 @@ public class CompositorDao implements ICompositorDao {
     }
 
     @Override
-    public Compositor searchCompositorByNameAndLastName(String name, String lastName) {
+    public Compositor searchCompositorByNameAndLastName(String name) {
         Compositor compositor = null;
         String queryString = "SELECT * FROM Compositor " +
-                "WHERE name = '" + name + "' AND lastName = '" + lastName + "'";
+                "WHERE name + ' ' + lastName = '" + name + "'";
         ResultSet result = dataAccess.selectData(queryString);
         try{
             while (result.next())
@@ -109,6 +109,49 @@ public class CompositorDao implements ICompositorDao {
                 String country = result.getString("country");
                 int old = result.getInt("old");
                 compositor = new Compositor(id,nameCompositor,lastNameCompositor,country,old);
+
+                Gender gender = null;
+                String queryStringGender = "SELECT * FROM GenderCompositor as gc " +
+                        "INNER JOIN Gender as g " +
+                        "ON gc.idGender = g.id " +
+                        "WHERE idCompositor = " + compositor.getId();
+                ResultSet resultGender = dataAccess.selectData(queryStringGender);
+                try{
+                    while (resultGender.next())
+                    {
+                        int idGender = resultGender.getInt("id");
+                        String nameGender = resultGender.getString("name");
+                        String description = resultGender.getString("description");
+                        gender = new Gender(idGender,nameGender,description);
+                        compositor.setGenders(gender);
+                    }
+                }
+                catch (Exception e){
+                    gender = null;
+                }
+            }
+        }
+        catch (Exception e){
+            compositor = null;
+        }
+        return compositor;
+    }
+
+    @Override
+    public Compositor searchCompositorById(int id) {
+        Compositor compositor = null;
+        String queryString = "SELECT * FROM Compositor " +
+                "WHERE id = " + id + "";
+        ResultSet result = dataAccess.selectData(queryString);
+        try{
+            while (result.next())
+            {
+                int idCompositor = result.getInt("id");
+                String nameCompositor = result.getString("name");
+                String lastNameCompositor = result.getString("lastName");
+                String country = result.getString("country");
+                int old = result.getInt("old");
+                compositor = new Compositor(idCompositor,nameCompositor,lastNameCompositor,country,old);
 
                 Gender gender = null;
                 String queryStringGender = "SELECT * FROM GenderCompositor as gc " +

@@ -57,7 +57,7 @@ public class Register extends MusicUI {
         boolean response = controller.registerArtist(name,lastName,country,dateBorn,dateDead,reference,description,gender,artistName);
         if (response == true){
             AlertHelper.showAlert(Alert.AlertType.CONFIRMATION, owner, "Exitoso", "Usuario almacenado");
-            show.ShowWindow(event,"./views/login/login.fxml", "Iniciar Sesión");
+            super.index(event);
         }
         else {
             AlertHelper.showAlert(Alert.AlertType.ERROR, owner, "Error", "El usuario no se pudo almacenar");

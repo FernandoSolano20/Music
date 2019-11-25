@@ -38,7 +38,7 @@ import java.time.LocalDate;
             boolean response = controller.registerCompositor(name,lastName,country,old,genders);
             if (response == true){
                 AlertHelper.showAlert(Alert.AlertType.CONFIRMATION, owner, "Exitoso", "Compositor almacenado");
-                show.ShowWindow(event,"./views/login/login.fxml", "Iniciar Sesión");
+                super.index(event);
             }
             else {
                 AlertHelper.showAlert(Alert.AlertType.ERROR, owner, "Error", "El Compositor no se pudo almacenar");

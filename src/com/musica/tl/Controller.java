@@ -76,10 +76,14 @@ public class Controller {
         return userDao.save(admin) == 1 ? true : false;
     }
 
-    public boolean login(String email, String pass) {
+    public String login(String email, String pass) {
         User user = userDao.login(email,pass);
         User.setActualUser(user);
-        return user != null;
+        String response = null;
+        if (user != null){
+            response = user.getType();
+        }
+        return response;
     }
 
     public boolean validateYears(int old){
@@ -95,17 +99,17 @@ public class Controller {
      *
      * Song section
      */
-    public int registerSong(String name, String gender, String artist, String nameCompositor, String lastNameCompositor, int year, int month, int day, String album, int score, String pathSong) {
+    public int registerSong(String name, String gender, String artist, String nameCompositor, int year, int month, int day, String album, int score, String pathSong, int price) {
         Album album1 = searchAlbumByName(album);
         if(album1 != null){
             Gender gen = searchGenderByName(gender);
             if(gen != null){
                 Artist artist1 = searchArtistByArtistName(artist);
                 if(artist1 != null){
-                    Compositor compositor1 = compositorDao.searchCompositorByNameAndLastName(nameCompositor, lastNameCompositor);
+                    Compositor compositor1 = compositorDao.searchCompositorByNameAndLastName(nameCompositor);
                     if(compositor1 != null){
-                        Song song = new Song(name,gen,artist1,compositor1, LocalDate.of(year,month,day),album1,score,pathSong,User.getActualUser());
-                        int response  = songDao.save(song) != 1 ? 1 : 0;
+                        Song song = new Song(name,gen,artist1,compositor1, LocalDate.of(year,month,day),album1,score,pathSong,User.getActualUser(),price);
+                        int response  = songDao.save(song) != -1 ? 1 : 0;
                         return response;
                     }
                     return -1;
@@ -119,6 +123,10 @@ public class Controller {
 
     private Song searchSongByName(String song) {
         return songDao.searchSongByName(song);
+    }
+
+    private Song searchSongById(int id) {
+        return songDao.searchSongById(id);
     }
 
 
@@ -229,7 +237,19 @@ public class Controller {
         return false;
     }
 
+    public List<String> searchReproductionListByUser(){
+        List<ReproductionList> rls = reproductionListDao.searchReproductionListByUser(User.getActualUser().getId());
+        List<String> result = new ArrayList<>();
+        for (int i = 0; i < rls.size(); i++) {
+            result.add(rls.get(i).toString());
+        }
+        return result;
+    }
 
+    public List<Song> searchSongsByReproductionListId(int id){
+        reproductionListDao.searchSongsByReproductionListId(id);
+        return null;
+    }
     /**
      *
      * Catalog Section
@@ -239,5 +259,9 @@ public class Controller {
         if(song != null)
            return clientDao.addSongToCatalog(User.getActualUser(),song);
         return false;
+    }
+
+    public String userType(){
+        return User.getActualUser().getType();
     }
 }

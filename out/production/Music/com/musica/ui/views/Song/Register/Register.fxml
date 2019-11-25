@@ -8,7 +8,7 @@
 <?import javafx.scene.layout.RowConstraints?>
 <?import javafx.scene.text.Font?>
 
-<GridPane fx:id="rootPane" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/8.0.999-ea" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.musica.ui.views.registerSong.Register">
+<GridPane fx:id="rootPane" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/8.0.999-ea" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.musica.ui.views.Song.Register.Register">
     <columnConstraints>
         <ColumnConstraints />
         <ColumnConstraints maxWidth="218.0" minWidth="41.0" prefWidth="66.0" />
@@ -40,11 +40,11 @@
     <children>
         <Label alignment="CENTER" prefHeight="21.0" prefWidth="195.0" text="Nombre" GridPane.columnIndex="2" GridPane.rowIndex="3" />
         <TextField fx:id="name" GridPane.columnIndex="2" GridPane.rowIndex="4" />
-        <Label alignment="CENTER" prefHeight="21.0" prefWidth="198.0" text="Género" GridPane.columnIndex="2" GridPane.rowIndex="6" />
-        <Label alignment="CENTER" prefHeight="21.0" prefWidth="197.0" text="Artista" GridPane.columnIndex="2" GridPane.rowIndex="9" />
+        <Label alignment="CENTER" prefHeight="21.0" prefWidth="198.0" text="Género" GridPane.columnIndex="2" GridPane.rowIndex="5" />
+        <Label alignment="CENTER" prefHeight="21.0" prefWidth="197.0" text="Artista" GridPane.columnIndex="2" GridPane.rowIndex="7" />
         <Label alignment="CENTER" prefHeight="21.0" prefWidth="198.0" text="Compositor" GridPane.columnIndex="2" GridPane.rowIndex="12" />
-        <TextField fx:id="gender" GridPane.columnIndex="2" GridPane.rowIndex="7" />
-        <TextField fx:id="artist" GridPane.columnIndex="2" GridPane.rowIndex="10" />
+        <TextField fx:id="gender" GridPane.columnIndex="2" GridPane.rowIndex="6" />
+        <TextField fx:id="artist" GridPane.columnIndex="2" GridPane.rowIndex="8" />
         <Label alignment="CENTER" prefHeight="21.0" prefWidth="199.0" text="Año de lanzamiento" GridPane.columnIndex="4" GridPane.rowIndex="3" />
         <Label alignment="CENTER" prefHeight="21.0" prefWidth="195.0" text="Calificación" GridPane.columnIndex="4" GridPane.rowIndex="12" />
         <TextField fx:id="year" prefHeight="31.0" prefWidth="85.0" GridPane.columnIndex="4" GridPane.rowIndex="4" />
@@ -58,12 +58,12 @@
         </Label>
       <TextField fx:id="nameComp" prefHeight="31.0" prefWidth="87.0" GridPane.columnIndex="2" GridPane.rowIndex="13" />
       <TextField fx:id="album" GridPane.columnIndex="4" GridPane.rowIndex="10" />
-        <Button fx:id="song" mnemonicParsing="false" onAction="#uploadSong" prefHeight="31.0" prefWidth="194.0" text="Canción" GridPane.columnIndex="2" GridPane.rowIndex="17" />
+        <Button fx:id="song" mnemonicParsing="false" onAction="#uploadSong" prefHeight="31.0" prefWidth="194.0" text="Canción" GridPane.columnIndex="2" GridPane.rowIndex="15" />
       <Label alignment="CENTER" prefHeight="21.0" prefWidth="196.0" text="Mes de lazamiento" GridPane.columnIndex="4" GridPane.rowIndex="5" />
       <TextField fx:id="month" GridPane.columnIndex="4" GridPane.rowIndex="6" />
       <Label alignment="CENTER" prefHeight="21.0" prefWidth="211.0" text="Dia de lazamiento" GridPane.columnIndex="4" GridPane.rowIndex="7" />
       <TextField fx:id="day" GridPane.columnIndex="4" GridPane.rowIndex="8" />
-      <Label alignment="CENTER" prefHeight="21.0" prefWidth="195.0" text="Apellido Compositor" GridPane.columnIndex="2" GridPane.rowIndex="14" />
-      <TextField fx:id="lastNameComp" GridPane.columnIndex="2" GridPane.rowIndex="15" />
+      <Label alignment="CENTER" prefHeight="21.0" prefWidth="200.0" text="Precio" GridPane.columnIndex="2" GridPane.rowIndex="9" />
+      <TextField fx:id="price" GridPane.columnIndex="2" GridPane.rowIndex="10" />
     </children>
 </GridPane>

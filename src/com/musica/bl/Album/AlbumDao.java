@@ -2,6 +2,7 @@ package com.musica.bl.Album;
 
 import com.musica.bl.Gender.Gender;
 import com.musica.bl.Musican.Artist.Artist;
+import com.musica.bl.Song.SongDao;
 import com.musica.dl.DataAccess;
 
 import java.sql.Date;
@@ -35,7 +36,7 @@ public class AlbumDao implements IAlbumDao {
                 try{
                     while (resultArtist.next())
                     {
-                        int idArtist = resultArtist.getInt("id");
+                        int idArtist = resultArtist.getInt("idArtist");
                         String nameArtist = resultArtist.getString("name");
                         String lastName = resultArtist.getString("lastName");
                         LocalDate born = resultArtist.getDate("born").toLocalDate();
@@ -60,6 +61,8 @@ public class AlbumDao implements IAlbumDao {
                 catch (Exception e){
                     artist = null;
                 }
+                SongDao songDao = new SongDao();
+                album.setSongs(songDao.searchSongByAlbumId(album.getId()));
                 albums.add(album);
             }
         }
@@ -121,6 +124,8 @@ public class AlbumDao implements IAlbumDao {
                 LocalDate release = result.getDate("releaseDate").toLocalDate();
                 String image = result.getString("image");
                 album = new Album(id,albumName,release,image);
+                SongDao songDao = new SongDao();
+                album.setSongs(songDao.searchSongByAlbumId(album.getId()));
                 Artist artist = null;
                 String queryStringGender = "SELECT * FROM AlbumArtist as aa " +
                         "INNER JOIN Artist as a ON aa.idArtist = a.id " +
@@ -130,7 +135,7 @@ public class AlbumDao implements IAlbumDao {
                 try{
                     while (resultArtist.next())
                     {
-                        int idArtist = resultArtist.getInt("id");
+                        int idArtist = resultArtist.getInt("idArtist");
                         String nameArtist = resultArtist.getString("name");
                         String lastName = resultArtist.getString("lastName");
                         LocalDate born = resultArtist.getDate("born").toLocalDate();
@@ -149,6 +154,64 @@ public class AlbumDao implements IAlbumDao {
                         Gender gender = new Gender(idGender,nameGender,descriptionGender);
                         String artistName = resultArtist.getString("artistName");
                         artist = new Artist(id,name,lastName,country,old,born,dead,reference,description,gender,artistName);
+                        album.setArtists(artist);
+                    }
+                }
+                catch (Exception e){
+                    artist = null;
+                }
+            }
+        }
+        catch (Exception e){
+            album = null;
+        }
+        return album;
+    }
+
+    @Override
+    public Album searchAlbumById(int id){
+        Album album = null;
+        String queryString = "SELECT * FROM Album " +
+                "WHERE id = " + id + "";
+        ResultSet result = dataAccess.selectData(queryString);
+        try{
+            while (result.next())
+            {
+                int idAlbum = result.getInt("id");
+                String albumName = result.getString("name");
+                LocalDate release = result.getDate("releaseDate").toLocalDate();
+                String image = result.getString("image");
+                album = new Album(idAlbum,albumName,release,image);
+                SongDao songDao = new SongDao();
+                album.setSongs(songDao.searchSongByAlbumId(album.getId()));
+                Artist artist = null;
+                String queryStringGender = "SELECT * FROM AlbumArtist as aa " +
+                        "INNER JOIN Artist as a ON aa.idArtist = a.id " +
+                        "INNER JOIN Gender as g ON a.idGender= g.id " +
+                        "WHERE idAlbum = " + album.getId();
+                ResultSet resultArtist = dataAccess.selectData(queryStringGender);
+                try{
+                    while (resultArtist.next())
+                    {
+                        int idArtist = resultArtist.getInt("idArtist");
+                        String nameArtist = resultArtist.getString("name");
+                        String lastName = resultArtist.getString("lastName");
+                        LocalDate born = resultArtist.getDate("born").toLocalDate();
+                        Date dateDead = resultArtist.getDate("dead");
+                        LocalDate dead = null;
+                        if(dateDead != null){
+                            dead = dateDead.toLocalDate();
+                        }
+                        String country = resultArtist.getString("country");
+                        int old = resultArtist.getInt("old");
+                        String reference = resultArtist.getString("reference");
+                        String description = resultArtist.getString("description");
+                        int idGender = resultArtist.getInt("idGender");
+                        String nameGender = resultArtist.getString(15);
+                        String descriptionGender = resultArtist.getString(16);
+                        Gender gender = new Gender(idGender,nameGender,descriptionGender);
+                        String artistName = resultArtist.getString("artistName");
+                        artist = new Artist(idArtist,nameArtist,lastName,country,old,born,dead,reference,description,gender,artistName);
                         album.setArtists(artist);
                     }
                 }

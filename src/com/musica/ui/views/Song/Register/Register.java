@@ -1,4 +1,4 @@
-package com.musica.ui.views.registerSong;
+package com.musica.ui.views.Song.Register;
 
 import com.musica.ui.AlertHelper;
 import com.musica.ui.MusicUI;
@@ -18,12 +18,12 @@ public class Register extends MusicUI {
     @FXML private TextField gender;
     @FXML private TextField artist;
     @FXML private TextField nameComp;
-    @FXML private TextField lastNameComp;
     @FXML private TextField year;
     @FXML private TextField month;
     @FXML private TextField day;
     @FXML private TextField album;
     @FXML private TextField score;
+    @FXML private TextField price;
     @FXML private Button song;
     @FXML private Button save;
 
@@ -44,18 +44,18 @@ public class Register extends MusicUI {
         String gender = this.gender.getText();
         String artist = this.artist.getText();
         String nameComp = this.nameComp.getText();
-        String lastNameComp = this.lastNameComp.getText();
         int year = Integer.parseInt(this.year.getText());
         int month = Integer.parseInt(this.month.getText());
         int day = Integer.parseInt(this.day.getText());
         String album = this.album.getText();
+        int price = Integer.parseInt(this.price.getText());
         int score = Integer.parseInt(this.score.getText());
         String song = "Path";
 
-        int response = controller.registerSong(name,gender,artist,nameComp,lastNameComp,year,month,day,album,score,song);
+        int response = controller.registerSong(name,gender,artist,nameComp,year,month,day,album,score,song,price);
         if (response == 1){
             AlertHelper.showAlert(Alert.AlertType.CONFIRMATION, owner, "Exitoso", "Cancion almacenado");
-            show.ShowWindow(event,"./views/login/login.fxml", "Iniciar Sesión");
+            super.index(event);
         }
         else {
             AlertHelper.showAlert(Alert.AlertType.ERROR, owner, "Error", "La cancion no se pudo almacenar");

@@ -35,7 +35,7 @@ public class Register extends MusicUI {
         boolean response = controller.registerReproductionList(name,year,month,day,songs);
         if (response){
             AlertHelper.showAlert(Alert.AlertType.CONFIRMATION, owner, "Exitoso", "Cancion almacenado");
-            show.ShowWindow(event,"./views/login/login.fxml", "Iniciar Sesión");
+            super.index(event);
         }
         else {
             AlertHelper.showAlert(Alert.AlertType.ERROR, owner, "Error", "La cancion no se pudo almacenar");
