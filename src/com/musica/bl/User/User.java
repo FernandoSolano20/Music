@@ -74,13 +74,11 @@ public class User extends Person {
 
     @Override
     public String toString() {
-        return "User{" +
-                ", userName='" + userName + '\'' +
-                ", email='" + email + '\'' +
-                ", pass='" + pass + '\'' +
-                ", image='" + image + '\'' +
-                ", type='" + type + '\'' +
-                '}';
+        return super.toString() + "," + userName +
+                "," + email +
+                "," + pass +
+                "," + image +
+                "," + type;
     }
 
     @Override

@@ -129,6 +129,10 @@ public class Controller {
         return songDao.searchSongById(id);
     }
 
+    public String getSongById(int id){
+        return searchSongById(id).toString();
+    }
+
 
     /***
      * Gender Section
@@ -246,9 +250,13 @@ public class Controller {
         return result;
     }
 
-    public List<Song> searchSongsByReproductionListId(int id){
-        reproductionListDao.searchSongsByReproductionListId(id);
-        return null;
+    public List<String> searchSongsByReproductionListId(int id){
+        List<Song> songs = reproductionListDao.searchSongsByReproductionListId(id);
+        List<String> result = new ArrayList<>();
+        for (Song song:songs) {
+            result.add(song.toString());
+        }
+        return result;
     }
     /**
      *

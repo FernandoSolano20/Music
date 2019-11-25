@@ -118,11 +118,6 @@ public class Index extends MusicUI {
     }
 
     @FXML
-    protected void rSong(ActionEvent event) throws IOException {
-        super.rSong(event);
-    }
-
-    @FXML
     protected void uSong(ActionEvent event) throws IOException {
         super.uSong(event);
     }

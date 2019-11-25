@@ -33,9 +33,7 @@ public class Compositor extends Musican {
 
     @Override
     public String toString() {
-        return "Compositor{" +
-                "genders=" + genders +
-                '}';
+        return super.toString();
     }
 
     @Override

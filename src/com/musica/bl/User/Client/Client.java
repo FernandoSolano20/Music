@@ -44,11 +44,9 @@ public class Client extends User {
 
     @Override
     public String toString() {
-        return "Client{" +
-                "" + super.toString() +
-                "old=" + old +
-                ", country='" + country + '\'' +
-                '}';
+        return  super.toString() +
+                "," + old +
+                "," + country;
     }
 
     @Override

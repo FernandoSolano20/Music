@@ -143,17 +143,16 @@ public class Song {
 
     @Override
     public String toString() {
-        return "Song{" +
-                "id=" + id +
-                ", name='" + name + '\'' +
-                ", gender='" + gender + '\'' +
-                ", artist='" + artist + '\'' +
-                ", compositor='" + compositor + '\'' +
-                ", release='" + release + '\'' +
-                ", album='" + album + '\'' +
-                ", score='" + score + '\'' +
-                ", song='" + song + '\'' +
-                '}';
+        return id +
+                "," + name +
+                "," + gender +
+                "," + artist +
+                "," + compositor +
+                "," + release +
+                "," + album +
+                "," + score +
+                "," + song +
+                "," + price;
     }
 
     @Override

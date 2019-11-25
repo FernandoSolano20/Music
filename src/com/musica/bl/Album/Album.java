@@ -88,13 +88,10 @@ public class Album {
 
     @Override
     public String toString() {
-        return "Album{" +
-                "id=" + id +
-                ", name='" + name + '\'' +
-                ", releaseDate=" + releaseDate +
-                ", image='" + image + '\'' +
-                ", artists=" + artists +
-                '}';
+        return  id +
+                "," + name +
+                "," + releaseDate +
+                "," + image;
     }
 
     @Override

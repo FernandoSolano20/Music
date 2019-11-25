@@ -2,100 +2,43 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="cdb932d9-7e58-4d94-93a9-e7b232ef17da" name="Default" comment="">
-      <change afterPath="$PROJECT_DIR$/src/com/musica/ui/ButtonCell.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/com/musica/ui/views/index/admin/Index.fxml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/com/musica/ui/views/index/admin/Index.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/com/musica/ui/views/index/user/Index.fxml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/com/musica/ui/views/index/user/Index.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/com/musica/ui/views/Song/Profile/Profile.fxml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/com/musica/ui/views/Song/Profile/Profile.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Music.mwb" beforeDir="false" afterPath="$PROJECT_DIR$/Music.mwb" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Music.mwb.bak" beforeDir="false" afterPath="$PROJECT_DIR$/Music.mwb.bak" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Music.sql" beforeDir="false" afterPath="$PROJECT_DIR$/Music.sql" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/Music/META-INF/Music.kotlin_module" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/Music/com/musica/bl/Album/Album.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/Music/com/musica/bl/Album/AlbumDao.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/Music/com/musica/bl/Album/IAlbumDao.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/Music/com/musica/bl/BibliotecaMusical.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/Music/com/musica/bl/Dao.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/Music/com/musica/bl/Gender/Gender.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/Music/com/musica/bl/Gender/GenderDao.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/Music/com/musica/bl/Gender/IGenderDao.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/Music/com/musica/bl/Musican/Artist/Artist.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/Music/com/musica/bl/Musican/Artist/ArtistDao.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/Music/com/musica/bl/Musican/Artist/IArtistDao.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/Music/com/musica/bl/Musican/Compositor/Compositor.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/Music/com/musica/bl/Musican/Compositor/CompositorDao.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/Music/com/musica/bl/Musican/Compositor/ICompositorDao.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/Music/com/musica/bl/Musican/Musican.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/Music/com/musica/bl/Person.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/Music/com/musica/bl/ReproductionList/IReproductionListDao.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/Music/com/musica/bl/ReproductionList/ReproductionList.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/Music/com/musica/bl/ReproductionList/ReproductionListDao.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/Music/com/musica/bl/Song/ISongDao.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/Music/com/musica/bl/Song/Song.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/Music/com/musica/bl/Song/SongDao.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/Music/com/musica/bl/User/Admin/Admin.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/Music/com/musica/bl/User/Client/Client.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/Music/com/musica/bl/User/Client/ClientDao.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/Music/com/musica/bl/User/Client/IClientDao.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/Music/com/musica/bl/User/IUserDao.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/Music/com/musica/bl/User/User.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/Music/com/musica/bl/User/UserDao.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/Music/com/musica/bl/factory/DaoFactory.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/Music/com/musica/bl/factory/MySqlDaoFactory.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/Music/com/musica/dl/ConnectionFactory.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/Music/com/musica/dl/DataAccess.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/Music/com/musica/tl/Controller.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/Music/com/musica/ui/AlertHelper.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/Music/com/musica/ui/Main.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/Music/com/musica/ui/MusicUI.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/Music/com/musica/ui/ShowView.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/Music/com/musica/ui/views/Album/Register/Register.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/Music/com/musica/ui/views/Album/Register/Register.fxml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/Music/com/musica/ui/views/Artist/Register/Register.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/Music/com/musica/ui/views/Artist/Register/Register.fxml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/Music/com/musica/ui/views/Compositor/Register/Register.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/Music/com/musica/ui/views/Compositor/Register/Register.fxml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/Music/com/musica/ui/views/Gender/Register/Gender.fxml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/Music/com/musica/ui/views/Gender/Register/Register.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/Music/com/musica/ui/views/login/Login.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/Music/com/musica/ui/views/login/login.fxml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/Music/com/musica/ui/views/registerSong/Register.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/Music/com/musica/ui/views/registerSong/register.fxml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/Music/com/musica/ui/views/registro/Admin/Register.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/Music/com/musica/ui/views/registro/Admin/Register.fxml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/Music/com/musica/ui/views/registro/Registro.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/Music/com/musica/ui/views/registro/registro.fxml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/Music/com/musica/ui/views/reproductionList/Register/Register.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/Music/com/musica/ui/views/reproductionList/Register/Register.fxml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/Music/com/musica/bl/Album/Album.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/Music/com/musica/bl/Album/Album.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/Music/com/musica/bl/Gender/Gender.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/Music/com/musica/bl/Gender/Gender.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/Music/com/musica/bl/Musican/Artist/Artist.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/Music/com/musica/bl/Musican/Artist/Artist.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/Music/com/musica/bl/Musican/Compositor/Compositor.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/Music/com/musica/bl/Musican/Compositor/Compositor.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/Music/com/musica/bl/Musican/Musican.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/Music/com/musica/bl/Musican/Musican.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/Music/com/musica/bl/Person.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/Music/com/musica/bl/Person.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/Music/com/musica/bl/Song/Song.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/Music/com/musica/bl/Song/Song.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/Music/com/musica/bl/User/Admin/Admin.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/Music/com/musica/bl/User/Admin/Admin.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/Music/com/musica/bl/User/Client/Client.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/Music/com/musica/bl/User/Client/Client.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/Music/com/musica/bl/User/User.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/Music/com/musica/bl/User/User.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/Music/com/musica/tl/Controller.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/Music/com/musica/tl/Controller.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/Music/com/musica/ui/MusicUI.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/Music/com/musica/ui/MusicUI.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/Music/com/musica/ui/views/Song/Lists/List.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/Music/com/musica/ui/views/Song/Lists/List.fxml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/Music/com/musica/ui/views/Song/Lists/Lists.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/Music/com/musica/ui/views/Song/Lists/Lists.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/Music/com/musica/ui/views/index/admin/Index.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/Music/com/musica/ui/views/index/admin/Index.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/Music/com/musica/ui/views/index/admin/Index.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/Music/com/musica/ui/views/index/admin/Index.fxml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/Music/com/musica/ui/views/index/user/Index.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/Music/com/musica/ui/views/index/user/Index.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/com/musica/bl/Album/Album.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/musica/bl/Album/Album.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/com/musica/bl/Album/AlbumDao.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/musica/bl/Album/AlbumDao.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/com/musica/bl/Album/IAlbumDao.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/musica/bl/Album/IAlbumDao.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/com/musica/bl/Musican/Artist/ArtistDao.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/musica/bl/Musican/Artist/ArtistDao.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/com/musica/bl/Musican/Artist/IArtistDao.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/musica/bl/Musican/Artist/IArtistDao.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/com/musica/bl/Musican/Compositor/CompositorDao.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/musica/bl/Musican/Compositor/CompositorDao.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/com/musica/bl/Musican/Compositor/ICompositorDao.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/musica/bl/Musican/Compositor/ICompositorDao.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/com/musica/bl/ReproductionList/IReproductionListDao.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/musica/bl/ReproductionList/IReproductionListDao.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/com/musica/bl/ReproductionList/ReproductionList.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/musica/bl/ReproductionList/ReproductionList.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/com/musica/bl/ReproductionList/ReproductionListDao.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/musica/bl/ReproductionList/ReproductionListDao.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/com/musica/bl/Song/ISongDao.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/musica/bl/Song/ISongDao.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/com/musica/bl/Gender/Gender.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/musica/bl/Gender/Gender.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/com/musica/bl/Musican/Artist/Artist.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/musica/bl/Musican/Artist/Artist.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/com/musica/bl/Musican/Compositor/Compositor.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/musica/bl/Musican/Compositor/Compositor.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/com/musica/bl/Musican/Musican.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/musica/bl/Musican/Musican.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/com/musica/bl/Person.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/musica/bl/Person.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/com/musica/bl/Song/Song.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/musica/bl/Song/Song.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/com/musica/bl/Song/SongDao.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/musica/bl/Song/SongDao.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/com/musica/bl/User/Client/ClientDao.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/musica/bl/User/Client/ClientDao.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/com/musica/bl/User/UserDao.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/musica/bl/User/UserDao.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/com/musica/bl/User/Admin/Admin.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/musica/bl/User/Admin/Admin.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/com/musica/bl/User/Client/Client.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/musica/bl/User/Client/Client.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/com/musica/bl/User/User.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/musica/bl/User/User.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/com/musica/tl/Controller.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/musica/tl/Controller.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/com/musica/ui/Main.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/musica/ui/Main.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/com/musica/ui/MusicUI.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/musica/ui/MusicUI.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/com/musica/ui/ShowView.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/musica/ui/ShowView.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/com/musica/ui/views/Album/Register/Register.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/musica/ui/views/Album/Register/Register.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/com/musica/ui/views/Artist/Register/Register.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/musica/ui/views/Artist/Register/Register.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/com/musica/ui/views/Compositor/Register/Register.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/musica/ui/views/Compositor/Register/Register.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/com/musica/ui/views/Gender/Register/Gender.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/musica/ui/views/Gender/Register/Register.fxml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/com/musica/ui/views/Gender/Register/Register.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/musica/ui/views/Gender/Register/Register.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/com/musica/ui/views/login/Login.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/musica/ui/views/login/Login.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/com/musica/ui/views/registerSong/Register.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/musica/ui/views/Song/Register/Register.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/com/musica/ui/views/registerSong/register.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/musica/ui/views/Song/Register/Register.fxml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/com/musica/ui/views/reproductionList/Register/Register.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/musica/ui/views/reproductionList/Register/Register.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/com/musica/ui/views/Song/Lists/List.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/musica/ui/views/Song/Lists/List.fxml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/com/musica/ui/views/Song/Lists/Lists.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/musica/ui/views/Song/Lists/Lists.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/com/musica/ui/views/index/admin/Index.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/musica/ui/views/index/admin/Index.fxml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/com/musica/ui/views/index/admin/Index.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/musica/ui/views/index/admin/Index.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/com/musica/ui/views/index/user/Index.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/musica/ui/views/index/user/Index.java" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -155,11 +98,22 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/com/musica/tl/Controller.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="180">
-              <caret line="249" column="45" selection-start-line="249" selection-start-column="45" selection-end-line="249" selection-end-column="45" />
+            <state relative-caret-position="469">
+              <caret line="131" column="29" selection-start-line="131" selection-start-column="18" selection-end-line="131" selection-end-column="29" />
               <folding>
                 <element signature="imports" expanded="true" />
+                <element signature="e#4495#4496#0" expanded="true" />
+                <element signature="e#4533#4534#0" expanded="true" />
               </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/com/musica/ui/views/Song/Lists/Lists.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="197">
+              <caret line="98" column="56" lean-forward="true" selection-start-line="98" selection-start-column="56" selection-end-line="98" selection-end-column="56" />
             </state>
           </provider>
         </entry>
@@ -174,31 +128,34 @@
         </entry>
       </file>
       <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/com/musica/bl/ReproductionList/ReproductionListDao.java">
+        <entry file="file://$PROJECT_DIR$/src/com/musica/ui/views/Song/Lists/List.fxml">
+          <provider editor-type-id="text-editor">
+            <state relative-caret-position="272">
+              <caret line="16" column="81" lean-forward="true" selection-end-line="37" />
+            </state>
+          </provider>
+          <provider selected="true" editor-type-id="JavaFX-Scene-Builder" />
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/com/musica/ui/MusicUI.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="180">
-              <caret line="149" column="72" lean-forward="true" selection-start-line="149" selection-start-column="72" selection-end-line="149" selection-end-column="72" />
+            <state relative-caret-position="163">
+              <caret line="105" selection-start-line="105" selection-end-line="105" />
               <folding>
                 <element signature="imports" expanded="true" />
+                <element signature="e#5216#5217#0" expanded="true" />
+                <element signature="e#5244#5245#0" expanded="true" />
               </folding>
             </state>
           </provider>
         </entry>
       </file>
       <file pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/src/com/musica/ui/views/Song/Lists/Lists.java">
+        <entry file="file://$PROJECT_DIR$/src/com/musica/ui/views/Song/Profile/Profile.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="187">
-              <caret line="16" selection-start-line="16" selection-end-line="16" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/com/musica/bl/Song/SongDao.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="163">
-              <caret line="225" selection-start-line="225" selection-end-line="225" />
+            <state relative-caret-position="319">
+              <caret line="57" column="32" lean-forward="true" selection-start-line="57" selection-start-column="32" selection-end-line="57" selection-end-column="32" />
               <folding>
                 <element signature="imports" expanded="true" />
               </folding>
@@ -207,47 +164,13 @@
         </entry>
       </file>
       <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/com/musica/bl/Musican/Compositor/Compositor.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="170">
-              <caret line="29" column="16" selection-start-line="29" selection-start-column="16" selection-end-line="29" selection-end-column="16" />
-              <folding>
-                <element signature="e#760#761#0" expanded="true" />
-                <element signature="e#800#801#0" expanded="true" />
-              </folding>
+        <entry file="file://$PROJECT_DIR$/src/com/musica/ui/views/Song/Profile/Profile.fxml">
+          <provider editor-type-id="text-editor">
+            <state relative-caret-position="255">
+              <caret line="15" column="52" selection-start-line="15" selection-start-column="47" selection-end-line="15" selection-end-column="52" />
             </state>
           </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/com/musica/bl/User/Admin/Admin.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="136">
-              <caret line="8" selection-start-line="8" selection-end-line="8" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/com/musica/bl/User/User.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="306">
-              <caret line="20" selection-start-line="20" selection-end-line="20" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/com/musica/ui/MusicUI.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="336">
-              <caret line="141" selection-start-line="141" selection-end-line="141" />
-              <folding>
-                <element signature="imports" expanded="true" />
-                <element signature="e#5244#5245#0" expanded="true" />
-              </folding>
-            </state>
-          </provider>
+          <provider selected="true" editor-type-id="JavaFX-Scene-Builder" />
         </entry>
       </file>
     </leaf>
@@ -256,8 +179,8 @@
     <option name="RECENT_TEMPLATES">
       <list>
         <option value="Interface" />
-        <option value="FxmlFile" />
         <option value="Class" />
+        <option value="FxmlFile" />
       </list>
     </option>
   </component>
@@ -291,29 +214,15 @@
   <component name="IdeDocumentHistory">
     <option name="CHANGED_PATHS">
       <list>
-        <option value="$PROJECT_DIR$/src/com/musica/bl/Musican/Artist/Artist.java" />
-        <option value="$PROJECT_DIR$/src/com/musica/bl/Musican/Musican.java" />
-        <option value="$PROJECT_DIR$/src/com/musica/bl/Musican/Compositor/Compositor.java" />
-        <option value="$PROJECT_DIR$/src/com/musica/bl/Dao.java" />
-        <option value="$PROJECT_DIR$/src/com/musica/bl/Gender/GenderDao.java" />
-        <option value="$PROJECT_DIR$/src/com/musica/bl/User/User.java" />
-        <option value="$PROJECT_DIR$/src/com/musica/dl/DataAccess.java" />
-        <option value="$PROJECT_DIR$/src/com/musica/bl/factory/DaoFactory.java" />
-        <option value="$PROJECT_DIR$/src/com/musica/bl/factory/MySqlDaoFactory.java" />
-        <option value="$PROJECT_DIR$/src/com/musica/bl/User/Client/IClientDao.java" />
-        <option value="$PROJECT_DIR$/src/com/musica/bl/BibliotecaMusical.java" />
         <option value="$PROJECT_DIR$/src/com/musica/ui/views/registerSong/register.fxml" />
         <option value="$PROJECT_DIR$/src/com/musica/ui/views/registerSong/Register.java" />
         <option value="$PROJECT_DIR$/src/com/musica/ui/views/index/user/index.fxml" />
         <option value="$PROJECT_DIR$/src/com/musica/ui/Main.java" />
         <option value="$PROJECT_DIR$/src/com/musica/ui/views/Gender/Register/Register.fxml" />
-        <option value="$PROJECT_DIR$/src/com/musica/ui/views/index/admin/Index.fxml" />
-        <option value="$PROJECT_DIR$/src/com/musica/ui/views/index/admin/Index.java" />
         <option value="$PROJECT_DIR$/src/com/musica/bl/User/Client/ClientDao.java" />
         <option value="$PROJECT_DIR$/src/com/musica/bl/Album/IAlbumDao.java" />
         <option value="$PROJECT_DIR$/src/com/musica/bl/Song/ISongDao.java" />
         <option value="$PROJECT_DIR$/src/com/musica/bl/Album/AlbumDao.java" />
-        <option value="$PROJECT_DIR$/src/com/musica/bl/Album/Album.java" />
         <option value="$PROJECT_DIR$/src/com/musica/bl/User/UserDao.java" />
         <option value="$PROJECT_DIR$/src/com/musica/bl/Musican/Artist/IArtistDao.java" />
         <option value="$PROJECT_DIR$/src/com/musica/bl/Musican/Compositor/CompositorDao.java" />
@@ -330,18 +239,32 @@
         <option value="$PROJECT_DIR$/src/com/musica/ui/views/index/user/Index.fxml" />
         <option value="$PROJECT_DIR$/src/com/musica/bl/ReproductionList/ReproductionList.java" />
         <option value="$PROJECT_DIR$/src/com/musica/ui/ButtonCell.java" />
-        <option value="$PROJECT_DIR$/src/com/musica/ui/views/index/user/Index.java" />
         <option value="$PROJECT_DIR$/src/com/musica/ui/views/Song/List/List.fxml" />
         <option value="$PROJECT_DIR$/src/com/musica/ui/ShowView.java" />
         <option value="$PROJECT_DIR$/src/com/musica/bl/ReproductionList/ReproductionListDao.java" />
         <option value="$PROJECT_DIR$/src/com/musica/bl/ReproductionList/IReproductionListDao.java" />
-        <option value="$PROJECT_DIR$/src/com/musica/tl/Controller.java" />
         <option value="$PROJECT_DIR$/src/com/musica/ui/views/Song/List/List.java" />
         <option value="$PROJECT_DIR$/src/com/musica/ui/views/Song/Lists/List.java" />
-        <option value="$PROJECT_DIR$/src/com/musica/ui/views/Song/Lists/List.fxml" />
-        <option value="$PROJECT_DIR$/src/com/musica/ui/MusicUI.java" />
-        <option value="$PROJECT_DIR$/src/com/musica/bl/Song/Song.java" />
         <option value="$PROJECT_DIR$/src/com/musica/bl/Song/SongDao.java" />
+        <option value="$PROJECT_DIR$/src/com/musica/bl/Album/Album.java" />
+        <option value="$PROJECT_DIR$/src/com/musica/bl/Musican/Artist/Artist.java" />
+        <option value="$PROJECT_DIR$/src/com/musica/bl/Musican/Compositor/Compositor.java" />
+        <option value="$PROJECT_DIR$/src/com/musica/bl/User/User.java" />
+        <option value="$PROJECT_DIR$/src/com/musica/bl/User/Client/Client.java" />
+        <option value="$PROJECT_DIR$/src/com/musica/bl/User/Admin/Admin.java" />
+        <option value="$PROJECT_DIR$/src/com/musica/bl/Person.java" />
+        <option value="$PROJECT_DIR$/src/com/musica/ui/views/index/user/Index.java" />
+        <option value="$PROJECT_DIR$/src/com/musica/bl/Song/Song.java" />
+        <option value="$PROJECT_DIR$/src/com/musica/bl/Musican/Musican.java" />
+        <option value="$PROJECT_DIR$/src/com/musica/bl/Gender/Gender.java" />
+        <option value="$PROJECT_DIR$/src/com/musica/ui/views/Song/Lists/List.fxml" />
+        <option value="$PROJECT_DIR$/src/com/musica/tl/Controller.java" />
+        <option value="$PROJECT_DIR$/src/com/musica/ui/views/index/admin/Index.java" />
+        <option value="$PROJECT_DIR$/src/com/musica/ui/views/index/admin/Index.fxml" />
+        <option value="$PROJECT_DIR$/src/com/musica/ui/MusicUI.java" />
+        <option value="$PROJECT_DIR$/src/com/musica/ui/views/Song/Profile/Profile.fxml" />
+        <option value="$PROJECT_DIR$/src/com/musica/ui/views/Song/Lists/Lists.java" />
+        <option value="$PROJECT_DIR$/src/com/musica/ui/views/Song/Profile/Profile.java" />
       </list>
     </option>
   </component>
@@ -397,14 +320,7 @@
               <item name="src" type="462c0819:PsiDirectoryNode" />
               <item name="musica" type="462c0819:PsiDirectoryNode" />
               <item name="bl" type="462c0819:PsiDirectoryNode" />
-              <item name="ReproductionList" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="Music" type="b2602c69:ProjectViewProjectNode" />
-              <item name="Music" type="462c0819:PsiDirectoryNode" />
-              <item name="src" type="462c0819:PsiDirectoryNode" />
-              <item name="musica" type="462c0819:PsiDirectoryNode" />
-              <item name="tl" type="462c0819:PsiDirectoryNode" />
+              <item name="Song" type="462c0819:PsiDirectoryNode" />
             </path>
             <path>
               <item name="Music" type="b2602c69:ProjectViewProjectNode" />
@@ -420,15 +336,6 @@
               <item name="musica" type="462c0819:PsiDirectoryNode" />
               <item name="ui" type="462c0819:PsiDirectoryNode" />
               <item name="views" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="Music" type="b2602c69:ProjectViewProjectNode" />
-              <item name="Music" type="462c0819:PsiDirectoryNode" />
-              <item name="src" type="462c0819:PsiDirectoryNode" />
-              <item name="musica" type="462c0819:PsiDirectoryNode" />
-              <item name="ui" type="462c0819:PsiDirectoryNode" />
-              <item name="views" type="462c0819:PsiDirectoryNode" />
-              <item name="reproductionList" type="462c0819:PsiDirectoryNode" />
             </path>
             <path>
               <item name="Music" type="b2602c69:ProjectViewProjectNode" />
@@ -447,7 +354,7 @@
               <item name="ui" type="462c0819:PsiDirectoryNode" />
               <item name="views" type="462c0819:PsiDirectoryNode" />
               <item name="Song" type="462c0819:PsiDirectoryNode" />
-              <item name="Lists" type="462c0819:PsiDirectoryNode" />
+              <item name="Profile" type="462c0819:PsiDirectoryNode" />
             </path>
             <path>
               <item name="Music" type="b2602c69:ProjectViewProjectNode" />
@@ -601,7 +508,7 @@
       <window_info id="Favorites" order="7" side_tool="true" />
       <window_info anchor="bottom" id="Message" order="0" />
       <window_info anchor="bottom" id="Find" order="1" weight="0.3286119" />
-      <window_info anchor="bottom" id="Run" order="2" weight="0.4036827" />
+      <window_info anchor="bottom" id="Run" order="2" weight="0.19121814" />
       <window_info active="true" anchor="bottom" id="Debug" order="3" visible="true" weight="0.23937677" />
       <window_info anchor="bottom" id="Cvs" order="4" weight="0.25" />
       <window_info anchor="bottom" id="Inspection" order="5" weight="0.4" />
@@ -669,28 +576,55 @@
           <option name="timeStamp" value="63" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/src/com/musica/ui/MusicUI.java</url>
-          <line>141</line>
-          <properties />
-          <option name="timeStamp" value="84" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="java-line">
           <url>file://$PROJECT_DIR$/src/com/musica/bl/Song/SongDao.java</url>
           <line>54</line>
           <properties />
           <option name="timeStamp" value="89" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/src/com/musica/bl/ReproductionList/ReproductionListDao.java</url>
-          <line>162</line>
+          <url>file://$PROJECT_DIR$/src/com/musica/ui/views/Song/Lists/Lists.java</url>
+          <line>96</line>
           <properties />
-          <option name="timeStamp" value="97" />
+          <option name="timeStamp" value="100" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/src/com/musica/ui/views/Song/Lists/Lists.java</url>
+          <line>95</line>
+          <properties />
+          <option name="timeStamp" value="101" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/src/com/musica/ui/MusicUI.java</url>
+          <line>105</line>
+          <properties />
+          <option name="timeStamp" value="102" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/src/com/musica/ui/views/Song/Profile/Profile.java</url>
+          <line>56</line>
+          <properties />
+          <option name="timeStamp" value="105" />
         </line-breakpoint>
       </breakpoints>
     </breakpoint-manager>
   </component>
   <component name="debuggerHistoryManager">
     <expressions id="evaluateExpression">
+      <expression>
+        <expression-string>secondScene</expression-string>
+        <language-id>JAVA</language-id>
+        <evaluation-mode>EXPRESSION</evaluation-mode>
+      </expression>
+      <expression>
+        <expression-string>secondScene.transferId</expression-string>
+        <language-id>JAVA</language-id>
+        <evaluation-mode>EXPRESSION</evaluation-mode>
+      </expression>
+      <expression>
+        <expression-string>secondScene.transferId(id)</expression-string>
+        <language-id>JAVA</language-id>
+        <evaluation-mode>EXPRESSION</evaluation-mode>
+      </expression>
       <expression>
         <expression-string>result.getString(47)</expression-string>
         <language-id>JAVA</language-id>
@@ -721,118 +655,15 @@
         <language-id>JAVA</language-id>
         <evaluation-mode>EXPRESSION</evaluation-mode>
       </expression>
-      <expression>
-        <expression-string>queryStringGender</expression-string>
-        <language-id>JAVA</language-id>
-        <evaluation-mode>EXPRESSION</evaluation-mode>
-      </expression>
-      <expression>
-        <expression-string>reproductionListDao.searchSongsByReproductionListId(id).get(0)</expression-string>
-        <language-id>JAVA</language-id>
-        <evaluation-mode>EXPRESSION</evaluation-mode>
-      </expression>
-      <expression>
-        <expression-string>reproductionListDao.searchSongsByReproductionListId(id).get(1)</expression-string>
-        <language-id>JAVA</language-id>
-        <evaluation-mode>EXPRESSION</evaluation-mode>
-      </expression>
     </expressions>
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/src/com/musica/ui/views/Artist/Register/Register.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="262">
-          <caret line="59" column="31" selection-start-line="59" selection-start-column="31" selection-end-line="59" selection-end-column="31" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/com/musica/bl/Album/AlbumDao.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="350">
-          <caret line="109" column="20" selection-start-line="109" selection-start-column="20" selection-end-line="109" selection-end-column="20" />
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/com/musica/bl/Musican/Artist/ArtistDao.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="132">
-          <caret line="152" column="99" selection-start-line="152" selection-start-column="99" selection-end-line="152" selection-end-column="99" />
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/com/musica/ui/views/Album/Register/Register.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="325">
-          <caret line="53" column="82" selection-start-line="53" selection-start-column="82" selection-end-line="53" selection-end-column="82" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="jar://C:/Program Files/Java/jdk1.8.0_201/javafx-src.zip!/javafx/scene/control/cell/PropertyValueFactory.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="170">
-          <caret line="112" column="11" selection-start-line="112" selection-start-column="11" selection-end-line="112" selection-end-column="11" />
-          <folding>
-            <element signature="e#4183#4184#0" expanded="true" />
-            <element signature="e#4223#4224#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="jar://C:/Program Files/Java/jdk1.8.0_201/javafx-src.zip!/com/sun/prism/impl/Disposer.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="357">
-          <caret line="47" column="21" selection-start-line="47" selection-start-column="13" selection-end-line="47" selection-end-column="21" />
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/com/musica/ui/views/Gender/Register/Register.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="323">
-          <caret line="30" column="31" selection-start-line="30" selection-start-column="31" selection-end-line="30" selection-end-column="31" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/com/musica/ui/views/index/admin/Index.fxml">
-      <provider editor-type-id="text-editor">
-        <state relative-caret-position="136">
-          <caret line="8" column="40" selection-end-line="72" />
-        </state>
-      </provider>
-      <provider selected="true" editor-type-id="JavaFX-Scene-Builder" />
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/com/musica/ui/views/index/admin/Index.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="2363">
-          <caret line="139" column="9" lean-forward="true" selection-start-line="139" selection-start-column="9" selection-end-line="139" selection-end-column="9" />
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/com/musica/ui/views/login/Login.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="295">
           <caret line="59" column="4" selection-start-line="59" selection-start-column="4" selection-end-line="62" selection-end-column="5" />
         </state>
       </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/com/musica/ui/views/index/user/Index.fxml">
-      <provider editor-type-id="text-editor">
-        <state relative-caret-position="212">
-          <caret line="15" column="45" selection-start-line="15" selection-start-column="45" selection-end-line="15" selection-end-column="45" />
-        </state>
-      </provider>
-      <provider selected="true" editor-type-id="JavaFX-Scene-Builder" />
     </entry>
     <entry file="jar://C:/Program Files/Java/jdk1.8.0_201/src.zip!/java/lang/String.java">
       <provider selected="true" editor-type-id="text-editor">
@@ -935,17 +766,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="jar://C:/Program Files/Java/jdk1.8.0_201/javafx-src.zip!/javafx/scene/Node.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="170">
-          <caret line="8411" selection-start-line="8411" selection-end-line="8411" />
-          <folding>
-            <element signature="e#42567#42568#0" expanded="true" />
-            <element signature="e#42618#42619#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="jar://C:/Program Files/Java/jdk1.8.0_201/javafx-src.zip!/javafx/scene/control/Button.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="170">
@@ -972,50 +792,10 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/com/musica/ui/views/Song/List/List.fxml" />
     <entry file="file://$PROJECT_DIR$/src/com/musica/ui/views/Song/List/List.java" />
-    <entry file="file://$PROJECT_DIR$/src/com/musica/ui/views/Song/Lists/List.fxml">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="85">
-          <caret line="5" column="180" selection-start-line="5" selection-start-column="180" selection-end-line="5" selection-end-column="180" />
-        </state>
-      </provider>
-      <provider editor-type-id="JavaFX-Scene-Builder" />
-    </entry>
     <entry file="jar://C:/Program Files/Java/jdk1.8.0_201/javafx-src.zip!/com/sun/javafx/tk/quantum/GlassViewEventHandler.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="132">
           <caret line="393" column="40" selection-start-line="393" selection-start-column="40" selection-end-line="393" selection-end-column="40" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/com/musica/ui/views/index/user/Index.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="68">
-          <caret line="28" selection-start-line="28" selection-end-line="28" />
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/com/musica/ui/ButtonCell.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="238">
-          <caret line="20" selection-start-line="20" selection-end-line="20" />
-          <folding>
-            <element signature="imports" expanded="true" />
-            <element signature="e#613#614#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/com/musica/bl/ReproductionList/ReproductionList.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="108">
-          <caret line="97" selection-start-line="97" selection-end-line="97" />
-          <folding>
-            <element signature="imports" expanded="true" />
-            <element signature="e#2115#2116#0" expanded="true" />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -1036,61 +816,10 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/com/musica/bl/Song/Song.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="187">
-          <caret line="135" column="27" selection-start-line="135" selection-start-column="27" selection-end-line="135" selection-end-column="27" />
-          <folding>
-            <element signature="e#3062#3063#0" expanded="true" />
-            <element signature="e#3101#3102#0" expanded="true" />
-            <element signature="e#3135#3136#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/com/musica/dl/DataAccess.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="163">
           <caret line="36" selection-start-line="36" selection-end-line="36" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/com/musica/bl/Gender/Gender.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="306">
-          <caret line="18" selection-start-line="18" selection-end-line="18" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/com/musica/bl/User/User.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="306">
-          <caret line="20" selection-start-line="20" selection-end-line="20" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/com/musica/bl/User/Admin/Admin.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="136">
-          <caret line="8" selection-start-line="8" selection-end-line="8" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/com/musica/ui/ShowView.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="403">
-          <caret line="33" selection-start-line="33" selection-end-line="33" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/com/musica/bl/Musican/Compositor/Compositor.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="170">
-          <caret line="29" column="16" selection-start-line="29" selection-start-column="16" selection-end-line="29" selection-end-column="16" />
-          <folding>
-            <element signature="e#760#761#0" expanded="true" />
-            <element signature="e#800#801#0" expanded="true" />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -1114,41 +843,231 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/com/musica/tl/Controller.java">
+    <entry file="file://$PROJECT_DIR$/src/com/musica/bl/User/Admin/Admin.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="180">
-          <caret line="249" column="45" selection-start-line="249" selection-start-column="45" selection-end-line="249" selection-end-column="45" />
+        <state relative-caret-position="204">
+          <caret line="12" column="31" selection-start-line="12" selection-start-column="31" selection-end-line="12" selection-end-column="31" />
           <folding>
-            <element signature="imports" expanded="true" />
+            <element signature="e#366#367#0" expanded="true" />
+            <element signature="e#410#411#0" expanded="true" />
           </folding>
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/com/musica/ui/MusicUI.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="336">
-          <caret line="141" selection-start-line="141" selection-end-line="141" />
-          <folding>
-            <element signature="imports" expanded="true" />
-            <element signature="e#5244#5245#0" expanded="true" />
-          </folding>
+    <entry file="file://$PROJECT_DIR$/src/com/musica/ui/views/index/user/Index.fxml">
+      <provider editor-type-id="text-editor">
+        <state relative-caret-position="314">
+          <caret line="21" column="39" selection-end-line="35" />
         </state>
       </provider>
+      <provider selected="true" editor-type-id="JavaFX-Scene-Builder" />
     </entry>
     <entry file="file://$PROJECT_DIR$/src/com/musica/bl/ReproductionList/ReproductionListDao.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="180">
-          <caret line="149" column="72" lean-forward="true" selection-start-line="149" selection-start-column="72" selection-end-line="149" selection-end-column="72" />
+        <state relative-caret-position="401">
+          <caret line="162" selection-start-line="162" selection-end-line="162" />
           <folding>
             <element signature="imports" expanded="true" />
           </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/com/musica/bl/Album/Album.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="221">
+          <caret line="93" column="27" selection-start-line="93" selection-start-column="27" selection-end-line="93" selection-end-column="27" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/com/musica/bl/Gender/Gender.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="189">
+          <caret line="48" column="34" selection-start-line="48" selection-start-column="34" selection-end-line="48" selection-end-column="34" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/com/musica/bl/Musican/Artist/Artist.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="118">
+          <caret line="94" column="33" selection-start-line="94" selection-start-column="33" selection-end-line="94" selection-end-column="33" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/com/musica/bl/Musican/Compositor/Compositor.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="325">
+          <caret line="35" column="26" selection-start-line="35" selection-start-column="26" selection-end-line="35" selection-end-column="26" />
+          <folding>
+            <element signature="e#760#761#0" expanded="true" />
+            <element signature="e#800#801#0" expanded="true" />
+            <element signature="e#846#847#0" expanded="true" />
+            <element signature="e#885#886#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/com/musica/bl/Musican/Musican.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="595">
+          <caret line="47" column="25" selection-start-line="47" selection-start-column="25" selection-end-line="47" selection-end-column="25" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/com/musica/bl/ReproductionList/ReproductionList.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="108">
+          <caret line="97" selection-start-line="97" selection-end-line="97" />
+          <folding>
+            <element signature="imports" expanded="true" />
+            <element signature="e#2115#2116#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/com/musica/bl/User/Client/Client.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="183">
+          <caret line="48" column="30" selection-start-line="48" selection-start-column="30" selection-end-line="48" selection-end-column="30" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/com/musica/bl/User/User.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="223">
+          <caret line="80" column="27" lean-forward="true" selection-start-line="80" selection-start-column="27" selection-end-line="80" selection-end-column="27" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/com/musica/bl/Person.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-289">
+          <caret line="4" column="22" selection-start-line="4" selection-start-column="22" selection-end-line="4" selection-end-column="22" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/com/musica/ui/views/index/user/Index.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="438">
+          <caret line="99" column="23" lean-forward="true" selection-start-line="72" selection-start-column="12" selection-end-line="99" selection-end-column="23" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/com/musica/bl/Song/Song.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-1">
+          <caret line="136" column="21" lean-forward="true" selection-start-line="136" selection-start-column="21" selection-end-line="136" selection-end-column="21" />
+          <folding>
+            <element signature="e#3034#3035#0" expanded="true" />
+            <element signature="e#3062#3063#0" expanded="true" />
+            <element signature="e#3101#3102#0" expanded="true" />
+            <element signature="e#3135#3136#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/com/musica/tl/Controller.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="469">
+          <caret line="131" column="29" selection-start-line="131" selection-start-column="18" selection-end-line="131" selection-end-column="29" />
+          <folding>
+            <element signature="imports" expanded="true" />
+            <element signature="e#4495#4496#0" expanded="true" />
+            <element signature="e#4533#4534#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/com/musica/ui/views/index/admin/Index.fxml">
+      <provider editor-type-id="text-editor">
+        <state relative-caret-position="319">
+          <caret line="65" column="48" selection-start-line="65" selection-start-column="48" selection-end-line="65" selection-end-column="48" />
+        </state>
+      </provider>
+      <provider selected="true" editor-type-id="JavaFX-Scene-Builder" />
+    </entry>
+    <entry file="jar://C:/Program Files/Java/jdk1.8.0_201/javafx-src.zip!/javafx/scene/Node.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="170">
+          <caret line="980" selection-start-line="980" selection-end-line="980" />
+          <folding>
+            <element signature="e#42618#42619#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/com/musica/ui/ButtonCell.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="359">
+          <caret line="39" selection-start-line="39" selection-end-line="39" />
+          <folding>
+            <element signature="imports" expanded="true" />
+            <element signature="e#1085#1086#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/com/musica/ui/views/index/admin/Index.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state>
+          <caret line="110" column="28" lean-forward="true" selection-start-line="110" selection-start-column="28" selection-end-line="110" selection-end-column="28" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/com/musica/ui/views/Song/Lists/List.fxml">
+      <provider editor-type-id="text-editor">
+        <state relative-caret-position="272">
+          <caret line="16" column="81" lean-forward="true" selection-end-line="37" />
+        </state>
+      </provider>
+      <provider selected="true" editor-type-id="JavaFX-Scene-Builder" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/com/musica/ui/views/Song/Profile/Profile.fxml">
+      <provider editor-type-id="text-editor">
+        <state relative-caret-position="255">
+          <caret line="15" column="52" selection-start-line="15" selection-start-column="47" selection-end-line="15" selection-end-column="52" />
+        </state>
+      </provider>
+      <provider selected="true" editor-type-id="JavaFX-Scene-Builder" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/com/musica/ui/ShowView.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="403">
+          <caret line="33" selection-start-line="33" selection-end-line="33" />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/com/musica/ui/views/Song/Lists/Lists.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="187">
-          <caret line="16" selection-start-line="16" selection-end-line="16" />
+        <state relative-caret-position="197">
+          <caret line="98" column="56" lean-forward="true" selection-start-line="98" selection-start-column="56" selection-end-line="98" selection-end-column="56" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/com/musica/ui/MusicUI.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="163">
+          <caret line="105" selection-start-line="105" selection-end-line="105" />
+          <folding>
+            <element signature="imports" expanded="true" />
+            <element signature="e#5216#5217#0" expanded="true" />
+            <element signature="e#5244#5245#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/com/musica/ui/views/Song/Profile/Profile.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="319">
+          <caret line="57" column="32" lean-forward="true" selection-start-line="57" selection-start-column="32" selection-end-line="57" selection-end-column="32" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
         </state>
       </provider>
     </entry>

@@ -43,10 +43,9 @@ public abstract class Musican  extends Person {
 
     @Override
     public String toString() {
-        return "Musican{" +
-                "country=" + country +
-                ", old=" + old +
-                '}';
+        return super.toString() +
+                "," + country +
+                "," + old;
     }
 
     @Override

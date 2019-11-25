@@ -44,10 +44,9 @@ public class Gender {
 
     @Override
     public String toString() {
-        return "Gender{" +
-                "name='" + name + '\'' +
-                ", description='" + description + '\'' +
-                '}';
+        return  id +
+                "," + name +
+                "," + description;
     }
 
     @Override

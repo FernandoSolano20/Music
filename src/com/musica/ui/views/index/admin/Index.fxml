@@ -63,7 +63,7 @@
       <Button mnemonicParsing="false" onAction="#sAlbum" prefHeight="31.0" prefWidth="123.0" text="Buscar" GridPane.columnIndex="4" GridPane.rowIndex="13" />
       <Button mnemonicParsing="false" onAction="#dAlbum" prefHeight="31.0" prefWidth="117.0" text="Eliminar" GridPane.columnIndex="5" GridPane.rowIndex="13" />
       <Button mnemonicParsing="false" onAction="#cSong" prefHeight="31.0" prefWidth="102.0" text="Crear" GridPane.columnIndex="1" GridPane.rowIndex="16" />
-      <Button mnemonicParsing="false" onAction="#rSong" prefHeight="31.0" prefWidth="94.0" text="Listar" GridPane.columnIndex="2" GridPane.rowIndex="16" />
+      <Button mnemonicParsing="false" onAction="" prefHeight="31.0" prefWidth="94.0" text="Listar" GridPane.columnIndex="2" GridPane.rowIndex="16" />
       <Button mnemonicParsing="false" onAction="#uSong" prefHeight="31.0" prefWidth="111.0" text="Modificar" GridPane.columnIndex="3" GridPane.rowIndex="16" />
       <Button mnemonicParsing="false" onAction="#sSong" prefHeight="31.0" prefWidth="124.0" text="Buscar" GridPane.columnIndex="4" GridPane.rowIndex="16" />
       <Button mnemonicParsing="false" onAction="#dSong" prefHeight="31.0" prefWidth="118.0" text="Eliminar" GridPane.columnIndex="5" GridPane.rowIndex="16" />

@@ -3,6 +3,7 @@ package com.musica.ui;
 import com.musica.bl.Song.Song;
 import com.musica.tl.Controller;
 import com.musica.ui.views.Song.Lists.Lists;
+import com.musica.ui.views.Song.Profile.Profile;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 
@@ -101,8 +102,8 @@ public class MusicUI {
         show.ShowWindow(event, "views/Song/Register/Register.fxml", "Crear Canción");
     }
 
-    protected void rSong(ActionEvent event) throws IOException {
-        show.ShowWindow(event, "views/Song/List/List.fxml", "Listar Canción");
+    protected void rSong(ActionEvent event, String id) throws IOException {
+        show.ShowWindow(event, "views/Song/Profile/Profile.fxml", "Listar Canción",id,new Profile());
     }
 
     protected void uSong(ActionEvent event) throws IOException {
@@ -140,5 +141,21 @@ public class MusicUI {
 
     public void transferId(String message) {
         id = message;
+    }
+
+    protected void buy(ActionEvent event) throws IOException {
+
+    }
+
+    protected void lists(ActionEvent event) throws IOException {
+    }
+
+    protected void catalogs(ActionEvent event) throws IOException {
+    }
+
+    protected void albums(ActionEvent event) throws IOException {
+    }
+
+    protected void reproductions(ActionEvent event) throws IOException {
     }
 }

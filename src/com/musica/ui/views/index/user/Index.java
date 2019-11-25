@@ -110,26 +110,26 @@ public class Index extends MusicUI implements Initializable {
 
     @FXML
     protected void buy(ActionEvent event) throws IOException {
-        //super.index(event);
+        super.buy(event);
     }
 
     @FXML
     protected void lists(ActionEvent event) throws IOException {
-        //super.index(event);
+        super.lists(event);
     }
 
     @FXML
     protected void catalogs(ActionEvent event) throws IOException {
-        //super.index(event);
+        super.catalogs(event);
     }
 
     @FXML
     protected void albums(ActionEvent event) throws IOException {
-        //super.index(event);
+        super.albums(event);
     }
 
     @FXML
     protected void reproductions(ActionEvent event) throws IOException {
-        //super.index(event);
+        super.reproductions(event);
     }
 }

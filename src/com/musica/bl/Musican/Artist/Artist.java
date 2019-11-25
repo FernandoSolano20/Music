@@ -89,14 +89,13 @@ public class Artist extends Musican {
 
     @Override
     public String toString() {
-        return "Artist{" +
-                ", born=" + born +
-                ", dead=" + dead +
-                ", reference='" + reference + '\'' +
-                ", description='" + description + '\'' +
-                ", gender=" + gender +
-                ", artist='" + artist + '\'' +
-                '}';
+        return super.toString() + ","
+                + born +
+                "," + dead +
+                "," + reference +
+                "," + description +
+                "," + gender +
+                "," + artist;
     }
 
     @Override
