@@ -8,5 +8,8 @@
     <orderEntry type="inheritedJdk" />
     <orderEntry type="sourceFolder" forTests="false" />
     <orderEntry type="library" name="mysql-connector-java-5.1.48-bin" level="project" />
+    <orderEntry type="library" name="basicplayer3.0" level="project" />
+    <orderEntry type="library" name="commons-logging-api" level="project" />
+    <orderEntry type="library" name="jl1.0.1" level="project" />
   </component>
 </module>

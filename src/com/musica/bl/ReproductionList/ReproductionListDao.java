@@ -74,12 +74,28 @@ public class ReproductionListDao implements IReproductionListDao {
 
     @Override
     public boolean update(ReproductionList reproductionList) {
-        return false;
+        boolean message = false;
+        String queryString = "UPDATE ReproductionList SET name= '"+ reproductionList.getName() +"' " +
+                "WHERE id = "+ reproductionList.getId() +"";
+        try {
+            message = dataAccess.insertData(queryString);
+        } catch (Exception e) {
+            message = false;
+        }
+        return message;
     }
 
     @Override
     public boolean delete(ReproductionList reproductionList) {
-        return false;
+        boolean message = false;
+        String queryString = "DELETE FROM ReproductionList " +
+                "WHERE id = "+ reproductionList.getId() +"";
+        try {
+            message = dataAccess.insertData(queryString);
+        } catch (Exception e) {
+            message = false;
+        }
+        return message;
     }
 
     public boolean saveSongs(ReproductionList reproductionList){
@@ -94,6 +110,18 @@ public class ReproductionListDao implements IReproductionListDao {
                 message = false;
             }
         }
+        return message;
+    }
+
+    public boolean deleteSongs(int idSong, int idReproduction){
+        boolean message = false;
+            String queryString = "DELETE FROM ReproductionListSong " +
+                    "WHERE idReproductionList = "+ idReproduction + " AND idSong = " + idSong + "";
+            try {
+                message = dataAccess.insertData(queryString);
+            } catch (Exception e) {
+                message = false;
+            }
         return message;
     }
 

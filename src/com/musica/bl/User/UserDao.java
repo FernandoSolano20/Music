@@ -9,6 +9,7 @@ import com.musica.dl.DataAccess;
 
 import javax.jws.soap.SOAPBinding;
 import java.sql.ResultSet;
+import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -18,52 +19,12 @@ public class UserDao implements IUserDao {
     @Override
     public List<User> getAll() {
         List<User> users = new ArrayList<>();
-        User user = null;
         String queryString = "SELECT * FROM User";
         ResultSet result = dataAccess.selectData(queryString);
         try{
             while (result.next())
             {
-                int id = result.getInt("id");
-                String name = result.getString("name");
-                String lastName = result.getString("lastName");
-                String email = result.getString("email");
-                String pass = result.getString("password");
-                String userName = result.getString("userName");
-                String type = result.getString("type");
-                String image = result.getString("image");
-                int old = 0;
-                String country = "";
-
-                if(type.equals("Cliente")){
-                    old = result.getInt("yearsOld");
-                    country = result.getString("country");
-                    user = new Client(id, userName, name, lastName, email, pass, image, old, country);
-
-                    List<Song> songs = new ArrayList<>();
-                    Song song = null;
-                    String queryStringSong = "SELECT * FROM Catalog as c" +
-                            "INNER JOIN Song as s " +
-                            "ON c.idSong = s.id " +
-                            "WHERE idUser = " + user.getId();
-                    ResultSet resultSongs = dataAccess.selectData(queryString);
-                    try{
-                        while (resultSongs.next())
-                        {
-                            int idSong = result.getInt("idSong");
-                            SongDao songDao = new SongDao();
-                            ((Client)users).setSongOnCatalog(songDao.searchSongById(idSong));
-                        }
-                    }
-                    catch (Exception e){
-                        users = null;
-                    }
-                    return users;
-                }
-                else {
-                    user = new Admin(id, userName, name, lastName, email, pass, image);
-                }
-                users.add(user);
+                users.add(createUser(result));
             }
         }
         catch (Exception e){
@@ -131,30 +92,53 @@ public class UserDao implements IUserDao {
         try{
             while (result.next())
             {
-                int id = result.getInt("id");
-                String name = result.getString("name");
-                String lastName = result.getString("lastName");
-                String emailUser = result.getString("email");
-                String passUser = result.getString("password");
-                String userName = result.getString("userName");
-                String type = result.getString("type");
-                String image = result.getString("image");
-                int old = 0;
-                String country = "";
-
-                if(type.equals("Cliente")){
-                    old = result.getInt("yearsOld");
-                    country = result.getString("country");
-                    user = new Client(id, userName, name, lastName, emailUser, passUser, image, old, country);
-                }
-                else {
-                    user = new Admin(id, userName, name, lastName, emailUser, passUser, image);
-                }
-
+                user = createUser(result);
             }
         }
         catch (Exception e){
             return user;
+        }
+        return user;
+    }
+
+    private User createUser(ResultSet result) throws SQLException {
+        User user = null;
+        int id = result.getInt("id");
+        String name = result.getString("name");
+        String lastName = result.getString("lastName");
+        String email = result.getString("email");
+        String pass = result.getString("password");
+        String userName = result.getString("userName");
+        String type = result.getString("type");
+        String image = result.getString("image");
+        int old = 0;
+        String country = "";
+
+        if(type.equals("Cliente")){
+            old = result.getInt("yearsOld");
+            country = result.getString("country");
+            user = new Client(id, userName, name, lastName, email, pass, image, old, country);
+
+            List<Song> songs = new ArrayList<>();
+            Song song = null;
+            String queryStringSong = "SELECT * FROM music.catalog as c " +
+                    "INNER JOIN music.song as s ON c.idSong = s.id " +
+                    "WHERE c.idUser = " + user.getId();
+            ResultSet resultSongs = dataAccess.selectData(queryStringSong);
+            try{
+                while (resultSongs.next())
+                {
+                    int idSong = resultSongs.getInt("idSong");
+                    SongDao songDao = new SongDao();
+                    ((Client)user).setSongOnCatalog(songDao.searchSongById(idSong));
+                }
+            }
+            catch (Exception e){
+                song = null;
+            }
+        }
+        else {
+            user = new Admin(id, userName, name, lastName, email, pass, image);
         }
         return user;
     }

@@ -133,6 +133,19 @@ public class Controller {
         return searchSongById(id).toString();
     }
 
+    private List<Song> getSongs(){
+        return songDao.getAll();
+    }
+
+    public List<String> getAllSongs(){
+        List<String> result = new ArrayList<>();
+        List<Song> songs = getSongs();
+        for (Song item:songs) {
+            result.add(item.toString());
+        }
+        return result;
+    }
+
 
     /***
      * Gender Section
@@ -236,6 +249,17 @@ public class Controller {
         reproductionList.setScore();
         int id = reproductionListDao.save(reproductionList);
         if(id != -1){
+            reproductionList.setId(id);
+            return reproductionListDao.saveSongs(reproductionList);
+        }
+        return false;
+    }
+
+    public boolean saveSongReproductionList(int id, String name) {
+        ReproductionList reproductionList = new ReproductionList(id);
+        Song song = searchSongByName(name);
+        if(song != null){
+            reproductionList.setSongs(song);
             return reproductionListDao.saveSongs(reproductionList);
         }
         return false;
@@ -258,6 +282,23 @@ public class Controller {
         }
         return result;
     }
+
+    public boolean deleteSongsReproductionList(int idReproduction, int idSong){
+        boolean response = reproductionListDao.deleteSongs(idReproduction,idSong);
+        return response;
+    }
+
+    public boolean updateReproductionListId(int id, String name){
+        ReproductionList reproductionList = new ReproductionList();
+        reproductionList.setId(id);
+        reproductionList.setName(name);
+        return reproductionListDao.update(reproductionList);
+    }
+
+    public boolean deleteReproductionListId(int id){
+        ReproductionList reproductionList = new ReproductionList(id);
+        return reproductionListDao.delete(reproductionList);
+    }
     /**
      *
      * Catalog Section
@@ -271,5 +312,36 @@ public class Controller {
 
     public String userType(){
         return User.getActualUser().getType();
+    }
+
+    public boolean buy(int idSong) {
+        Song song = searchSongById(idSong);
+        if(song != null){
+            return clientDao.addSongToCatalog(User.getActualUser(), song);
+        }
+        return false;
+    }
+
+    public List<String> getCatalog() {
+        User user = User.getActualUser();
+        List<Song> catalog = ((Client)user).getCatalog();
+        List<String> response = new ArrayList<>();
+        for (Song song:catalog) {
+            response.add(song.toString());
+        }
+        return response;
+    }
+
+    public List<String> showMediaUser() {
+        List<String> catalog = getCatalog();
+        List<String> reproductionList = searchReproductionListByUser();
+        List<String> result = new ArrayList<>();
+        for (String item : catalog) {
+            result.add("Song,"+item);
+        }
+        for (String item:reproductionList) {
+            result.add("List,"+item);
+        }
+        return result;
     }
 }

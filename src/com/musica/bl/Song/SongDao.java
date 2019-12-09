@@ -79,7 +79,7 @@ public class SongDao implements ISongDao {
                 "INNER JOIN Artist as a ON s.idArtist = a.id " +
                 "INNER JOIN Gender as ag ON a.idGender = ag.id " +
                 "INNER JOIN Album as al ON s.idAlbum = al.id " +
-                "WHERE name = '" + name + "'";
+                "WHERE s.name = '" + name + "'";
         ResultSet result = dataAccess.selectData(queryString);
         try{
             while (result.next())
@@ -128,7 +128,7 @@ public class SongDao implements ISongDao {
                 "INNER JOIN Artist as a ON s.idArtist = a.id " +
                 "INNER JOIN Gender as ag ON a.idGender = ag.id " +
                 "INNER JOIN Album as al ON s.idAlbum = al.id " +
-                "WHERE idAlbum = '" + id + "'";
+                "WHERE al.idAlbum = '" + id + "'";
         ResultSet result = dataAccess.selectData(queryString);
         try{
             while (result.next())

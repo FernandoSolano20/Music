@@ -2,17 +2,32 @@ package com.musica.ui;
 
 import com.musica.bl.Song.Song;
 import com.musica.tl.Controller;
-import com.musica.ui.views.Song.Lists.Lists;
+import com.musica.ui.views.Song.Lists.ListsSong;
 import com.musica.ui.views.Song.Profile.Profile;
+import com.musica.ui.views.reproductionList.Lists.ListsReproList;
+import com.musica.ui.views.reproductionList.Lists.Song.AddSongReproduction;
+import com.musica.ui.views.reproductionList.Lists.Song.ListsSongsRL;
+import com.musica.ui.views.reproductionList.Update.UpdateRL;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 
 import java.io.IOException;
+import java.util.ArrayList;
+import java.util.List;
 
 public class MusicUI {
     protected ShowView show = new ShowView();
     protected Controller controller = new Controller();
     private String id;
+    private List<String> queue = new ArrayList<>();
+
+    public List<String> getQueue() {
+        return queue;
+    }
+
+    public void setQueue(String song) {
+        this.queue.add(song);
+    }
 
     public String getId() {
         return id;
@@ -136,7 +151,7 @@ public class MusicUI {
     }
 
     protected void songsOnReproductionList(ActionEvent event, String id) throws IOException {
-        show.ShowWindow(event,"views/Song/Lists/List.fxml","Txt",id,new Lists());
+        show.ShowWindow(event,"views/Song/Lists/List.fxml","Txt",id,new ListsSong());
     }
 
     public void transferId(String message) {
@@ -144,18 +159,37 @@ public class MusicUI {
     }
 
     protected void buy(ActionEvent event) throws IOException {
-
+        show.ShowWindow(event,"views/buy/Buy.fxml","Txt");
     }
 
     protected void lists(ActionEvent event) throws IOException {
+        show.ShowWindow(event,"views/reproductionList/Lists/Lists.fxml", "Lista de reproduccion");
     }
 
     protected void catalogs(ActionEvent event) throws IOException {
+        show.ShowWindow(event,"views/Catalog/Catalog.fxml","Txt");
     }
 
     protected void albums(ActionEvent event) throws IOException {
     }
 
     protected void reproductions(ActionEvent event) throws IOException {
+        show.ShowWindow(event,"views/SongQueue/SongQueue.fxml", "Colas");
+    }
+
+    public void addSongtoReproductionList(ActionEvent event, String id) throws IOException {
+        show.ShowWindow(event,"views/reproductionList/Lists/Song/AddSong.fxml","Txt",id,new AddSongReproduction());
+    }
+
+    public void updateReproductionList(ActionEvent event, String id) throws IOException {
+        show.ShowWindow(event,"views/reproductionList/Update/Update.fxml","Txt",id,new UpdateRL());
+    }
+
+    public void adminSongsReproductionList(ActionEvent event, String id) throws IOException {
+        show.ShowWindow(event,"views/reproductionList/Lists/Song/Lists.fxml","Txt",id,new ListsSongsRL());
+    }
+
+    protected void createReproductionList(ActionEvent event) throws IOException {
+        show.ShowWindow(event,"views/reproductionList/Register/Register.fxml", "Crear Lista de reproduccion");
     }
 }

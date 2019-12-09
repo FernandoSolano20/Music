@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.layout.ColumnConstraints?>
+<?import javafx.scene.layout.GridPane?>
+<?import javafx.scene.layout.RowConstraints?>
+
+<GridPane fx:id="rootPane" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/8.0.999-ea" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.musica.ui.views.Catalog.Catalog">
+    <TableView fx:id="table" prefHeight="369.0" prefWidth="619.0" GridPane.rowIndex="2">
+        <columns>
+            <TableColumn fx:id="columnName" prefWidth="116.0" text="Nombre" />
+            <TableColumn fx:id="columnAlbum" prefWidth="97.0" text="Album" />
+            <TableColumn fx:id="columnGender" prefWidth="120.0" text="Genero" />
+            <TableColumn fx:id="columnComp" prefWidth="115.0" text="Compositor" />
+            <TableColumn fx:id="columnScore" prefWidth="90.0" text="Calificación" />
+            <!-- and so on... -->
+        </columns>
+    </TableView>
+    <Button mnemonicParsing="false" onAction="#buy" text="Comprar" translateX="65.0" GridPane.rowIndex="1" />
+    <Button mnemonicParsing="false" onAction="#lists" prefHeight="31.0" prefWidth="86.0" text="Listas" translateX="150.0" GridPane.rowIndex="1" />
+    <Button fx:id="catalogs" mnemonicParsing="false" onAction="#catalogs" text="Catalogos" translateX="245.0" GridPane.rowIndex="1" />
+    <Button mnemonicParsing="false" onAction="#albums" text="Albumes" translateX="340.0" GridPane.rowIndex="1" />
+    <Button mnemonicParsing="false" onAction="#reproductions" text="Cola de reproduccion" translateX="430.0" GridPane.rowIndex="1" />
+    <Button mnemonicParsing="false" onAction="#index" text="Inicio" translateX="3.0" GridPane.rowIndex="1" />
+    <columnConstraints>
+        <ColumnConstraints />
+        <ColumnConstraints />
+    </columnConstraints>
+    <rowConstraints>
+        <RowConstraints />
+        <RowConstraints />
+        <RowConstraints />
+    </rowConstraints>
+</GridPane>

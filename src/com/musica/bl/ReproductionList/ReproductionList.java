@@ -43,6 +43,10 @@ public class ReproductionList {
         this.id = id;
     }
 
+    public ReproductionList() {
+
+    }
+
     public int getId() {
         return id;
     }
