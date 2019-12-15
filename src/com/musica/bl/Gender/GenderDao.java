@@ -47,12 +47,28 @@ public class GenderDao implements IGenderDao {
 
     @Override
     public boolean update(Gender gender) {
-        return false;
+        boolean message = false;
+        String queryString = "UPDATE Gender SET name= '"+ gender.getName() +"', description= '" + gender.getDescription() + "' " +
+                "WHERE id= " + gender.getId() + "";
+        try {
+            message = dataAccess.insertData(queryString);
+        } catch (Exception e) {
+            message = false;
+        }
+        return message;
     }
 
     @Override
     public boolean delete(Gender gender) {
-        return false;
+        boolean message = false;
+        String queryString = "DELETE FROM Gender " +
+                "WHERE id = "+ gender.getId();
+        try {
+            message = dataAccess.insertData(queryString);
+        } catch (Exception e) {
+            message = false;
+        }
+        return message;
     }
 
     @Override
@@ -68,6 +84,27 @@ public class GenderDao implements IGenderDao {
                 String nameGender = result.getString("name");
                 String description = result.getString("description");
                 gender = new Gender(id,nameGender,description);
+            }
+        }
+        catch (Exception e){
+            gender = null;
+        }
+        return gender;
+    }
+
+    @Override
+    public Gender searchGenderById(int id){
+        Gender gender = null;
+        String queryString = "SELECT * FROM Gender " +
+                "WHERE id = "+ id + "";
+        ResultSet result = dataAccess.selectData(queryString);
+        try{
+            while (result.next())
+            {
+                int idGender = result.getInt("id");
+                String nameGender = result.getString("name");
+                String description = result.getString("description");
+                gender = new Gender(idGender,nameGender,description);
             }
         }
         catch (Exception e){

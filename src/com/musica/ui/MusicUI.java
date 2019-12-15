@@ -2,6 +2,9 @@ package com.musica.ui;
 
 import com.musica.bl.Song.Song;
 import com.musica.tl.Controller;
+import com.musica.ui.views.Artist.Update.UpdateArtist;
+import com.musica.ui.views.Compositor.Update.UpdateCompositor;
+import com.musica.ui.views.Gender.Update.UpdateGender;
 import com.musica.ui.views.Song.Lists.ListsSong;
 import com.musica.ui.views.Song.Profile.Profile;
 import com.musica.ui.views.reproductionList.Lists.ListsReproList;
@@ -38,11 +41,11 @@ public class MusicUI {
     }
 
     protected void rGender(ActionEvent event) throws IOException {
-        show.ShowWindow(event, "views/Gender/List/List.fxml", "Listar Género");
+        show.ShowWindow(event, "views/Gender/Lists/List.fxml", "Listar Género");
     }
 
-    protected void uGender(ActionEvent event) throws IOException {
-        show.ShowWindow(event, "views/Gender/Update/Update.fxml", "Actualizar Género");
+    protected void uGender(ActionEvent event, String id) throws IOException {
+        show.ShowWindow(event, "views/Gender/Update/Update.fxml", "Actualizar Género",id,new UpdateGender());
     }
 
     protected void sGender(ActionEvent event) throws IOException {
@@ -58,11 +61,11 @@ public class MusicUI {
     }
 
     protected void rComp(ActionEvent event) throws IOException {
-        show.ShowWindow(event, "views/Compositor/List/List.fxml", "Listar Compositor");
+        show.ShowWindow(event, "views/Compositor/Lists/List.fxml", "Listar Compositor");
     }
 
-    protected void uComp(ActionEvent event) throws IOException {
-        show.ShowWindow(event, "views/Compositor/Update/Update.fxml", "Actualizar Compositor");
+    protected void uComp(ActionEvent event, String id) throws IOException {
+        show.ShowWindow(event, "views/Compositor/Update/Update.fxml", "Actualizar Compositor",id,new UpdateCompositor());
     }
 
     protected void sComp(ActionEvent event) throws IOException {
@@ -78,11 +81,11 @@ public class MusicUI {
     }
 
     protected void rArt(ActionEvent event) throws IOException {
-        show.ShowWindow(event, "views/Artist/List/List.fxml", "Listar Artista");
+        show.ShowWindow(event, "views/Artist/Lists/List.fxml", "Listar Artista");
     }
 
-    protected void uArt(ActionEvent event) throws IOException {
-        show.ShowWindow(event, "views/Artist/Update/Update.fxml", "Actualizar Artista");
+    protected void uArt(ActionEvent event, String id) throws IOException {
+        show.ShowWindow(event, "views/Artist/Update/Update.fxml", "Actualizar Artista",id,new UpdateArtist());
     }
 
     protected void sArt(ActionEvent event) throws IOException {
@@ -115,6 +118,10 @@ public class MusicUI {
 
     protected void cSong(ActionEvent event) throws IOException {
         show.ShowWindow(event, "views/Song/Register/Register.fxml", "Crear Canción");
+    }
+
+    protected void listSong(ActionEvent event) throws IOException {
+        show.ShowWindow(event, "views/Song/List/List.fxml", "Listar Canción");
     }
 
     protected void rSong(ActionEvent event, String id) throws IOException {

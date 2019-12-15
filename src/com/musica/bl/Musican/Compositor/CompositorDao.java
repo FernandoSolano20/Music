@@ -71,12 +71,36 @@ public class CompositorDao implements ICompositorDao {
 
     @Override
     public boolean update(Compositor compositor) {
-        return false;
+        boolean message = false;
+        String queryString = "UPDATE Compositor SET name= '"+ compositor.getName() +"', lastName= '" + compositor.getLastName() + "'" +
+                ", country= '" + compositor.getCountry() + "' , old= " + compositor.getOld() + " " +
+                "WHERE id= " + compositor.getId() + "";
+        try {
+            message = dataAccess.insertData(queryString);
+        } catch (Exception e) {
+            message = false;
+        }
+        return message;
     }
 
     @Override
     public boolean delete(Compositor compositor) {
-        return false;
+        boolean message = false;
+        String queryString = "DELETE FROM GenderCompositor " +
+                "WHERE idCompositor = "+ compositor.getId();
+        try {
+            message = dataAccess.insertData(queryString);
+            queryString = "DELETE FROM Compositor " +
+                    "WHERE id = "+ compositor.getId();
+            try {
+                message = dataAccess.insertData(queryString);
+            } catch (Exception e) {
+                message = false;
+            }
+        } catch (Exception e) {
+            message = false;
+        }
+        return message;
     }
 
     public boolean saveGenders(Compositor compositor){

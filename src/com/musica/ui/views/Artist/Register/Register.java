@@ -7,6 +7,7 @@ import javafx.fxml.FXML;
 import javafx.scene.control.*;
 import javafx.stage.FileChooser;
 import javafx.stage.FileChooser.ExtensionFilter;
+import javafx.stage.Stage;
 import javafx.stage.Window;
 
 import java.io.File;
@@ -56,11 +57,17 @@ public class Register extends MusicUI {
 
         boolean response = controller.registerArtist(name,lastName,country,dateBorn,dateDead,reference,description,gender,artistName);
         if (response == true){
-            AlertHelper.showAlert(Alert.AlertType.CONFIRMATION, owner, "Exitoso", "Usuario almacenado");
-            super.index(event);
+            AlertHelper.showAlert(Alert.AlertType.CONFIRMATION, owner, "Exitoso", "Artisita almacenado");
+            if(controller.userType() == "Administrador"){
+                super.rArt(event);
+            }
+            else {
+                Stage stage = (Stage) save.getScene().getWindow();
+                stage.close();
+            }
         }
         else {
-            AlertHelper.showAlert(Alert.AlertType.ERROR, owner, "Error", "El usuario no se pudo almacenar");
+            AlertHelper.showAlert(Alert.AlertType.ERROR, owner, "Error", "El Artisita no se pudo almacenar");
         }
     }
 }

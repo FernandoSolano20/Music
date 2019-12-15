@@ -8,6 +8,7 @@ import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
 import javafx.scene.control.TextField;
 import javafx.stage.FileChooser;
+import javafx.stage.Stage;
 import javafx.stage.Window;
 
 import java.io.File;
@@ -28,7 +29,13 @@ public class Register extends MusicUI {
         boolean response = controller.registerGender(name,description);
         if (response == true){
             AlertHelper.showAlert(Alert.AlertType.CONFIRMATION, owner, "Exitoso", "Genero almacenado");
-            super.index(event);
+            if(controller.userType() == "Administrador"){
+                super.rGender(event);
+            }
+            else {
+                Stage stage = (Stage) save.getScene().getWindow();
+                stage.close();
+            }
         }
         else {
             AlertHelper.showAlert(Alert.AlertType.ERROR, owner, "Error", "El genero no se pudo almacenar");

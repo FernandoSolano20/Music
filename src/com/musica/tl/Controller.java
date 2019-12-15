@@ -19,6 +19,7 @@ import com.musica.bl.User.Client.IClientDao;
 import com.musica.bl.User.IUserDao;
 import com.musica.bl.User.User;
 import com.musica.bl.factory.DaoFactory;
+import sun.java2d.loops.GeneralRenderer;
 
 import java.time.LocalDate;
 import java.time.Year;
@@ -168,6 +169,34 @@ public class Controller {
         return result;
     }
 
+    private Gender searchGenderById(int id){
+        return genderDao.searchGenderById(id);
+    }
+
+    public String getGenderById(int id){
+        Gender gender = searchGenderById(id);
+        if (gender != null){
+            return gender.toString();
+        }
+        return "";
+    }
+
+    public boolean updateGender(int id, String name, String description){
+        Gender gender = new Gender(id,name,description);
+        boolean response = false;
+        response = genderDao.update(gender);
+        return response;
+    }
+
+    public boolean deleteGender(int id){
+        Gender gender = searchGenderById(id);
+        boolean response = false;
+        if(gender != null){
+            response = genderDao.delete(gender);
+        }
+        return response;
+    }
+
 
     /**
      *
@@ -186,6 +215,47 @@ public class Controller {
 
     private Artist searchArtistByArtistName(String artist) {
         return artistDao.searchArtistByArtistName(artist);
+    }
+
+    public List<String> getAllArtists(){
+        List<String> result = new ArrayList<>();
+        List<Artist> artists = artistDao.getAll();
+        for (Artist artist:artists) {
+            result.add(artist.toString());
+        }
+        return result;
+    }
+
+    public boolean updateArtist(int id, String name, String lastName, String country, LocalDate dateBorn, LocalDate dateDead, String reference, String description, String gender, String artistName){
+        Gender gen = searchGenderByName(gender);
+        if(gen != null) {
+            LocalDate actual = dateDead != null ? dateDead : LocalDate.now();
+            int old = (int)YEARS.between(dateBorn, actual);
+            Artist artist = new Artist(id,name,lastName,country,old,dateBorn,dateDead,reference,description,gen,artistName);
+            return artistDao.update(artist);
+        }
+        return false;
+    }
+
+    public boolean deleteArtist(int id){
+        Artist artist = searchArtistById(id);
+        boolean response = false;
+        if(artist != null){
+            response = artistDao.delete(artist);
+        }
+        return response;
+    }
+
+    public String getArtistById(int id){
+        Artist artist = searchArtistById(id);
+        if (artist != null){
+            return artist.toString();
+        }
+        return "";
+    }
+
+    private Artist searchArtistById(int id){
+        return artistDao.searchArtistById(id);
     }
 
 
@@ -208,6 +278,42 @@ public class Controller {
         return false;
     }
 
+    public List<String> getAllCompositor(){
+        List<String> result = new ArrayList<>();
+        List<Compositor> compositors = compositorDao.getAll();
+        for (Compositor compositor:compositors) {
+            result.add(compositor.toString());
+        }
+        return result;
+    }
+
+    public boolean updateCompositor(int id, String name, String lastName, String country, int old){
+        Compositor compositor = new Compositor(id,name,lastName,country,old);
+        boolean response = false;
+        response = compositorDao.update(compositor);
+        return response;
+    }
+
+    public boolean deleteCompositor(int id){
+        Compositor compositor = searchCompositorById(id);
+        boolean response = false;
+        if(compositor != null){
+            response = compositorDao.delete(compositor);
+        }
+        return response;
+    }
+
+    public String getCompositorById(int id){
+        Compositor compositor = searchCompositorById(id);
+        if (compositor != null){
+            return compositor.toString();
+        }
+        return "";
+    }
+
+    private Compositor searchCompositorById(int id){
+        return compositorDao.searchCompositorById(id);
+    }
 
     /**
      *

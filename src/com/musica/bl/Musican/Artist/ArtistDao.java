@@ -65,12 +65,31 @@ public class ArtistDao implements IArtistDao {
 
     @Override
     public boolean update(Artist artist) {
-        return false;
+        boolean message = false;
+        String queryString = "UPDATE Artist SET name= '"+ artist.getName() +"', lastName= '" + artist.getLastName() + "', " +
+                "born= '" + artist.getBorn() + "' , dead= '" + artist.getDead() + "' , old= " + artist.getOld() + " , " +
+                "reference= '" + artist.getReference() + "' , description= '" + artist.getDescription() + "' , idGender= " + artist.getGender().getId() + ", " +
+                "artistName= '" + artist.getArtist() + "'" +
+                "WHERE id= " + artist.getId() + "";
+        try {
+            message = dataAccess.insertData(queryString);
+        } catch (Exception e) {
+            message = false;
+        }
+        return message;
     }
 
     @Override
     public boolean delete(Artist artist) {
-        return false;
+        boolean message = false;
+        String queryString = "DELETE FROM Artist " +
+                "WHERE id = "+ artist.getId();
+        try {
+            message = dataAccess.insertData(queryString);
+        } catch (Exception e) {
+            message = false;
+        }
+        return message;
     }
 
     @Override
@@ -151,7 +170,7 @@ public class ArtistDao implements IArtistDao {
     public Artist searchArtistById(int id) {
         Artist artist = null;
         String queryString = "SELECT * FROM Artist as a INNER JOIN Gender as g ON a.idGender = g.id " +
-                "WHERE id = "+ id + "";
+                "WHERE a.id = "+ id + "";
         ResultSet result = dataAccess.selectData(queryString);
         try{
             while (result.next())

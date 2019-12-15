@@ -7,6 +7,7 @@ import javafx.fxml.FXML;
 import javafx.scene.control.*;
 import javafx.stage.FileChooser;
 import javafx.stage.FileChooser.ExtensionFilter;
+import javafx.stage.Stage;
 import javafx.stage.Window;
 
 import java.io.File;
@@ -38,7 +39,13 @@ import java.time.LocalDate;
             boolean response = controller.registerCompositor(name,lastName,country,old,genders);
             if (response == true){
                 AlertHelper.showAlert(Alert.AlertType.CONFIRMATION, owner, "Exitoso", "Compositor almacenado");
-                super.index(event);
+                if(controller.userType() == "Administrador"){
+                    super.rComp(event);
+                }
+                else {
+                    Stage stage = (Stage) save.getScene().getWindow();
+                    stage.close();
+                }
             }
             else {
                 AlertHelper.showAlert(Alert.AlertType.ERROR, owner, "Error", "El Compositor no se pudo almacenar");
