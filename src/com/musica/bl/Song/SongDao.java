@@ -61,12 +61,29 @@ public class SongDao implements ISongDao {
 
     @Override
     public boolean update(Song song) {
-        return false;
+        boolean message = false;
+        String queryString = "UPDATE Song SET name='"+ song.getName() +"', releaseDay='"+ song.getRelease() +"', score="+ song.getScore() +", " +
+                "idGender="+ song.getGender().getId() + ", idCompositor="+ song.getCompositor().getId() + ", idArtist="+ song.getArtist().getId() +", " +
+                "idAlbum="+ song.getAlbum().getId() + ", songPath='"+ song.getSong() + "', price="+ song.getPrice() + "";
+        try {
+            message = dataAccess.insertData(queryString);
+        } catch (Exception e) {
+            message = false;
+        }
+        return message;
     }
 
     @Override
     public boolean delete(Song song) {
-        return false;
+        boolean message = false;
+        String queryString = "DELETE FROM Song " +
+                "WHERE id = "+ song.getId();
+        try {
+            message = dataAccess.insertData(queryString);
+        } catch (Exception e) {
+            message = false;
+        }
+        return message;
     }
 
     @Override
@@ -128,7 +145,7 @@ public class SongDao implements ISongDao {
                 "INNER JOIN Artist as a ON s.idArtist = a.id " +
                 "INNER JOIN Gender as ag ON a.idGender = ag.id " +
                 "INNER JOIN Album as al ON s.idAlbum = al.id " +
-                "WHERE al.idAlbum = '" + id + "'";
+                "WHERE s.idAlbum = " + id + "";
         ResultSet result = dataAccess.selectData(queryString);
         try{
             while (result.next())

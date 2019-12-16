@@ -7,6 +7,7 @@ import javafx.fxml.FXML;
 import javafx.scene.control.*;
 import javafx.stage.FileChooser;
 import javafx.stage.FileChooser.ExtensionFilter;
+import javafx.stage.Stage;
 import javafx.stage.Window;
 
 import java.io.File;
@@ -48,7 +49,13 @@ public class Register extends MusicUI {
         boolean response = controller.registerAlbum(name,release,image,artists);
         if (response == true){
             AlertHelper.showAlert(Alert.AlertType.CONFIRMATION, owner, "Exitoso", "Album almacenado");
-            super.index(event);
+            if(controller.userType() == "Administrador"){
+                super.rAlbum(event);
+            }
+            else {
+                Stage stage = (Stage) save.getScene().getWindow();
+                stage.close();
+            }
         }
         else {
             AlertHelper.showAlert(Alert.AlertType.ERROR, owner, "Error", "El album no se pudo almacenar");

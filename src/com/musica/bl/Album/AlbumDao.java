@@ -87,12 +87,35 @@ public class AlbumDao implements IAlbumDao {
 
     @Override
     public boolean update(Album album) {
-        return false;
+        boolean message = false;
+        String queryString = "UPDATE Album SET name= '"+ album.getName() +"', releaseDate= '" + album.getReleaseDate() + "', image= '" + album.getImage() + "' " +
+                "WHERE id= " + album.getId() + "";
+        try {
+            message = dataAccess.insertData(queryString);
+        } catch (Exception e) {
+            message = false;
+        }
+        return message;
     }
 
     @Override
     public boolean delete(Album album) {
-        return false;
+        boolean message = false;
+        String queryString = "DELETE FROM AlbumArtist " +
+                "WHERE idAlbum = "+ album.getId();
+        try {
+            message = dataAccess.insertData(queryString);
+            queryString = "DELETE FROM Album " +
+                    "WHERE id = "+ album.getId();
+            try {
+                message = dataAccess.insertData(queryString);
+            } catch (Exception e) {
+                message = false;
+            }
+        } catch (Exception e) {
+            message = false;
+        }
+        return message;
     }
 
     public boolean saveArtists(Album album){

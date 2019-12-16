@@ -2,11 +2,14 @@ package com.musica.ui;
 
 import com.musica.bl.Song.Song;
 import com.musica.tl.Controller;
+import com.musica.ui.views.Album.Lists.Songs.ListSongAlbum;
+import com.musica.ui.views.Album.Update.UpdateAlbum;
 import com.musica.ui.views.Artist.Update.UpdateArtist;
 import com.musica.ui.views.Compositor.Update.UpdateCompositor;
 import com.musica.ui.views.Gender.Update.UpdateGender;
 import com.musica.ui.views.Song.Lists.ListsSong;
 import com.musica.ui.views.Song.Profile.Profile;
+import com.musica.ui.views.Song.Update.UpdateSong;
 import com.musica.ui.views.reproductionList.Lists.ListsReproList;
 import com.musica.ui.views.reproductionList.Lists.Song.AddSongReproduction;
 import com.musica.ui.views.reproductionList.Lists.Song.ListsSongsRL;
@@ -101,11 +104,11 @@ public class MusicUI {
     }
 
     protected void rAlbum(ActionEvent event) throws IOException {
-        show.ShowWindow(event, "views/Album/List/List.fxml", "Listar Album");
+        show.ShowWindow(event, "views/Album/Lists/List.fxml", "Listar Album");
     }
 
-    protected void uAlbum(ActionEvent event) throws IOException {
-        show.ShowWindow(event, "views/Album/Update/Update.fxml", "Actualizar Album");
+    protected void uAlbum(ActionEvent event,String id) throws IOException {
+        show.ShowWindow(event, "views/Album/Update/Update.fxml", "Actualizar Album",id,new UpdateAlbum());
     }
 
     protected void sAlbum(ActionEvent event) throws IOException {
@@ -128,8 +131,12 @@ public class MusicUI {
         show.ShowWindow(event, "views/Song/Profile/Profile.fxml", "Listar Canción",id,new Profile());
     }
 
-    protected void uSong(ActionEvent event) throws IOException {
-        show.ShowWindow(event, "views/Song/Update/Update.fxml", "Actualizar Canción");
+    protected void rSongAdmin(ActionEvent event) throws IOException {
+        show.ShowWindow(event, "views/Song/Lists/Admin/List.fxml", "Listar Canción");
+    }
+
+    protected void uSong(ActionEvent event, String id) throws IOException {
+        show.ShowWindow(event, "views/Song/Update/Update.fxml", "Actualizar Canción", id, new UpdateSong());
     }
 
     protected void sSong(ActionEvent event) throws IOException {
@@ -194,6 +201,10 @@ public class MusicUI {
 
     public void adminSongsReproductionList(ActionEvent event, String id) throws IOException {
         show.ShowWindow(event,"views/reproductionList/Lists/Song/Lists.fxml","Txt",id,new ListsSongsRL());
+    }
+
+    public void adminSongsAlbumList(ActionEvent event, String id) throws IOException {
+        show.ShowWindow(event,"views/Album/Lists/Songs/List.fxml","Txt",id,new ListSongAlbum());
     }
 
     protected void createReproductionList(ActionEvent event) throws IOException {

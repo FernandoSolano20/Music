@@ -53,6 +53,19 @@ public class Song {
         this.id = id;
     }
 
+    public Song(int id, String name, Gender gender, Artist artist, Compositor compositor, LocalDate release, Album album, int score, String song, int price) {
+        this.id = id;
+        this.name = name;
+        this.gender = gender;
+        this.artist = artist;
+        this.compositor = compositor;
+        this.release = release;
+        this.album = album;
+        this.score = score;
+        this.song = song;
+        this.price = price;
+    }
+
     public int getId() {
         return id;
     }

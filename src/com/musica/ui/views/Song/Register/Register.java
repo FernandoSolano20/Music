@@ -8,6 +8,7 @@ import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
 import javafx.scene.control.TextField;
 import javafx.stage.FileChooser;
+import javafx.stage.Stage;
 import javafx.stage.Window;
 
 import java.io.File;
@@ -55,7 +56,13 @@ public class Register extends MusicUI {
         int response = controller.registerSong(name,gender,artist,nameComp,year,month,day,album,score,song,price);
         if (response == 1){
             AlertHelper.showAlert(Alert.AlertType.CONFIRMATION, owner, "Exitoso", "Cancion almacenado");
-            super.index(event);
+            if(controller.userType() == "Administrador"){
+                super.rSongAdmin(event);
+            }
+            else {
+                Stage stage = (Stage) save.getScene().getWindow();
+                stage.close();
+            }
         }
         else {
             AlertHelper.showAlert(Alert.AlertType.ERROR, owner, "Error", "La cancion no se pudo almacenar");

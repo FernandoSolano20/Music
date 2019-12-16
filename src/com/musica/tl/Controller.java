@@ -122,6 +122,28 @@ public class Controller {
         return -4;
     }
 
+    public int updateSong(int id, String name, String gender, String artist, String nameCompositor, int year, int month, int day, String album, int score, String pathSong, int price){
+        Album album1 = searchAlbumByName(album);
+        if(album1 != null){
+            Gender gen = searchGenderByName(gender);
+            if(gen != null){
+                Artist artist1 = searchArtistByArtistName(artist);
+                if(artist1 != null){
+                    Compositor compositor1 = compositorDao.searchCompositorByNameAndLastName(nameCompositor);
+                    if(compositor1 != null){
+                        Song song = new Song(id,name,gen,artist1,compositor1, LocalDate.of(year,month,day),album1,score,pathSong,price);
+                        int response  = songDao.update(song)? 1 : 0;
+                        return response;
+                    }
+                    return -1;
+                }
+                return -2;
+            }
+            return -3;
+        }
+        return -4;
+    }
+
     private Song searchSongByName(String song) {
         return songDao.searchSongByName(song);
     }
@@ -145,6 +167,24 @@ public class Controller {
             result.add(item.toString());
         }
         return result;
+    }
+
+    public List<String> searchSongByAlbumId(int idAlbum){
+        List<String> result = new ArrayList<>();
+        List<Song> songs = songDao.searchSongByAlbumId(idAlbum);
+        for (Song item:songs) {
+            result.add(item.toString());
+        }
+        return result;
+    }
+
+    public boolean deleteSong(int id){
+        Song song = searchSongById(id);
+        boolean response = false;
+        if(song != null){
+            response = songDao.delete(song);
+        }
+        return response;
     }
 
 
@@ -337,6 +377,43 @@ public class Controller {
 
     private Album searchAlbumByName(String album) {
         return albumDao.searchAlbumByName(album);
+    }
+
+    public List<String> getAllAlbum(){
+        List<String> result = new ArrayList<>();
+        List<Album> albums = albumDao.getAll();
+        for (Album album:albums) {
+            result.add(album.toString());
+        }
+        return result;
+    }
+
+    public boolean updateAlbum(int id, String name, LocalDate release, String image){
+        Album album = new Album(id,name,release,image);
+        boolean response = false;
+        response = albumDao.update(album);
+        return response;
+    }
+
+    public boolean deleteAlbum(int id){
+        Album album = searchAlbumById(id);
+        boolean response = false;
+        if(album != null){
+            response = albumDao.delete(album);
+        }
+        return response;
+    }
+
+    public String getAlbumById(int id){
+        Album album = searchAlbumById(id);
+        if (album != null){
+            return album.toString();
+        }
+        return "";
+    }
+
+    private Album searchAlbumById(int id){
+        return albumDao.searchAlbumById(id);
     }
 
 

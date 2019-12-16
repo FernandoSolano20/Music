@@ -25,7 +25,7 @@ public class Index extends MusicUI {
 
     @FXML
     protected void listSong(ActionEvent event) throws IOException {
-        super.listSong(event);
+        super.rSongAdmin(event);
     }
 
     @FXML

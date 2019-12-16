@@ -62,6 +62,7 @@ public class SongQueue extends MusicUI implements Initializable {
     private Button btnSearch;
     @FXML
     private TextField search;
+    int countAdd = -2;
 
     List<String> songsQue = new ArrayList<String>();
     Iterator<String> iterator;
@@ -167,17 +168,24 @@ public class SongQueue extends MusicUI implements Initializable {
                     List<String> elements = list;
                     @Override
                     public TableCell<Disposer.Record, Boolean> call(TableColumn<Disposer.Record, Boolean> p) {
-                        i++;
                         String path = "";
-                        if(i < elements.size() && i >= 0){
-                            String[] item = elements.get(i).split(",");
-                            if (item[0].equals("Song")){
-                                path = item[30];
-                            }
-                            else{
-                                path = item[1];
+                        countAdd++;
+                        String id = "";
+                        if (countAdd < table.getItems().size() && countAdd >= 0) {
+                            for (int j = 0; j < elements.size(); j++){
+                                String[] item = elements.get(j).split(",");
+                                if (item[0].equals("Song")) {
+                                    if(table.getItems().get(countAdd).split(",")[0].equals(item[30])){
+                                        path = item[30];
+                                        break;
+                                    }
+                                }
+                                else if(table.getItems().get(countAdd).split(",")[0].equals(item[1])) {
+                                    path = item[1];
+                                }
                             }
                         }
+
                         ButtonCell btnCell = new ButtonCell(path, "Añadir");
                         EventHandler<ActionEvent> event = new EventHandler<ActionEvent>(){
                             @Override
@@ -235,6 +243,7 @@ public class SongQueue extends MusicUI implements Initializable {
                         return false; // Does not match.
                 }
             });
+            table.refresh();
         });
 
         // 3. Wrap the FilteredList in a SortedList.

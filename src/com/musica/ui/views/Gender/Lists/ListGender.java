@@ -38,6 +38,8 @@ public class ListGender extends MusicUI implements Initializable {
     private TableColumn<Disposer.Record, Boolean> columnDelete;
     @FXML
     private TextField search;
+    int countDelete = -2;
+    int countEdit = -2;
 
     @FXML
     protected void rGender(ActionEvent event) throws IOException {
@@ -56,7 +58,7 @@ public class ListGender extends MusicUI implements Initializable {
 
     @FXML
     protected void listSong(ActionEvent event) throws IOException {
-        super.listSong(event);
+        super.rSongAdmin(event);
     }
 
     @FXML
@@ -83,10 +85,15 @@ public class ListGender extends MusicUI implements Initializable {
 
                     @Override
                     public TableCell<Disposer.Record, Boolean> call(TableColumn<Disposer.Record, Boolean> p) {
-                        i++;
+                        countEdit++;
                         String id = "";
-                        if (i < elements.size() && i >= 0) {
-                            id = elements.get(i).split(",")[0];
+                        if (countEdit < table.getItems().size() && countEdit >= 0) {
+                            for (int j = 0; j < elements.size(); j++){
+                                if(table.getItems().get(countEdit).split(",")[0].equals(elements.get(j).split(",")[0])){
+                                    id = elements.get(j).split(",")[0];
+                                    break;
+                                }
+                            }
                         }
                         ButtonCell btnCell = new ButtonCell(id, "Actualizar");
                         EventHandler<ActionEvent> event = new EventHandler<ActionEvent>() {
@@ -113,10 +120,15 @@ public class ListGender extends MusicUI implements Initializable {
 
                     @Override
                     public TableCell<Disposer.Record, Boolean> call(TableColumn<Disposer.Record, Boolean> p) {
-                        i++;
+                        countDelete++;
                         String id = "";
-                        if (i < elements.size() && i >= 0) {
-                            id = elements.get(i).split(",")[0];
+                        if (countDelete < table.getItems().size() && countDelete >= 0) {
+                            for (int j = 0; j < elements.size(); j++){
+                                if(table.getItems().get(countDelete).split(",")[0].equals(elements.get(j).split(",")[0])){
+                                    id = elements.get(j).split(",")[0];
+                                    break;
+                                }
+                            }
                         }
                         ButtonCell btnCell = new ButtonCell(id, "Borrar");
                         EventHandler<ActionEvent> event = new EventHandler<ActionEvent>() {
@@ -162,6 +174,9 @@ public class ListGender extends MusicUI implements Initializable {
                 else
                     return false; // Does not match.
             });
+            countDelete = -1;
+            countEdit = -1;
+            table.refresh();
         });
 
         // 3. Wrap the FilteredList in a SortedList.
