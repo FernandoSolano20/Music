@@ -71,7 +71,7 @@ public class ListAlbum extends MusicUI implements Initializable {
         super.logout(event);
     }
 
-    public void showInfo() {
+    public void showInfo() throws Exception {
         List<String> songs = controller.getAllAlbum();
         ObservableList<String> details = FXCollections.observableArrayList(songs);
         columnName.setCellValueFactory(c -> new SimpleStringProperty(c.getValue().split(",")[1]));
@@ -100,7 +100,7 @@ public class ListAlbum extends MusicUI implements Initializable {
                                 try {
                                     ListAlbum.super.uAlbum(t, btnCell.getIdBtn());
                                 } catch (IOException e) {
-                                    e.printStackTrace();
+                                    AlertHelper.showAlert(Alert.AlertType.ERROR, "Error", e.getMessage());
                                 }
                             }
                         };
@@ -134,7 +134,7 @@ public class ListAlbum extends MusicUI implements Initializable {
                                 try {
                                     ListAlbum.super.adminSongsAlbumList(t, btnCell.getIdBtn());
                                 } catch (IOException e) {
-                                    e.printStackTrace();
+                                    AlertHelper.showAlert(Alert.AlertType.ERROR, "Error", e.getMessage());
                                 }
                             }
                         };
@@ -177,7 +177,9 @@ public class ListAlbum extends MusicUI implements Initializable {
                                     }
 
                                 } catch (IOException e) {
-                                    e.printStackTrace();
+                                    AlertHelper.showAlert(Alert.AlertType.ERROR, "Error", e.getMessage());
+                                } catch (Exception e) {
+                                    AlertHelper.showAlert(Alert.AlertType.ERROR, "Error", e.getMessage());
                                 }
                             }
                         };
@@ -223,7 +225,11 @@ public class ListAlbum extends MusicUI implements Initializable {
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
-        showInfo();
+        try {
+            showInfo();
+        } catch (Exception e) {
+            AlertHelper.showAlert(Alert.AlertType.ERROR, "Error", e.getMessage());
+        }
     }
 
     @FXML

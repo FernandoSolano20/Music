@@ -162,7 +162,7 @@ public class MusicUI {
     }
 
     protected void logout(ActionEvent event) throws IOException {
-        show.ShowWindow(event, "views/login/login.fxml", "Borrar Canción");
+        show.ShowWindow(event, "views/login/login.fxml", "Iniciar Sesion");
     }
 
     protected void login(ActionEvent event) throws IOException {

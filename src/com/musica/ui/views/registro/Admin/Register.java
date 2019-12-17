@@ -42,7 +42,9 @@ public class Register extends MusicUI {
 
         fileChooser.getExtensionFilters().addAll(new FileChooser.ExtensionFilter("Image Files","*.bmp", "*.png", "*.jpg", "*.gif"));
         File selectedFile = fileChooser.showOpenDialog(stage);
-        pathImage = selectedFile.toPath().toString().replace("\\", "\\\\");
+        if(!selectedFile.toPath().toString().isEmpty()){
+            pathImage = selectedFile.toPath().toString().replace("\\", "\\\\");
+        }
     }
 
     @FXML
@@ -73,6 +75,8 @@ public class Register extends MusicUI {
             }
         } catch (MessagingException e) {
             AlertHelper.showAlert(Alert.AlertType.ERROR, owner, "Error", "Hubo un error");
+        } catch (Exception e) {
+            AlertHelper.showAlert(Alert.AlertType.ERROR, owner, "Error", e.getMessage());
         }
     }
 }

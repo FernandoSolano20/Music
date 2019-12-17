@@ -47,17 +47,5 @@ public class ShowView {
         stage.setTitle("My New Stage Title");
         stage.setScene(new Scene(root));
         stage.show();
-        // Hide this current window (if this is what you want)
-        //((Node)(event.getSource())).getScene().getWindow().hide();
-        /*
-        FXMLLoader loader = new FXMLLoader(getClass().getResource(path));
-        Parent root = loader.load();
-
-
-        //Show scene 2 in new window
-        Stage stage = (Stage)((Node)event.getSource()).getScene().getWindow();
-        stage.setScene(new Scene(root));
-        stage.setTitle(title);
-        stage.show();*/
     }
 }

@@ -1,5 +1,6 @@
 package com.musica.ui.views.index.user;
 
+import com.musica.ui.AlertHelper;
 import com.musica.ui.ButtonCell;
 import com.musica.ui.MusicUI;
 import com.sun.prism.impl.Disposer.Record;
@@ -12,10 +13,7 @@ import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
-import javafx.scene.control.Button;
-import javafx.scene.control.TableCell;
-import javafx.scene.control.TableColumn;
-import javafx.scene.control.TableView;
+import javafx.scene.control.*;
 import javafx.scene.input.MouseEvent;
 import javafx.util.Callback;
 
@@ -40,10 +38,14 @@ public class Index extends MusicUI implements Initializable {
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
-        showReproductionList();
+        try {
+            showReproductionList();
+        } catch (Exception e) {
+            AlertHelper.showAlert(Alert.AlertType.ERROR, "Error", e.getMessage());
+        }
     }
 
-    public void showReproductionList() {
+    public void showReproductionList() throws Exception {
 
         List<String> list = controller.searchReproductionListByUser();
 
@@ -53,22 +55,7 @@ public class Index extends MusicUI implements Initializable {
         columnCreate.setCellValueFactory(c -> new SimpleStringProperty(c.getValue().split(",")[1]));
         columnScore.setCellValueFactory(c -> new SimpleStringProperty(c.getValue().split(",")[3]));
         columnListBtn.setCellValueFactory(c -> new SimpleBooleanProperty(c.getValue() != null));
-        //columnListBtn.setCellFactory(c -> new ButtonCell("1"));
-        /*
-        columnName.setCellValueFactory(c -> new SimpleStringProperty(c.getValue().split(",")[2]));
-        columnCreate.setCellValueFactory(c -> new SimpleStringProperty(c.getValue().split(",")[1]));
-        columnScore.setCellValueFactory(c -> new SimpleStringProperty(c.getValue().split(",")[3]));
-        columnListBtn.setCellValueFactory(c -> new SimpleBooleanProperty(c.getValue() != null));
-        columnListBtn.setCellFactory(c -> new ButtonCell(c.getValue().split(",")[3]));*/
-        /*columnListBtn.setCellValueFactory(
-                new Callback<TableColumn.CellDataFeatures<Record, Boolean>,
-                        ObservableValue<Boolean>>() {
 
-                    @Override
-                    public ObservableValue<Boolean> call(TableColumn.CellDataFeatures<Record, Boolean> p) {
-                        return new SimpleBooleanProperty(p.getValue() != null);
-                    }
-                });*/
 
             columnListBtn.setCellFactory(
                     new Callback<TableColumn<Record, Boolean>, TableCell<Record, Boolean>>() {
@@ -89,7 +76,7 @@ public class Index extends MusicUI implements Initializable {
                                     try {
                                         Index.super.songsOnReproductionList(t,btnCell.getIdBtn());
                                     } catch (IOException e) {
-                                        e.printStackTrace();
+                                        AlertHelper.showAlert(Alert.AlertType.ERROR, "Error", e.getMessage());
                                     }
                                 }
                             };

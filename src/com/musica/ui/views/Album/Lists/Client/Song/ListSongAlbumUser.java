@@ -70,13 +70,18 @@ public class ListSongAlbumUser extends MusicUI {
     public void transferId(String message) {
         super.transferId(message);
         idAlbum = Integer.parseInt(message);
-        List<String> songs = controller.searchSongByAlbumId(Integer.parseInt(getId()));
-        ObservableList<String> details = FXCollections.observableArrayList(songs);
-        columnName.setCellValueFactory(c -> new SimpleStringProperty(c.getValue().split(",")[1]));
-        columnAlbum.setCellValueFactory(c -> new SimpleStringProperty(c.getValue().split(",")[25]));
-        columnGender.setCellValueFactory(c -> new SimpleStringProperty(c.getValue().split(",")[3]));
-        columnComp.setCellValueFactory(c -> new SimpleStringProperty(c.getValue().split(",")[19] + " " + c.getValue().split(",")[20]));
-        columnScore.setCellValueFactory(c -> new SimpleStringProperty(c.getValue().split(",")[28]));
-        table.setItems(details);
+        List<String> songs = null;
+        try {
+            songs = controller.searchSongByAlbumId(Integer.parseInt(getId()));
+            ObservableList<String> details = FXCollections.observableArrayList(songs);
+            columnName.setCellValueFactory(c -> new SimpleStringProperty(c.getValue().split(",")[1]));
+            columnAlbum.setCellValueFactory(c -> new SimpleStringProperty(c.getValue().split(",")[25]));
+            columnGender.setCellValueFactory(c -> new SimpleStringProperty(c.getValue().split(",")[3]));
+            columnComp.setCellValueFactory(c -> new SimpleStringProperty(c.getValue().split(",")[19] + " " + c.getValue().split(",")[20]));
+            columnScore.setCellValueFactory(c -> new SimpleStringProperty(c.getValue().split(",")[28]));
+            table.setItems(details);
+        } catch (Exception e) {
+            AlertHelper.showAlert(Alert.AlertType.ERROR, "Error", e.getMessage());
+        }
     }
 }

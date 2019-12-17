@@ -5,6 +5,6 @@ import com.musica.bl.Dao;
 import java.util.List;
 
 public interface IGenderDao extends Dao<Gender> {
-    Gender searchGenderByName(String name);
-    Gender searchGenderById(int id);
+    Gender searchGenderByName(String name) throws Exception;
+    Gender searchGenderById(int id) throws Exception;
 }

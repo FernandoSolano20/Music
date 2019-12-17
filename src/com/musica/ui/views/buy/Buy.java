@@ -75,7 +75,7 @@ public class Buy extends MusicUI implements Initializable {
         super.reproductions(event);
     }
 
-    public void showReproductionList() {
+    public void showReproductionList() throws Exception {
 
         List<String> list = controller.getAllSongs();
 
@@ -109,13 +109,19 @@ public class Buy extends MusicUI implements Initializable {
                             public void handle(ActionEvent t) {
                                 System.out.println(btnCell.getIdBtn());
                                 Window owner = create.getScene().getWindow();
-                                boolean response = controller.buy(Integer.parseInt(btnCell.getIdBtn()));
-                                if (response){
-                                    AlertHelper.showAlert(Alert.AlertType.CONFIRMATION, owner, "Exitoso", "Cancion comprada");
+                                boolean response = false;
+                                try {
+                                    response = controller.buy(Integer.parseInt(btnCell.getIdBtn()));
+                                    if (response){
+                                        AlertHelper.showAlert(Alert.AlertType.CONFIRMATION, owner, "Exitoso", "Cancion comprada");
+                                    }
+                                    else {
+                                        AlertHelper.showAlert(Alert.AlertType.ERROR, owner, "Error", "La cancion no se compro");
+                                    }
+                                } catch (Exception e) {
+                                    AlertHelper.showAlert(Alert.AlertType.ERROR, "Error", e.getMessage());
                                 }
-                                else {
-                                    AlertHelper.showAlert(Alert.AlertType.ERROR, owner, "Error", "La cancion no se compro");
-                                }
+
                             }
                         };
                         btnCell.setEvent(event);
@@ -165,7 +171,11 @@ public class Buy extends MusicUI implements Initializable {
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
-        showReproductionList();
+        try {
+            showReproductionList();
+        } catch (Exception e) {
+            AlertHelper.showAlert(Alert.AlertType.ERROR, "Error", e.getMessage());
+        }
     }
 
     @FXML

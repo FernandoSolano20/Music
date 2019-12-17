@@ -70,47 +70,55 @@ public class ListsSongsRL extends MusicUI {
     public void transferId(String message) {
         super.transferId(message);
         idListReproduction = Integer.parseInt(message);
-        List<String> songs = controller.searchSongsByReproductionListId(Integer.parseInt(getId()));
-        ObservableList<String> details = FXCollections.observableArrayList(songs);
-        columnName.setCellValueFactory(c -> new SimpleStringProperty(c.getValue().split(",")[1]));
-        columnDelete.setCellValueFactory(c -> new SimpleBooleanProperty(c.getValue() != null));
-        columnDelete.setCellFactory(
-                new Callback<TableColumn<Disposer.Record, Boolean>, TableCell<Disposer.Record, Boolean>>() {
-                    int i = -2;
-                    List<String> elements = songs;
-                    int listId = Integer.parseInt(message);
-                    @Override
-                    public TableCell<Disposer.Record, Boolean> call(TableColumn<Disposer.Record, Boolean> p) {
-                        i++;
-                        String id = "";
-                        if(i < elements.size() && i >= 0){
-                            id = elements.get(i).split(",")[0];
-                        }
-                        ButtonCell btnCell = new ButtonCell(id, "Eliminar");
-                        EventHandler<ActionEvent> event = new EventHandler<ActionEvent>(){
-                            @Override
-                            public void handle(ActionEvent t) {
-                                try {
-                                    Window owner = create.getScene().getWindow();
-                                    boolean response = controller.deleteSongsReproductionList(Integer.parseInt(btnCell.getIdBtn()),listId);
-                                    if (response){
-                                        AlertHelper.showAlert(Alert.AlertType.CONFIRMATION, owner, "Exitoso", "Cancion eliminada");
-                                        ListsSongsRL.super.adminSongsReproductionList(t,""+listId);
-                                    }
-                                    else {
-                                        AlertHelper.showAlert(Alert.AlertType.ERROR, owner, "Error", "La lista aun tiene canciones");
-                                    }
-                                } catch (IOException e) {
-                                    e.printStackTrace();
-                                }
+        List<String> songs = null;
+        try {
+            songs = controller.searchSongsByReproductionListId(Integer.parseInt(getId()));
+            ObservableList<String> details = FXCollections.observableArrayList(songs);
+            columnName.setCellValueFactory(c -> new SimpleStringProperty(c.getValue().split(",")[1]));
+            columnDelete.setCellValueFactory(c -> new SimpleBooleanProperty(c.getValue() != null));
+            List<String> finalSongs = songs;
+            columnDelete.setCellFactory(
+                    new Callback<TableColumn<Disposer.Record, Boolean>, TableCell<Disposer.Record, Boolean>>() {
+                        int i = -2;
+                        List<String> elements = finalSongs;
+                        int listId = Integer.parseInt(message);
+                        @Override
+                        public TableCell<Disposer.Record, Boolean> call(TableColumn<Disposer.Record, Boolean> p) {
+                            i++;
+                            String id = "";
+                            if(i < elements.size() && i >= 0){
+                                id = elements.get(i).split(",")[0];
                             }
-                        };
-                        btnCell.setEvent(event);
-                        return btnCell;
-                    }
+                            ButtonCell btnCell = new ButtonCell(id, "Eliminar");
+                            EventHandler<ActionEvent> event = new EventHandler<ActionEvent>(){
+                                @Override
+                                public void handle(ActionEvent t) {
+                                    try {
+                                        Window owner = create.getScene().getWindow();
+                                        boolean response = controller.deleteSongsReproductionList(Integer.parseInt(btnCell.getIdBtn()),listId);
+                                        if (response){
+                                            AlertHelper.showAlert(Alert.AlertType.CONFIRMATION, owner, "Exitoso", "Cancion eliminada");
+                                            ListsSongsRL.super.adminSongsReproductionList(t,""+listId);
+                                        }
+                                        else {
+                                            AlertHelper.showAlert(Alert.AlertType.ERROR, owner, "Error", "La lista aun tiene canciones");
+                                        }
+                                    } catch (IOException e) {
+                                        AlertHelper.showAlert(Alert.AlertType.ERROR, "Error", e.getMessage());
+                                    } catch (Exception e) {
+                                        AlertHelper.showAlert(Alert.AlertType.ERROR, "Error", e.getMessage());
+                                    }
+                                }
+                            };
+                            btnCell.setEvent(event);
+                            return btnCell;
+                        }
 
-                });
-        table.setItems(details);
+                    });
+            table.setItems(details);
+        } catch (Exception e) {
+            AlertHelper.showAlert(Alert.AlertType.ERROR, "Error", e.getMessage());
+        }
     }
 
     @FXML

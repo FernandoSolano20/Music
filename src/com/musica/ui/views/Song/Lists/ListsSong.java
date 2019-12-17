@@ -1,6 +1,7 @@
 package com.musica.ui.views.Song.Lists;
 
 import com.musica.bl.Song.Song;
+import com.musica.ui.AlertHelper;
 import com.musica.ui.ButtonCell;
 import com.musica.ui.MusicUI;
 import com.musica.ui.views.index.user.Index;
@@ -12,10 +13,8 @@ import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.fxml.FXML;
-import javafx.scene.control.TableCell;
-import javafx.scene.control.TableColumn;
-import javafx.scene.control.TableView;
-import javafx.scene.control.TextField;
+import javafx.scene.control.*;
+import javafx.stage.Window;
 import javafx.util.Callback;
 
 import java.io.IOException;
@@ -70,41 +69,48 @@ public class ListsSong extends MusicUI {
 
     public void transferId(String message) {
         super.transferId(message);
-        List<String> songs = controller.searchSongsByReproductionListId(Integer.parseInt(getId()));
-        ObservableList<String> details = FXCollections.observableArrayList(songs);
-        columnName.setCellValueFactory(c -> new SimpleStringProperty(c.getValue().split(",")[1]));
-        columnAlbum.setCellValueFactory(c -> new SimpleStringProperty(c.getValue().split(",")[25]));
-        columnGender.setCellValueFactory(c -> new SimpleStringProperty(c.getValue().split(",")[3]));
-        columnComp.setCellValueFactory(c -> new SimpleStringProperty(c.getValue().split(",")[19] + " " + c.getValue().split(",")[20]));
-        columnScore.setCellValueFactory(c -> new SimpleStringProperty(c.getValue().split(",")[28]));
-        columnListBtn.setCellValueFactory(c -> new SimpleBooleanProperty(c.getValue() != null));
-        columnListBtn.setCellFactory(
-                new Callback<TableColumn<Disposer.Record, Boolean>, TableCell<Disposer.Record, Boolean>>() {
-                    int i = -2;
-                    List<String> elements = songs;
-                    @Override
-                    public TableCell<Disposer.Record, Boolean> call(TableColumn<Disposer.Record, Boolean> p) {
-                        i++;
-                        String id = "";
-                        if(i < elements.size() && i >= 0){
-                            id = elements.get(i).split(",")[0];
-                        }
-                        ButtonCell btnCell = new ButtonCell(id, "Ver");
-                        EventHandler<ActionEvent> event = new EventHandler<ActionEvent>(){
-                            @Override
-                            public void handle(ActionEvent t) {
-                                try {
-                                    ListsSong.super.rSong(t,btnCell.getIdBtn());
-                                } catch (IOException e) {
-                                    e.printStackTrace();
-                                }
-                            }
-                        };
-                        btnCell.setEvent(event);
-                        return btnCell;
-                    }
+        List<String> songs = null;
+        try {
+            songs = controller.searchSongsByReproductionListId(Integer.parseInt(getId()));
 
-                });
-        table.setItems(details);
+            ObservableList<String> details = FXCollections.observableArrayList(songs);
+            columnName.setCellValueFactory(c -> new SimpleStringProperty(c.getValue().split(",")[1]));
+            columnAlbum.setCellValueFactory(c -> new SimpleStringProperty(c.getValue().split(",")[25]));
+            columnGender.setCellValueFactory(c -> new SimpleStringProperty(c.getValue().split(",")[3]));
+            columnComp.setCellValueFactory(c -> new SimpleStringProperty(c.getValue().split(",")[19] + " " + c.getValue().split(",")[20]));
+            columnScore.setCellValueFactory(c -> new SimpleStringProperty(c.getValue().split(",")[28]));
+            columnListBtn.setCellValueFactory(c -> new SimpleBooleanProperty(c.getValue() != null));
+            List<String> finalSongs = songs;
+            columnListBtn.setCellFactory(
+                    new Callback<TableColumn<Disposer.Record, Boolean>, TableCell<Disposer.Record, Boolean>>() {
+                        int i = -2;
+                        List<String> elements = finalSongs;
+                        @Override
+                        public TableCell<Disposer.Record, Boolean> call(TableColumn<Disposer.Record, Boolean> p) {
+                            i++;
+                            String id = "";
+                            if(i < elements.size() && i >= 0){
+                                id = elements.get(i).split(",")[0];
+                            }
+                            ButtonCell btnCell = new ButtonCell(id, "Ver");
+                            EventHandler<ActionEvent> event = new EventHandler<ActionEvent>(){
+                                @Override
+                                public void handle(ActionEvent t) {
+                                    try {
+                                        ListsSong.super.rSong(t,btnCell.getIdBtn());
+                                    } catch (IOException e) {
+                                        AlertHelper.showAlert(Alert.AlertType.ERROR, "Error", e.getMessage());
+                                    }
+                                }
+                            };
+                            btnCell.setEvent(event);
+                            return btnCell;
+                        }
+
+                    });
+            table.setItems(details);
+        } catch (Exception e) {
+            AlertHelper.showAlert(Alert.AlertType.ERROR, "Error", e.getMessage());
+        }
     }
 }

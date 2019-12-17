@@ -16,13 +16,19 @@ public class ChangePass extends MusicUI {
     protected void validate(ActionEvent event) throws IOException {
         Window owner = pass.getScene().getWindow();
 
-        boolean response = controller.updateUser(pass.getText(),false);
-        if(response){
-            AlertHelper.showAlert(Alert.AlertType.CONFIRMATION, owner, "Exitoso", "Su usario ha sido verifcado y contraseña cambiada");
-            super.index(event);
-        }
-        else {
-            AlertHelper.showAlert(Alert.AlertType.ERROR, owner, "Error", "La contraseña no se edito");
+        boolean response = false;
+        try {
+            response = controller.updateUser(pass.getText(),false);
+
+            if(response){
+                AlertHelper.showAlert(Alert.AlertType.CONFIRMATION, owner, "Exitoso", "Su usario ha sido verifcado y contraseña cambiada");
+                super.index(event);
+            }
+            else {
+                AlertHelper.showAlert(Alert.AlertType.ERROR, owner, "Error", "La contraseña no se edito");
+            }
+        } catch (Exception e) {
+            AlertHelper.showAlert(Alert.AlertType.ERROR, owner, "Error", e.getMessage());
         }
     }
 }

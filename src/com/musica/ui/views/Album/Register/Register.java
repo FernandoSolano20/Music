@@ -25,7 +25,7 @@ public class Register extends MusicUI {
     @FXML private TextField artists;
     @FXML private Button image;
     @FXML private Button save;
-    private String pathImage;
+    private String pathImage = "";
 
     @FXML
     protected void uploadImage(ActionEvent event){
@@ -37,32 +37,40 @@ public class Register extends MusicUI {
 
         fileChooser.getExtensionFilters().addAll(new FileChooser.ExtensionFilter("Image Files","*.bmp", "*.png", "*.jpg", "*.gif"));
         File selectedFile = fileChooser.showOpenDialog(stage);
-        pathImage = selectedFile.toPath().toString().replace("\\", "\\\\");
+        if(!selectedFile.toPath().toString().isEmpty()){
+            pathImage = selectedFile.toPath().toString().replace("\\", "\\\\");
+        }
     }
 
     @FXML
     protected void save(ActionEvent event) throws IOException {
         Window owner = save.getScene().getWindow();
+        try {
+            String name = this.name.getText();
+            int day = Integer.parseInt(this.day.getText());
+            int month = Integer.parseInt(this.month.getText());
+            int year = Integer.parseInt(this.year.getText());
+            LocalDate release = LocalDate.of(year,month,day);
+            String[] artists = this.artists.getText().split(",");
 
-        String name = this.name.getText();
-        int day = Integer.parseInt(this.day.getText());
-        int month = Integer.parseInt(this.month.getText());
-        int year = Integer.parseInt(this.year.getText());
-        LocalDate release = LocalDate.of(year,month,day);
-        String[] artists = this.artists.getText().split(",");
+            boolean response = false;
 
-        boolean response = controller.registerAlbum(name,release,pathImage,artists);
-        if (response == true){
-            AlertHelper.showAlert(Alert.AlertType.CONFIRMATION, owner, "Exitoso", "Album almacenado");
-            if(controller.userType() == "Administrador"){
-                super.rAlbum(event);
+            response = controller.registerAlbum(name,release,pathImage,artists);
+
+            if (response == true){
+                AlertHelper.showAlert(Alert.AlertType.CONFIRMATION, owner, "Exitoso", "Album almacenado");
+                if(controller.userType() == "Administrador"){
+                    super.rAlbum(event);
+                }
+                else {
+                    super.albums(event);
+                }
             }
             else {
-                super.albums(event);
+                AlertHelper.showAlert(Alert.AlertType.ERROR, owner, "Error", "El album no se pudo almacenar");
             }
-        }
-        else {
-            AlertHelper.showAlert(Alert.AlertType.ERROR, owner, "Error", "El album no se pudo almacenar");
+        } catch (Exception e) {
+            AlertHelper.showAlert(Alert.AlertType.ERROR, owner, "Error", e.getMessage());
         }
     }
 }

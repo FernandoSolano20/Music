@@ -43,27 +43,33 @@ public class Register extends MusicUI {
         @FXML
         protected void save(ActionEvent event) throws IOException {
             Window owner = save.getScene().getWindow();
+            try {
+                String name = this.name.getText();
+                String lastName = this.lastName.getText();
+                String country = this.country.getValue().toString();
+                int old = Integer.parseInt(this.old.getText());
 
-            String name = this.name.getText();
-            String lastName = this.lastName.getText();
-            String country = this.country.getValue().toString();
-            int old = Integer.parseInt(this.old.getText());
+                String[] genders = this.genders.getText().split(",");
 
-            String[] genders = this.genders.getText().split(",");
+                boolean response = false;
 
-            boolean response = controller.registerCompositor(name,lastName,country,old,genders);
-            if (response == true){
-                AlertHelper.showAlert(Alert.AlertType.CONFIRMATION, owner, "Exitoso", "Compositor almacenado");
-                if(controller.userType() == "Administrador"){
-                    super.rComp(event);
+                    response = controller.registerCompositor(name,lastName,country,old,genders);
+
+                if (response == true){
+                    AlertHelper.showAlert(Alert.AlertType.CONFIRMATION, owner, "Exitoso", "Compositor almacenado");
+                    if(controller.userType() == "Administrador"){
+                        super.rComp(event);
+                    }
+                    else {
+                        Stage stage = (Stage) save.getScene().getWindow();
+                        stage.close();
+                    }
                 }
                 else {
-                    Stage stage = (Stage) save.getScene().getWindow();
-                    stage.close();
+                    AlertHelper.showAlert(Alert.AlertType.ERROR, owner, "Error", "El Compositor no se pudo almacenar");
                 }
-            }
-            else {
-                AlertHelper.showAlert(Alert.AlertType.ERROR, owner, "Error", "El Compositor no se pudo almacenar");
+            } catch (Exception e) {
+                AlertHelper.showAlert(Alert.AlertType.ERROR, owner, "Error", e.getMessage());
             }
         }
     }

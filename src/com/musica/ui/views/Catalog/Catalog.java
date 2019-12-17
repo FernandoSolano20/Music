@@ -69,10 +69,14 @@ public class Catalog extends MusicUI implements Initializable {
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
-        showCatalog();
+        try {
+            showCatalog();
+        } catch (Exception e) {
+            AlertHelper.showAlert(Alert.AlertType.ERROR, "Error", e.getMessage());
+        }
     }
 
-    public void showCatalog() {
+    public void showCatalog() throws Exception {
 
         List<String> list = controller.getCatalog();
 

@@ -40,33 +40,44 @@ public class UpdateCompositor extends MusicUI {
     @FXML
     protected void save(ActionEvent event) throws IOException {
         Window owner = save.getScene().getWindow();
+        try {
+            String name = this.name.getText();
+            String lastName = this.lastName.getText();
+            String country = this.country.getValue().toString();
+            if(country.isEmpty()){
+                country = countryName;
+            }
+            int old = Integer.parseInt(this.old.getText());
 
-        String name = this.name.getText();
-        String lastName = this.lastName.getText();
-        String country = this.country.getValue().toString();
-        if(country == ""){
-            country = countryName;
-        }
-        int old = Integer.parseInt(this.old.getText());
+            boolean response = false;
 
-        boolean response = controller.updateCompositor(idComp,name,lastName,country,old);
-        if (response == true){
-            AlertHelper.showAlert(Alert.AlertType.CONFIRMATION, owner, "Exitoso", "Compositor almacenado");
-            super.rComp(event);
-        }
-        else {
-            AlertHelper.showAlert(Alert.AlertType.ERROR, owner, "Error", "El Compositor no se pudo almacenar");
+                response = controller.updateCompositor(idComp,name,lastName,country,old);
+
+            if (response == true){
+                AlertHelper.showAlert(Alert.AlertType.CONFIRMATION, owner, "Exitoso", "Compositor almacenado");
+                super.rComp(event);
+            }
+            else {
+                AlertHelper.showAlert(Alert.AlertType.ERROR, owner, "Error", "El Compositor no se pudo almacenar");
+            }
+        } catch (Exception e) {
+            AlertHelper.showAlert(Alert.AlertType.ERROR, owner, "Error", e.getMessage());
         }
     }
 
     @Override
     public void transferId(String message) {
         super.transferId(message);
-        String song[] = controller.getCompositorById(Integer.parseInt(getId())).split(",");
-        idComp = Integer.parseInt(song[0]);
-        name.setText(song[1]);
-        lastName.setText(song[2]);
-        countryName = song[3];
-        old.setText(song[4]);
+        try {
+            String song[] = new String[0];
+            song = controller.getCompositorById(Integer.parseInt(getId())).split(",");
+            idComp = Integer.parseInt(song[0]);
+            name.setText(song[1]);
+            lastName.setText(song[2]);
+            countryName = song[3];
+            old.setText(song[4]);
+        } catch (Exception e) {
+            AlertHelper.showAlert(Alert.AlertType.ERROR, "Error", e.getMessage());
+        }
     }
 }

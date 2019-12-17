@@ -1,5 +1,6 @@
 package com.musica.bl.Mail;
 
+import com.musica.dl.LogError;
 import com.sun.xml.internal.messaging.saaj.packaging.mime.MessagingException;
 
 import javax.mail.*;
@@ -12,7 +13,7 @@ public class SendMail {
     private static final String PASSWORD = "PillaSolano2015";
     private static final String SMTP_SERVER = "smtp.gmail.com";
 
-    public static void sendMail(String recepient, String subject, String text) throws javax.mail.MessagingException {
+    public static void sendMail(String recepient, String subject, String text) throws Exception {
 
         Properties prop = System.getProperties();
         prop.put("mail.smtp.auth", "true");
@@ -32,7 +33,7 @@ public class SendMail {
 
     }
 
-    private static Message prepareMessage(Session session, String emailFrom, String recepient, String subject, String text) {
+    private static Message prepareMessage(Session session, String emailFrom, String recepient, String subject, String text) throws Exception {
         try {
             Message message = new MimeMessage(session);
             message.setFrom(new InternetAddress(emailFrom));
@@ -41,8 +42,8 @@ public class SendMail {
             message.setText(text);
             return message;
         }catch (Exception e){
-
+            LogError.getLogger().info("Error " + e.getMessage());
+            throw new Exception("Error al mandar mensaje");
         }
-        return null;
     }
 }

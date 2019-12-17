@@ -6,6 +6,7 @@ import com.musica.bl.Song.SongDao;
 import com.musica.bl.User.Admin.Admin;
 import com.musica.bl.User.Client.Client;
 import com.musica.dl.DataAccess;
+import com.musica.dl.LogError;
 
 import javax.jws.soap.SOAPBinding;
 import java.sql.ResultSet;
@@ -17,7 +18,7 @@ public class UserDao implements IUserDao {
     private DataAccess dataAccess = new DataAccess();
 
     @Override
-    public List<User> getAll() {
+    public List<User> getAll() throws Exception {
         List<User> users = new ArrayList<>();
         String queryString = "SELECT * FROM User";
         ResultSet result = dataAccess.selectData(queryString);
@@ -28,13 +29,14 @@ public class UserDao implements IUserDao {
             }
         }
         catch (Exception e){
-            users = null;
+            LogError.getLogger().info("Error " + e.getMessage());
+            throw new Exception("Error al obtener la informacion en la base de datos");
         }
         return users;
     }
 
     @Override
-    public int save(User user) {
+    public int save(User user) throws Exception {
         boolean message = false;
         String queryString = "INSERT INTO User(id, name, lastName, email, password, userName, image, type, firstTime, randomPass";
 
@@ -51,20 +53,22 @@ public class UserDao implements IUserDao {
         try {
             message = dataAccess.insertData(queryString+queryValues);
         } catch (Exception e) {
-            message = false;
+            LogError.getLogger().info("Error " + e.getMessage());
+            throw new Exception("Error al guardar la informacion en la base de datos");
         }
         return message ? 1 : -1;
     }
 
     @Override
-    public boolean update(User user) {
+    public boolean update(User user) throws Exception {
         boolean message = false;
         String queryString = "UPDATE User SET password= '" + user.getPass() + "', firstTime=" + user.isFirstTime() + ", randomPass= '" + user.getRandomPass() + "' " +
                 "WHERE id = " + user.getId() + "";
         try {
             message = dataAccess.insertData(queryString);
         } catch (Exception e) {
-            message = false;
+            LogError.getLogger().info("Error " + e.getMessage());
+            throw new Exception("Error al actualizar la informacion en la base de datos");
         }
         return message;
     }
@@ -74,7 +78,7 @@ public class UserDao implements IUserDao {
         return false;
     }
 
-    public boolean isAdminOnDB(){
+    public boolean isAdminOnDB() throws Exception {
         int count = 0;
         String queryString = "SELECT id FROM User " +
                 "WHERE type = 'Administrador'";
@@ -86,12 +90,13 @@ public class UserDao implements IUserDao {
             }
         }
         catch (Exception e){
-            return true;
+            LogError.getLogger().info("Error " + e.getMessage());
+            throw new Exception("Error al obtener la informacion en la base de datos");
         }
         return count > 0;
     }
 
-    public User login(String email, String pass){
+    public User login(String email, String pass) throws Exception {
         int count = 0;
         User user = null;
             String queryString = "SELECT * FROM User " +
@@ -104,13 +109,14 @@ public class UserDao implements IUserDao {
             }
         }
         catch (Exception e){
-            return user;
+            LogError.getLogger().info("Error " + e.getMessage());
+            throw new Exception("Error al obtener la informacion en la base de datos");
         }
         return user;
     }
 
     @Override
-    public User getUserById(int id) {
+    public User getUserById(int id) throws Exception {
         String queryString = "SELECT * FROM User " +
                 "WHERE id = " + id + "";
         ResultSet result = dataAccess.selectData(queryString);
@@ -122,13 +128,14 @@ public class UserDao implements IUserDao {
             }
         }
         catch (Exception e){
-            user = null;
+            LogError.getLogger().info("Error " + e.getMessage());
+            throw new Exception("Error al obtener la informacion en la base de datos");
         }
         return user;
     }
 
     @Override
-    public User getUserByEmail(String email) {
+    public User getUserByEmail(String email) throws Exception {
         User user = null;
         String queryString = "SELECT * FROM User " +
                 "WHERE email = '"+ email +"'";
@@ -140,12 +147,13 @@ public class UserDao implements IUserDao {
             }
         }
         catch (Exception e){
-            return user;
+            LogError.getLogger().info("Error " + e.getMessage());
+            throw new Exception("Error al obtener la informacion en la base de datos");
         }
         return user;
     }
 
-    private User createUser(ResultSet result) throws SQLException {
+    private User createUser(ResultSet result) throws Exception {
         User user = null;
         int id = result.getInt("id");
         String name = result.getString("name");
@@ -179,7 +187,8 @@ public class UserDao implements IUserDao {
                 }
             }
             catch (Exception e){
-                song = null;
+                LogError.getLogger().info("Error " + e.getMessage());
+                throw new Exception("Error al obtener la informacion en la base de datos");
             }
         }
         else {

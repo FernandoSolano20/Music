@@ -1,0 +1,4 @@
+Dec 16, 2019 11:22:08 PM com.musica.dl.DataAccess insertData
+INFO: Error Cannot delete or update a parent row: a foreign key constraint fails (`music`.`reproductionlistsong`, CONSTRAINT `fk_ReproductionList_has_Song_Song1` FOREIGN KEY (`idSong`) REFERENCES `song` (`id`))
+Dec 16, 2019 11:22:08 PM com.musica.bl.Song.SongDao delete
+INFO: Error Error en base de datos

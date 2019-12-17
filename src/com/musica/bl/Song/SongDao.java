@@ -9,6 +9,7 @@ import com.musica.bl.User.Admin.Admin;
 import com.musica.bl.User.Client.Client;
 import com.musica.bl.User.User;
 import com.musica.dl.DataAccess;
+import com.musica.dl.LogError;
 
 import java.sql.Date;
 import java.sql.ResultSet;
@@ -20,7 +21,7 @@ import java.util.List;
 public class SongDao implements ISongDao {
     private DataAccess dataAccess = new DataAccess();
     @Override
-    public List<Song> getAll() {
+    public List<Song> getAll() throws Exception {
         List<Song> songs = new ArrayList<>();
         Song song = null;
         String queryString = "SELECT * FROM Song as s " +
@@ -39,13 +40,14 @@ public class SongDao implements ISongDao {
             }
         }
         catch (Exception e){
-            songs = null;
+            LogError.getLogger().info("Error " + e.getMessage());
+            throw new Exception("Error al obtener la informacion en la base de datos");
         }
         return songs;
     }
 
     @Override
-    public int save(Song song) {
+    public int save(Song song) throws Exception {
         int message = -1;
         String queryString = "INSERT INTO Song(name, releaseDay, score, creator, idGender, idCompositor, idArtist, idAlbum, songPath, price) " +
                 "VALUES('"+ song.getName() +"', '"+ song.getRelease() +"', '"+ song.getScore() +"', '"+ song.getCreator().getId() +
@@ -54,13 +56,14 @@ public class SongDao implements ISongDao {
         try {
             message = dataAccess.insertIntoData(queryString);
         } catch (Exception e) {
-            message = -1;
+            LogError.getLogger().info("Error " + e.getMessage());
+            throw new Exception("Error al guardar la informacion en la base de datos");
         }
         return message;
     }
 
     @Override
-    public boolean update(Song song) {
+    public boolean update(Song song) throws Exception {
         boolean message = false;
         String queryString = "UPDATE Song SET name='"+ song.getName() +"', releaseDay='"+ song.getRelease() +"', score="+ song.getScore() +", " +
                 "idGender="+ song.getGender().getId() + ", idCompositor="+ song.getCompositor().getId() + ", idArtist="+ song.getArtist().getId() +", " +
@@ -69,26 +72,28 @@ public class SongDao implements ISongDao {
         try {
             message = dataAccess.insertData(queryString);
         } catch (Exception e) {
-            message = false;
+            LogError.getLogger().info("Error " + e.getMessage());
+            throw new Exception("Error al actualizar la informacion en la base de datos");
         }
         return message;
     }
 
     @Override
-    public boolean delete(Song song) {
+    public boolean delete(Song song) throws Exception {
         boolean message = false;
         String queryString = "DELETE FROM Song " +
                 "WHERE id = "+ song.getId();
         try {
             message = dataAccess.insertData(queryString);
         } catch (Exception e) {
-            message = false;
+            LogError.getLogger().info("Error " + e.getMessage());
+            throw new Exception("Error al borrar la informacion en la base de datos");
         }
         return message;
     }
 
     @Override
-    public Song searchSongByName(String name) {
+    public Song searchSongByName(String name) throws Exception {
         Song song = null;
         String queryString = "SELECT * FROM Song as s " +
                 "INNER JOIN Gender as g ON s.idGender = g.id " +
@@ -106,13 +111,14 @@ public class SongDao implements ISongDao {
             }
         }
         catch (Exception e){
-            song = null;
+            LogError.getLogger().info("Error " + e.getMessage());
+            throw new Exception("Error al obtener la informacion en la base de datos");
         }
         return song;
     }
 
     @Override
-    public Song searchSongById(int id) {
+    public Song searchSongById(int id) throws Exception {
         Song song = null;
         String queryString = "SELECT * FROM Song as s " +
                 "INNER JOIN Gender as g ON s.idGender = g.id " +
@@ -130,13 +136,14 @@ public class SongDao implements ISongDao {
             }
         }
         catch (Exception e){
-            song = null;
+            LogError.getLogger().info("Error " + e.getMessage());
+            throw new Exception("Error al obtener la informacion en la base de datos");
         }
         return song;
     }
 
     @Override
-    public List<Song> searchSongByAlbumId(int id) {
+    public List<Song> searchSongByAlbumId(int id) throws Exception {
         List<Song> songs = new ArrayList<>();
         Song song = null;
         String queryString = "SELECT * FROM Song as s " +
@@ -156,12 +163,13 @@ public class SongDao implements ISongDao {
             }
         }
         catch (Exception e){
-            songs = null;
+            LogError.getLogger().info("Error " + e.getMessage());
+            throw new Exception("Error al obtener la informacion en la base de datos");
         }
         return songs;
     }
 
-    private Song createSong(ResultSet result) throws SQLException {
+    private Song createSong(ResultSet result) throws Exception {
         Song song = null;
         int id = result.getInt("id");
         String name = result.getString("name");
@@ -220,7 +228,8 @@ public class SongDao implements ISongDao {
             }
         }
         catch (Exception e){
-            genderComp = null;
+            LogError.getLogger().info("Error " + e.getMessage());
+            throw new Exception("Error al obtener la informacion en la base de datos");
         }
 
 
@@ -281,7 +290,8 @@ public class SongDao implements ISongDao {
             }
         }
         catch (Exception e){
-            artist = null;
+            LogError.getLogger().info("Error " + e.getMessage());
+            throw new Exception("Error al obtener la informacion en la base de datos");
         }
 
         song = new Song(id,name,release,score,creator,songPath,genderSong,compositor,artist,album,price);

@@ -64,14 +64,18 @@ public class ListSongAlbum extends MusicUI {
     public void transferId(String message) {
         super.transferId(message);
         idAlbum = Integer.parseInt(message);
-        List<String> songs = controller.searchSongByAlbumId(Integer.parseInt(getId()));
+        List<String> songs = null;
+        try {
+            songs = controller.searchSongByAlbumId(Integer.parseInt(getId()));
+
         ObservableList<String> details = FXCollections.observableArrayList(songs);
         columnName.setCellValueFactory(c -> new SimpleStringProperty(c.getValue().split(",")[1]));
         columnDelete.setCellValueFactory(c -> new SimpleBooleanProperty(c.getValue() != null));
-        columnDelete.setCellFactory(
+            List<String> finalSongs = songs;
+            columnDelete.setCellFactory(
                 new Callback<TableColumn<Disposer.Record, Boolean>, TableCell<Disposer.Record, Boolean>>() {
                     int i = -2;
-                    List<String> elements = songs;
+                    List<String> elements = finalSongs;
                     int listId = Integer.parseInt(message);
                     @Override
                     public TableCell<Disposer.Record, Boolean> call(TableColumn<Disposer.Record, Boolean> p) {
@@ -95,7 +99,9 @@ public class ListSongAlbum extends MusicUI {
                                         AlertHelper.showAlert(Alert.AlertType.ERROR, owner, "Error", "La lista aun tiene canciones");
                                     }
                                 } catch (IOException e) {
-                                    e.printStackTrace();
+                                    AlertHelper.showAlert(Alert.AlertType.ERROR, "Error", e.getMessage());
+                                } catch (Exception e) {
+                                    AlertHelper.showAlert(Alert.AlertType.ERROR, "Error", e.getMessage());
                                 }
                             }
                         };
@@ -105,5 +111,8 @@ public class ListSongAlbum extends MusicUI {
 
                 });
         table.setItems(details);
+        } catch (Exception e) {
+            AlertHelper.showAlert(Alert.AlertType.ERROR, "Error", e.getMessage());
+        }
     }
 }

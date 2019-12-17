@@ -65,7 +65,7 @@ public class ListAlbumUser extends MusicUI implements Initializable {
         super.reproductions(event);
     }
 
-    public void showInfo() {
+    public void showInfo() throws Exception {
         List<String> songs = controller.getAllAlbum();
         ObservableList<String> details = FXCollections.observableArrayList(songs);
         columnName.setCellValueFactory(c -> new SimpleStringProperty(c.getValue().split(",")[1]));
@@ -94,7 +94,7 @@ public class ListAlbumUser extends MusicUI implements Initializable {
                                 try {
                                     ListAlbumUser.super.clientSongsAlbumList(t, btnCell.getIdBtn());
                                 } catch (IOException e) {
-                                    e.printStackTrace();
+                                    AlertHelper.showAlert(Alert.AlertType.ERROR, "Error", e.getMessage());
                                 }
                             }
                         };
@@ -139,7 +139,11 @@ public class ListAlbumUser extends MusicUI implements Initializable {
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
-        showInfo();
+        try {
+            showInfo();
+        } catch (Exception e) {
+            AlertHelper.showAlert(Alert.AlertType.ERROR, "Error", e.getMessage());
+        }
     }
 
     @FXML

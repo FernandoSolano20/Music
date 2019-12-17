@@ -28,7 +28,7 @@ public class Register extends MusicUI {
     @FXML private TextField price;
     @FXML private Button song;
     @FXML private Button save;
-    String songPath;
+    String songPath = "";
 
     @FXML
     protected void uploadSong(ActionEvent event){
@@ -40,46 +40,59 @@ public class Register extends MusicUI {
 
         fileChooser.getExtensionFilters().addAll(new FileChooser.ExtensionFilter("Song","*.mp3"));
         File selectedFile = fileChooser.showOpenDialog(stage);
-        songPath = selectedFile.toPath().toString().replace("\\", "\\\\");
+        if(!selectedFile.toPath().toString().isEmpty()){
+            songPath = selectedFile.toPath().toString().replace("\\", "\\\\");
+        }
     }
 
     @FXML
     protected void save(ActionEvent event) throws IOException {
         Window owner = save.getScene().getWindow();
-        //System.out.println(name.getText());
-        String name = this.name.getText();
-        String gender = this.gender.getText();
-        String artist = this.artist.getText();
-        String nameComp = this.nameComp.getText();
-        int year = Integer.parseInt(this.year.getText());
-        int month = Integer.parseInt(this.month.getText());
-        int day = Integer.parseInt(this.day.getText());
-        String album = this.album.getText();
-        int price = Integer.parseInt(this.price.getText());
-        int score = Integer.parseInt(this.score.getText());
+        try {
+            //System.out.println(name.getText());
+            String name = this.name.getText();
+            String gender = this.gender.getText();
+            String artist = this.artist.getText();
+            String nameComp = this.nameComp.getText();
+            int year = Integer.parseInt(this.year.getText());
+            int month = Integer.parseInt(this.month.getText());
+            int day = Integer.parseInt(this.day.getText());
+            String album = this.album.getText();
+            int price = Integer.parseInt(this.price.getText());
+            int score = Integer.parseInt(this.score.getText());
 
-        int response = controller.registerSong(name,gender,artist,nameComp,year,month,day,album,score,songPath,price);
-        if (response != -1){
-            AlertHelper.showAlert(Alert.AlertType.CONFIRMATION, owner, "Exitoso", "Cancion almacenado");
-            if(controller.userType() == "Administrador"){
-                super.rSongAdmin(event);
+            if(songPath.isEmpty()){
+                AlertHelper.showAlert(Alert.AlertType.ERROR, owner, "Error", "La cancion debe subirse");
+                return;
+            }
+
+            int response = 0;
+            response = controller.registerSong(name,gender,artist,nameComp,year,month,day,album,score,songPath,price);
+
+            if (response != -1){
+                AlertHelper.showAlert(Alert.AlertType.CONFIRMATION, owner, "Exitoso", "Cancion almacenado");
+                if(controller.userType() == "Administrador"){
+                    super.rSongAdmin(event);
+                }
+                else {
+                    controller.buy(response);
+                    super.buy(event);
+                }
             }
             else {
-                controller.buy(response);
-                super.buy(event);
+                AlertHelper.showAlert(Alert.AlertType.ERROR, owner, "Error", "La cancion no se pudo almacenar");
+                if(response == -1){
+                    super.cCompOnSong(event);
+                }
+                else if(response == -2){
+                    super.cArtOnSong(event);
+                }
+                else if(response == -3){
+                    super.cGenderOnSong(event);
+                }
             }
-        }
-        else {
-            AlertHelper.showAlert(Alert.AlertType.ERROR, owner, "Error", "La cancion no se pudo almacenar");
-            if(response == -1){
-                super.cCompOnSong(event);
-            }
-            else if(response == -2){
-                super.cArtOnSong(event);
-            }
-            else if(response == -3){
-                super.cGenderOnSong(event);
-            }
+        } catch (Exception e) {
+            AlertHelper.showAlert(Alert.AlertType.ERROR, owner, "Error", e.getMessage());
         }
     }
 

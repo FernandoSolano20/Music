@@ -68,7 +68,7 @@ public class ListAdminSong extends MusicUI implements Initializable {
         super.logout(event);
     }
 
-    public void showInfo() {
+    public void showInfo() throws Exception {
         List<String> songs = controller.getAllSongs();
         ObservableList<String> details = FXCollections.observableArrayList(songs);
         columnName.setCellValueFactory(c -> new SimpleStringProperty(c.getValue().split(",")[1]));
@@ -98,7 +98,7 @@ public class ListAdminSong extends MusicUI implements Initializable {
                                 try {
                                     ListAdminSong.super.uSong(t, btnCell.getIdBtn());
                                 } catch (IOException e) {
-                                    e.printStackTrace();
+                                    AlertHelper.showAlert(Alert.AlertType.ERROR, "Error", e.getMessage());
                                 }
                             }
                         };
@@ -141,8 +141,8 @@ public class ListAdminSong extends MusicUI implements Initializable {
                                         AlertHelper.showAlert(Alert.AlertType.ERROR, owner, "Error", "La Cancion no se puede eliminar");
                                     }
 
-                                } catch (IOException e) {
-                                    e.printStackTrace();
+                                } catch (Exception e) {
+                                    AlertHelper.showAlert(Alert.AlertType.ERROR, "Error", e.getMessage());
                                 }
                             }
                         };
@@ -187,7 +187,11 @@ public class ListAdminSong extends MusicUI implements Initializable {
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
-        showInfo();
+        try {
+            showInfo();
+        } catch (Exception e) {
+            AlertHelper.showAlert(Alert.AlertType.ERROR, "Error", e.getMessage());
+        }
     }
 
     @FXML

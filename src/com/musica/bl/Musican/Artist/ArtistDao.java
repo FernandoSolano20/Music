@@ -2,6 +2,7 @@ package com.musica.bl.Musican.Artist;
 
 import com.musica.bl.Gender.Gender;
 import com.musica.dl.DataAccess;
+import com.musica.dl.LogError;
 
 import java.sql.Date;
 import java.sql.ResultSet;
@@ -12,7 +13,7 @@ import java.util.List;
 public class ArtistDao implements IArtistDao {
     private DataAccess dataAccess = new DataAccess();
     @Override
-    public List<Artist> getAll() {
+    public List<Artist> getAll() throws Exception {
         List<Artist> artists = new ArrayList<>();
         Artist artist = null;
         String queryString = "SELECT * FROM Artist as a INNER JOIN Gender as g ON a.idGender = g.id";
@@ -43,13 +44,14 @@ public class ArtistDao implements IArtistDao {
             }
         }
         catch (Exception e){
-            artists = null;
+            LogError.getLogger().info("Error " + e.getMessage());
+            throw new Exception("Error al obtener la informacion en la base de datos");
         }
         return artists;
     }
 
     @Override
-    public int save(Artist artist) {
+    public int save(Artist artist) throws Exception {
         int message = -1;
         String queryString = "INSERT INTO Artist(name, lastName, born, dead, country, old, reference, description, idGender, artistName) " +
                 "VALUES('"+ artist.getName() +"', '" + artist.getLastName() +"', '" + artist.getBorn() + "', '" + artist.getDead() +"', '" +
@@ -58,13 +60,14 @@ public class ArtistDao implements IArtistDao {
         try {
             message = dataAccess.insertIntoData(queryString);
         } catch (Exception e) {
-            message = -1;
+            LogError.getLogger().info("Error " + e.getMessage());
+            throw new Exception("Error al guardar la informacion en la base de datos");
         }
         return message;
     }
 
     @Override
-    public boolean update(Artist artist) {
+    public boolean update(Artist artist) throws Exception {
         boolean message = false;
         String queryString = "UPDATE Artist SET name= '"+ artist.getName() +"', lastName= '" + artist.getLastName() + "', " +
                 "born= '" + artist.getBorn() + "' , dead= '" + artist.getDead() + "' , old= " + artist.getOld() + " , " +
@@ -74,26 +77,28 @@ public class ArtistDao implements IArtistDao {
         try {
             message = dataAccess.insertData(queryString);
         } catch (Exception e) {
-            message = false;
+            LogError.getLogger().info("Error " + e.getMessage());
+            throw new Exception("Error al actualizar la informacion en la base de datos");
         }
         return message;
     }
 
     @Override
-    public boolean delete(Artist artist) {
+    public boolean delete(Artist artist) throws Exception {
         boolean message = false;
         String queryString = "DELETE FROM Artist " +
                 "WHERE id = "+ artist.getId();
         try {
             message = dataAccess.insertData(queryString);
         } catch (Exception e) {
-            message = false;
+            LogError.getLogger().info("Error " + e.getMessage());
+            throw new Exception("Error al borrar la informacion en la base de datos");
         }
         return message;
     }
 
     @Override
-    public List<Artist> searchArtist(String seacher) {
+    public List<Artist> searchArtist(String seacher) throws Exception {
         List<Artist> artists = new ArrayList<>();
         Artist artist = null;
         String queryString = "SELECT * FROM Artist as a INNER JOIN Gender as g ON a.idGender = g.id " +
@@ -125,13 +130,14 @@ public class ArtistDao implements IArtistDao {
             artists.add(artist);
         }
         catch (Exception e){
-            artists = null;
+            LogError.getLogger().info("Error " + e.getMessage());
+            throw new Exception("Error al guardar la informacion en la base de datos");
         }
         return artists;
     }
 
     @Override
-    public Artist searchArtistByArtistName(String name) {
+    public Artist searchArtistByArtistName(String name) throws Exception {
         Artist artist = null;
         String queryString = "SELECT * FROM Artist as a INNER JOIN Gender as g ON a.idGender = g.id " +
                 "WHERE artistName = '"+ name + "'";
@@ -161,13 +167,14 @@ public class ArtistDao implements IArtistDao {
             }
         }
         catch (Exception e){
-            artist = null;
+            LogError.getLogger().info("Error " + e.getMessage());
+            throw new Exception("Error al guardar la informacion en la base de datos");
         }
         return artist;
     }
 
     @Override
-    public Artist searchArtistById(int id) {
+    public Artist searchArtistById(int id) throws Exception {
         Artist artist = null;
         String queryString = "SELECT * FROM Artist as a INNER JOIN Gender as g ON a.idGender = g.id " +
                 "WHERE a.id = "+ id + "";
@@ -197,7 +204,8 @@ public class ArtistDao implements IArtistDao {
             }
         }
         catch (Exception e){
-            artist = null;
+            LogError.getLogger().info("Error " + e.getMessage());
+            throw new Exception("Error al guardar la informacion en la base de datos");
         }
         return artist;
     }

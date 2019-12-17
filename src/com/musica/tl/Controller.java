@@ -57,7 +57,7 @@ public class Controller {
 
     BibliotecaMusical logic = new BibliotecaMusical();
 
-    public boolean registerClient(int id, String name, String lastName, int old, String country, String email, String pass, String userName, String image) throws MessagingException {
+    public boolean registerClient(int id, String name, String lastName, int old, String country, String email, String pass, String userName, String image) throws Exception {
         String randomNum = ""+(100000 + rnd.nextInt(900000));
         Client client = new Client(id,userName,name,lastName,email,randomNum,image,randomNum,old,country);
         client.setFirstTime(true);
@@ -68,7 +68,7 @@ public class Controller {
         return false;
     }
 
-    public List<String> getAllUser(){
+    public List<String> getAllUser() throws Exception {
         List<String> result = new ArrayList<>();
         List<User> users = userDao.getAll();
         for (User user:users) {
@@ -77,11 +77,11 @@ public class Controller {
         return result;
     }
 
-    public boolean isAdminOnDB(){
+    public boolean isAdminOnDB() throws Exception {
         return userDao.isAdminOnDB();
     }
 
-    public boolean registerAdmin(int id, String name, String lastName, String email, String pass, String userName, String image) throws MessagingException {
+    public boolean registerAdmin(int id, String name, String lastName, String email, String pass, String userName, String image) throws Exception {
         String randomNum = ""+(100000 + rnd.nextInt(900000));
         Admin admin = new Admin(id,userName,name,lastName,email,randomNum,image,randomNum);
         admin.setFirstTime(true);
@@ -92,7 +92,7 @@ public class Controller {
         return false;
     }
 
-    public String login(String email, String pass) {
+    public String login(String email, String pass) throws Exception {
         User user = userDao.login(email,pass);
         User.setActualUser(user);
         String response = null;
@@ -102,25 +102,20 @@ public class Controller {
         return response;
     }
 
-    public boolean isFirstTime() {
+    public boolean isFirstTime() throws Exception {
         User user = userDao.getUserById(User.getActualUser().getId());
         return user.isFirstTime();
     }
 
-    public boolean validateCode(String code) {
-        User user = User.getActualUser();
-        return user.getRandomPass().equals(code);
-    }
-
     public boolean validateYears(int old){
-        return old <= 18;
+        return old >= 18;
     }
 
     public boolean validatePassword(String pass){
         return true;
     }
 
-    public boolean updateUser(String pass, boolean firstTime){
+    public boolean updateUser(String pass, boolean firstTime) throws Exception {
         User user = User.getActualUser();
         user.setPass(pass);
         user.setFirstTime(firstTime);
@@ -129,7 +124,7 @@ public class Controller {
         return response;
     }
 
-    public boolean forgetPass(String email) throws MessagingException {
+    public boolean forgetPass(String email) throws Exception {
         String randomNum = ""+(100000 + rnd.nextInt(900000));
         User user = userDao.getUserByEmail(email);
         if(user != null){
@@ -146,7 +141,7 @@ public class Controller {
      *
      * Song section
      */
-    public int registerSong(String name, String gender, String artist, String nameCompositor, int year, int month, int day, String album, int score, String pathSong, int price) {
+    public int registerSong(String name, String gender, String artist, String nameCompositor, int year, int month, int day, String album, int score, String pathSong, int price) throws Exception {
         Album album1 = searchAlbumByName(album);
         if(album1 != null){
             Gender gen = searchGenderByName(gender);
@@ -168,7 +163,7 @@ public class Controller {
         return -4;
     }
 
-    public int updateSong(int id, String name, String gender, String artist, String nameCompositor, int year, int month, int day, String album, int score, String pathSong, int price){
+    public int updateSong(int id, String name, String gender, String artist, String nameCompositor, int year, int month, int day, String album, int score, String pathSong, int price) throws Exception {
         Album album1 = searchAlbumByName(album);
         if(album1 != null){
             Gender gen = searchGenderByName(gender);
@@ -190,23 +185,23 @@ public class Controller {
         return -4;
     }
 
-    private Song searchSongByName(String song) {
+    private Song searchSongByName(String song) throws Exception {
         return songDao.searchSongByName(song);
     }
 
-    private Song searchSongById(int id) {
+    private Song searchSongById(int id) throws Exception {
         return songDao.searchSongById(id);
     }
 
-    public String getSongById(int id){
+    public String getSongById(int id) throws Exception {
         return searchSongById(id).toString();
     }
 
-    private List<Song> getSongs(){
+    private List<Song> getSongs() throws Exception {
         return songDao.getAll();
     }
 
-    public List<String> getAllSongs(){
+    public List<String> getAllSongs() throws Exception {
         List<String> result = new ArrayList<>();
         List<Song> songs = getSongs();
         for (Song item:songs) {
@@ -215,7 +210,7 @@ public class Controller {
         return result;
     }
 
-    public List<String> searchSongByAlbumId(int idAlbum){
+    public List<String> searchSongByAlbumId(int idAlbum) throws Exception {
         List<String> result = new ArrayList<>();
         List<Song> songs = songDao.searchSongByAlbumId(idAlbum);
         for (Song item:songs) {
@@ -224,7 +219,7 @@ public class Controller {
         return result;
     }
 
-    public boolean deleteSong(int id){
+    public boolean deleteSong(int id) throws Exception {
         Song song = searchSongById(id);
         boolean response = false;
         if(song != null){
@@ -237,16 +232,16 @@ public class Controller {
     /***
      * Gender Section
      */
-    public boolean registerGender(String name, String description) {
+    public boolean registerGender(String name, String description) throws Exception {
         Gender gender = new Gender(name,description);
         return genderDao.save(gender) != -1 ? true : false;
     }
 
-    public Gender searchGenderByName(String name){
+    public Gender searchGenderByName(String name) throws Exception {
         return genderDao.searchGenderByName(name);
     }
 
-    public List<String> getAllGender(){
+    public List<String> getAllGender() throws Exception {
         List<String> result = new ArrayList<>();
         List<Gender> genders = genderDao.getAll();
         for (Gender gender:genders) {
@@ -255,11 +250,11 @@ public class Controller {
         return result;
     }
 
-    private Gender searchGenderById(int id){
+    private Gender searchGenderById(int id) throws Exception {
         return genderDao.searchGenderById(id);
     }
 
-    public String getGenderById(int id){
+    public String getGenderById(int id) throws Exception {
         Gender gender = searchGenderById(id);
         if (gender != null){
             return gender.toString();
@@ -267,14 +262,14 @@ public class Controller {
         return "";
     }
 
-    public boolean updateGender(int id, String name, String description){
+    public boolean updateGender(int id, String name, String description) throws Exception {
         Gender gender = new Gender(id,name,description);
         boolean response = false;
         response = genderDao.update(gender);
         return response;
     }
 
-    public boolean deleteGender(int id){
+    public boolean deleteGender(int id) throws Exception {
         Gender gender = searchGenderById(id);
         boolean response = false;
         if(gender != null){
@@ -288,7 +283,7 @@ public class Controller {
      *
      * Artist section
      */
-    public boolean registerArtist(String name, String lastName, String country, LocalDate dateBorn, LocalDate dateDead, String reference, String description, String gender, String artistName) {
+    public boolean registerArtist(String name, String lastName, String country, LocalDate dateBorn, LocalDate dateDead, String reference, String description, String gender, String artistName) throws Exception {
         Gender gen = searchGenderByName(gender);
         if(gen != null){
             LocalDate actual = dateDead != null ? dateDead : LocalDate.now();
@@ -299,11 +294,11 @@ public class Controller {
         return false;
     }
 
-    private Artist searchArtistByArtistName(String artist) {
+    private Artist searchArtistByArtistName(String artist) throws Exception {
         return artistDao.searchArtistByArtistName(artist);
     }
 
-    public List<String> getAllArtists(){
+    public List<String> getAllArtists() throws Exception {
         List<String> result = new ArrayList<>();
         List<Artist> artists = artistDao.getAll();
         for (Artist artist:artists) {
@@ -312,7 +307,7 @@ public class Controller {
         return result;
     }
 
-    public boolean updateArtist(int id, String name, String lastName, String country, LocalDate dateBorn, LocalDate dateDead, String reference, String description, String gender, String artistName){
+    public boolean updateArtist(int id, String name, String lastName, String country, LocalDate dateBorn, LocalDate dateDead, String reference, String description, String gender, String artistName) throws Exception {
         Gender gen = searchGenderByName(gender);
         if(gen != null) {
             LocalDate actual = dateDead != null ? dateDead : LocalDate.now();
@@ -323,7 +318,7 @@ public class Controller {
         return false;
     }
 
-    public boolean deleteArtist(int id){
+    public boolean deleteArtist(int id) throws Exception {
         Artist artist = searchArtistById(id);
         boolean response = false;
         if(artist != null){
@@ -332,7 +327,7 @@ public class Controller {
         return response;
     }
 
-    public String getArtistById(int id){
+    public String getArtistById(int id) throws Exception {
         Artist artist = searchArtistById(id);
         if (artist != null){
             return artist.toString();
@@ -340,7 +335,7 @@ public class Controller {
         return "";
     }
 
-    private Artist searchArtistById(int id){
+    private Artist searchArtistById(int id) throws Exception {
         return artistDao.searchArtistById(id);
     }
 
@@ -348,7 +343,7 @@ public class Controller {
     /**
      *Compositor Section
      */
-    public boolean registerCompositor(String name, String lastName, String country, int old, String[] genders) {
+    public boolean registerCompositor(String name, String lastName, String country, int old, String[] genders) throws Exception {
         Compositor compositor = new Compositor(name,lastName,country,old);
         for (String gender:genders) {
             Gender gen = searchGenderByName(gender);
@@ -364,7 +359,7 @@ public class Controller {
         return false;
     }
 
-    public List<String> getAllCompositor(){
+    public List<String> getAllCompositor() throws Exception {
         List<String> result = new ArrayList<>();
         List<Compositor> compositors = compositorDao.getAll();
         for (Compositor compositor:compositors) {
@@ -373,14 +368,14 @@ public class Controller {
         return result;
     }
 
-    public boolean updateCompositor(int id, String name, String lastName, String country, int old){
+    public boolean updateCompositor(int id, String name, String lastName, String country, int old) throws Exception {
         Compositor compositor = new Compositor(id,name,lastName,country,old);
         boolean response = false;
         response = compositorDao.update(compositor);
         return response;
     }
 
-    public boolean deleteCompositor(int id){
+    public boolean deleteCompositor(int id) throws Exception {
         Compositor compositor = searchCompositorById(id);
         boolean response = false;
         if(compositor != null){
@@ -389,7 +384,7 @@ public class Controller {
         return response;
     }
 
-    public String getCompositorById(int id){
+    public String getCompositorById(int id) throws Exception {
         Compositor compositor = searchCompositorById(id);
         if (compositor != null){
             return compositor.toString();
@@ -397,7 +392,7 @@ public class Controller {
         return "";
     }
 
-    private Compositor searchCompositorById(int id){
+    private Compositor searchCompositorById(int id) throws Exception {
         return compositorDao.searchCompositorById(id);
     }
 
@@ -405,7 +400,7 @@ public class Controller {
      *
      * Album section
      */
-    public boolean registerAlbum(String name, LocalDate release, String image, String[] artists) {
+    public boolean registerAlbum(String name, LocalDate release, String image, String[] artists) throws Exception {
         Album album = new Album(name,release,image);
         for (String artist:artists) {
             Artist art = artistDao.searchArtistByArtistName(artist);
@@ -421,11 +416,11 @@ public class Controller {
         return false;
     }
 
-    private Album searchAlbumByName(String album) {
+    private Album searchAlbumByName(String album) throws Exception {
         return albumDao.searchAlbumByName(album);
     }
 
-    public List<String> getAllAlbum(){
+    public List<String> getAllAlbum() throws Exception {
         List<String> result = new ArrayList<>();
         List<Album> albums = albumDao.getAll();
         for (Album album:albums) {
@@ -434,14 +429,14 @@ public class Controller {
         return result;
     }
 
-    public boolean updateAlbum(int id, String name, LocalDate release, String image){
+    public boolean updateAlbum(int id, String name, LocalDate release, String image) throws Exception {
         Album album = new Album(id,name,release,image);
         boolean response = false;
         response = albumDao.update(album);
         return response;
     }
 
-    public boolean deleteAlbum(int id){
+    public boolean deleteAlbum(int id) throws Exception {
         Album album = searchAlbumById(id);
         boolean response = false;
         if(album != null){
@@ -450,7 +445,7 @@ public class Controller {
         return response;
     }
 
-    public String getAlbumById(int id){
+    public String getAlbumById(int id) throws Exception {
         Album album = searchAlbumById(id);
         if (album != null){
             return album.toString();
@@ -458,7 +453,7 @@ public class Controller {
         return "";
     }
 
-    private Album searchAlbumById(int id){
+    private Album searchAlbumById(int id) throws Exception {
         return albumDao.searchAlbumById(id);
     }
 
@@ -467,7 +462,7 @@ public class Controller {
      *
      * ReproductionList section
      */
-    public boolean registerReproductionList(String name, int year, int month, int day, String[] songs) {
+    public boolean registerReproductionList(String name, int year, int month, int day, String[] songs) throws Exception {
         ReproductionList reproductionList = new ReproductionList(LocalDate.of(year,month,day),name,User.getActualUser());
         for (String song:songs) {
             Song son = searchSongByName(song);
@@ -484,7 +479,7 @@ public class Controller {
         return false;
     }
 
-    public boolean saveSongReproductionList(int id, String name) {
+    public boolean saveSongReproductionList(int id, String name) throws Exception {
         ReproductionList reproductionList = new ReproductionList(id);
         Song song = searchSongByName(name);
         if(song != null){
@@ -494,7 +489,7 @@ public class Controller {
         return false;
     }
 
-    public List<String> searchReproductionListByUser(){
+    public List<String> searchReproductionListByUser() throws Exception {
         List<ReproductionList> rls = reproductionListDao.searchReproductionListByUser(User.getActualUser().getId());
         List<String> result = new ArrayList<>();
         for (int i = 0; i < rls.size(); i++) {
@@ -503,7 +498,7 @@ public class Controller {
         return result;
     }
 
-    public List<String> searchSongsByReproductionListId(int id){
+    public List<String> searchSongsByReproductionListId(int id) throws Exception {
         List<Song> songs = reproductionListDao.searchSongsByReproductionListId(id);
         List<String> result = new ArrayList<>();
         for (Song song:songs) {
@@ -512,7 +507,7 @@ public class Controller {
         return result;
     }
 
-    public String searchReproductionListById(int id){
+    public String searchReproductionListById(int id) throws Exception {
         ReproductionList reproductionList = reproductionListDao.searchReproductionListById(id);
         String result = "";
         if(reproductionList != null){
@@ -521,19 +516,19 @@ public class Controller {
         return result;
     }
 
-    public boolean deleteSongsReproductionList(int idReproduction, int idSong){
+    public boolean deleteSongsReproductionList(int idReproduction, int idSong) throws Exception {
         boolean response = reproductionListDao.deleteSongs(idReproduction,idSong);
         return response;
     }
 
-    public boolean updateReproductionListId(int id, String name){
+    public boolean updateReproductionListId(int id, String name) throws Exception {
         ReproductionList reproductionList = new ReproductionList();
         reproductionList.setId(id);
         reproductionList.setName(name);
         return reproductionListDao.update(reproductionList);
     }
 
-    public boolean deleteReproductionListId(int id){
+    public boolean deleteReproductionListId(int id) throws Exception {
         ReproductionList reproductionList = new ReproductionList(id);
         return reproductionListDao.delete(reproductionList);
     }
@@ -541,7 +536,7 @@ public class Controller {
      *
      * Catalog Section
      */
-    public boolean addSongToCatalog(String name) {
+    public boolean addSongToCatalog(String name) throws Exception {
         Song song = songDao.searchSongByName(name);
         if(song != null)
            return clientDao.addSongToCatalog(User.getActualUser(),song);
@@ -552,7 +547,7 @@ public class Controller {
         return User.getActualUser().getType();
     }
 
-    public boolean buy(int idSong) {
+    public boolean buy(int idSong) throws Exception {
         Song song = searchSongById(idSong);
         if(song != null){
             return clientDao.addSongToCatalog(User.getActualUser(), song);
@@ -560,7 +555,7 @@ public class Controller {
         return false;
     }
 
-    public List<String> getCatalog() {
+    public List<String> getCatalog() throws Exception {
         User user = userDao.getUserById(User.getActualUser().getId());
         List<Song> catalog = user != null ? ((Client)user).getCatalog() : new ArrayList<>();
         List<String> response = new ArrayList<>();
@@ -570,7 +565,7 @@ public class Controller {
         return response;
     }
 
-    public List<String> showMediaUser() {
+    public List<String> showMediaUser() throws Exception {
         List<String> catalog = getCatalog();
         List<String> reproductionList = searchReproductionListByUser();
         List<String> result = new ArrayList<>();

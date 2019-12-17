@@ -13,7 +13,6 @@
     <TableView fx:id="table" prefHeight="379.0" prefWidth="600.0" GridPane.rowIndex="3">
         <columns>
             <TableColumn fx:id="columnName" prefWidth="156.0" text="Nombre" />
-            <TableColumn fx:id="columnDescript" prefWidth="160.0" text="Descripicion" />
             <TableColumn fx:id="columnEdit" prefWidth="92.0" text="Editar" />
             <TableColumn fx:id="columnDelete" prefWidth="117.0" text="Borrar" />
             <!-- and so on... -->

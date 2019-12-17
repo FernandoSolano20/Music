@@ -71,7 +71,7 @@ public class ListGender extends MusicUI implements Initializable {
         super.logout(event);
     }
 
-    public void showGender() {
+    public void showGender() throws Exception {
         List<String> songs = controller.getAllGender();
         ObservableList<String> details = FXCollections.observableArrayList(songs);
         columnName.setCellValueFactory(c -> new SimpleStringProperty(c.getValue().split(",")[1]));
@@ -102,7 +102,7 @@ public class ListGender extends MusicUI implements Initializable {
                                 try {
                                     ListGender.super.uGender(t, btnCell.getIdBtn());
                                 } catch (IOException e) {
-                                    e.printStackTrace();
+                                    AlertHelper.showAlert(Alert.AlertType.ERROR, "Error", e.getMessage());
                                 }
                             }
                         };
@@ -145,8 +145,8 @@ public class ListGender extends MusicUI implements Initializable {
                                         AlertHelper.showAlert(Alert.AlertType.ERROR, owner, "Error", "El genero no se puede eliminar");
                                     }
 
-                                } catch (IOException e) {
-                                    e.printStackTrace();
+                                } catch (Exception e) {
+                                    AlertHelper.showAlert(Alert.AlertType.ERROR, "Error", e.getMessage());
                                 }
                             }
                         };
@@ -191,7 +191,11 @@ public class ListGender extends MusicUI implements Initializable {
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
-        showGender();
+        try {
+            showGender();
+        } catch (Exception e) {
+            AlertHelper.showAlert(Alert.AlertType.ERROR, "Error", e.getMessage());
+        }
     }
 
     @FXML

@@ -3,6 +3,7 @@ package com.musica.bl.Musican.Compositor;
 import com.musica.bl.Gender.Gender;
 import com.musica.bl.Musican.Artist.Artist;
 import com.musica.dl.DataAccess;
+import com.musica.dl.LogError;
 
 import java.sql.ResultSet;
 import java.util.ArrayList;
@@ -11,7 +12,7 @@ import java.util.List;
 public class CompositorDao implements ICompositorDao {
     private DataAccess dataAccess = new DataAccess();
     @Override
-    public List<Compositor> getAll() {
+    public List<Compositor> getAll() throws Exception {
         List<Compositor> compositors = new ArrayList<>();
         Compositor compositor = null;
         String queryString = "SELECT * FROM Compositor";
@@ -43,20 +44,22 @@ public class CompositorDao implements ICompositorDao {
                     }
                 }
                 catch (Exception e){
-                    gender = null;
+                    LogError.getLogger().info("Error " + e.getMessage());
+                    throw new Exception("Error al guardar la informacion en la base de datos");
                 }
 
                 compositors.add(compositor);
             }
         }
         catch (Exception e){
-            compositors = null;
+            LogError.getLogger().info("Error " + e.getMessage());
+            throw new Exception("Error al guardar la informacion en la base de datos");
         }
         return compositors;
     }
 
     @Override
-    public int save(Compositor compositor) {
+    public int save(Compositor compositor) throws Exception {
         int message = -1;
         String queryString = "INSERT INTO Compositor(name, lastName, country, old) " +
                 "VALUES('"+ compositor.getName() +"', '" + compositor.getLastName() + "', '"  + compositor.getCountry() + "', '"
@@ -64,13 +67,14 @@ public class CompositorDao implements ICompositorDao {
         try {
             message = dataAccess.insertIntoData(queryString);
         } catch (Exception e) {
-            message = -1;
+            LogError.getLogger().info("Error " + e.getMessage());
+            throw new Exception("Error al guardar la informacion en la base de datos");
         }
         return message;
     }
 
     @Override
-    public boolean update(Compositor compositor) {
+    public boolean update(Compositor compositor) throws Exception {
         boolean message = false;
         String queryString = "UPDATE Compositor SET name= '"+ compositor.getName() +"', lastName= '" + compositor.getLastName() + "'" +
                 ", country= '" + compositor.getCountry() + "' , old= " + compositor.getOld() + " " +
@@ -78,13 +82,14 @@ public class CompositorDao implements ICompositorDao {
         try {
             message = dataAccess.insertData(queryString);
         } catch (Exception e) {
-            message = false;
+            LogError.getLogger().info("Error " + e.getMessage());
+            throw new Exception("Error al actualizar la informacion en la base de datos");
         }
         return message;
     }
 
     @Override
-    public boolean delete(Compositor compositor) {
+    public boolean delete(Compositor compositor) throws Exception {
         boolean message = false;
         String queryString = "DELETE FROM GenderCompositor " +
                 "WHERE idCompositor = "+ compositor.getId();
@@ -95,15 +100,17 @@ public class CompositorDao implements ICompositorDao {
             try {
                 message = dataAccess.insertData(queryString);
             } catch (Exception e) {
-                message = false;
+                LogError.getLogger().info("Error " + e.getMessage());
+                throw new Exception("Error al borrar la informacion en la base de datos");
             }
         } catch (Exception e) {
-            message = false;
+            LogError.getLogger().info("Error " + e.getMessage());
+            throw new Exception("Error al borrar la informacion en la base de datos");
         }
         return message;
     }
 
-    public boolean saveGenders(Compositor compositor){
+    public boolean saveGenders(Compositor compositor) throws Exception {
         boolean message = false;
         ArrayList<Gender> genders = compositor.getGenders();
         for (Gender gender:genders) {
@@ -112,14 +119,15 @@ public class CompositorDao implements ICompositorDao {
             try {
                 message = dataAccess.insertData(queryString);
             } catch (Exception e) {
-                message = false;
+                LogError.getLogger().info("Error " + e.getMessage());
+                throw new Exception("Error al guardar la informacion en la base de datos");
             }
         }
         return message;
     }
 
     @Override
-    public Compositor searchCompositorByNameAndLastName(String name) {
+    public Compositor searchCompositorByNameAndLastName(String name) throws Exception {
         Compositor compositor = null;
         String queryString = "SELECT * FROM Compositor " +
                 "WHERE CONCAT(name , ' ' , lastName) = '" + name + "'";
@@ -151,18 +159,20 @@ public class CompositorDao implements ICompositorDao {
                     }
                 }
                 catch (Exception e){
-                    gender = null;
+                    LogError.getLogger().info("Error " + e.getMessage());
+                    throw new Exception("Error al obtener la informacion en la base de datos");
                 }
             }
         }
         catch (Exception e){
-            compositor = null;
+            LogError.getLogger().info("Error " + e.getMessage());
+            throw new Exception("Error al obtener la informacion en la base de datos");
         }
         return compositor;
     }
 
     @Override
-    public Compositor searchCompositorById(int id) {
+    public Compositor searchCompositorById(int id) throws Exception {
         Compositor compositor = null;
         String queryString = "SELECT * FROM Compositor " +
                 "WHERE id = " + id + "";
@@ -194,12 +204,14 @@ public class CompositorDao implements ICompositorDao {
                     }
                 }
                 catch (Exception e){
-                    gender = null;
+                    LogError.getLogger().info("Error " + e.getMessage());
+                    throw new Exception("Error al obtener la informacion en la base de datos");
                 }
             }
         }
         catch (Exception e){
-            compositor = null;
+            LogError.getLogger().info("Error " + e.getMessage());
+            throw new Exception("Error al obtener la informacion en la base de datos");
         }
         return compositor;
     }

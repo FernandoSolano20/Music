@@ -24,16 +24,22 @@ public class AddSongReproduction extends MusicUI {
     protected void save(ActionEvent event) throws IOException {
         Window owner = save.getScene().getWindow();
         //System.out.println(name.getText());
-        String name = this.name.getText();
+        try {
+            String name = this.name.getText();
 
 
-        boolean response = controller.saveSongReproductionList(Integer.parseInt(super.getId()), name);
-        if (response){
-            AlertHelper.showAlert(Alert.AlertType.CONFIRMATION, owner, "Exitoso", "Cancion agregada");
-            super.adminSongsReproductionList(event,""+super.getId());
-        }
-        else {
-            AlertHelper.showAlert(Alert.AlertType.ERROR, owner, "Error", "La cancion no se pudo almacenar");
+            boolean response = false;
+            response = controller.saveSongReproductionList(Integer.parseInt(super.getId()), name);
+
+            if (response){
+                AlertHelper.showAlert(Alert.AlertType.CONFIRMATION, owner, "Exitoso", "Cancion agregada");
+                super.adminSongsReproductionList(event,""+super.getId());
+            }
+            else {
+                AlertHelper.showAlert(Alert.AlertType.ERROR, owner, "Error", "La cancion no se pudo almacenar");
+            }
+        } catch (Exception e) {
+            AlertHelper.showAlert(Alert.AlertType.ERROR, owner, "Error", e.getMessage());
         }
     }
 }

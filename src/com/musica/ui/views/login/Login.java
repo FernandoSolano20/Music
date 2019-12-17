@@ -31,35 +31,41 @@ public class Login extends MusicUI {
     @FXML
     protected void handleSubmitButtonAction(ActionEvent event) throws IOException {
         Window owner = submitButton.getScene().getWindow();
-        String email = emailField.getText();
-        String pass = passwordField.getText();
+        try {
+            String email = emailField.getText();
+            String pass = passwordField.getText();
 
-        if(email.isEmpty()) {
-            AlertHelper.showAlert(Alert.AlertType.ERROR, owner, "Error!",
-                    "Digite su correo");
-            return;
-        }
-
-        if(passwordField.getText().isEmpty()) {
-            AlertHelper.showAlert(Alert.AlertType.ERROR, owner, "Error!",
-                    "Digite su contraseña");
-            return;
-        }
-
-        String type = controller.login(email,pass);
-        if(type != null){
-            if(controller.isFirstTime()){
-                super.changePass(event);
+            if(email.isEmpty()) {
+                AlertHelper.showAlert(Alert.AlertType.ERROR, owner, "Error!",
+                        "Digite su correo");
+                return;
             }
-            else {
-                AlertHelper.showAlert(Alert.AlertType.CONFIRMATION, owner, "Bienvenido!",
-                        "Bienvenido " + emailField.getText());
-                super.index(event);
+
+            if(passwordField.getText().isEmpty()) {
+                AlertHelper.showAlert(Alert.AlertType.ERROR, owner, "Error!",
+                        "Digite su contraseña");
+                return;
             }
-        }
-        else{
-            AlertHelper.showAlert(Alert.AlertType.ERROR, owner, "No encontrado",
-                    "Usuario o contraseña incorrecta");
+
+            String type = null;
+            type = controller.login(email,pass);
+
+            if(type != null){
+                if(controller.isFirstTime()){
+                    super.changePass(event);
+                }
+                else {
+                    AlertHelper.showAlert(Alert.AlertType.CONFIRMATION, owner, "Bienvenido!",
+                            "Bienvenido " + emailField.getText());
+                    super.index(event);
+                }
+            }
+            else{
+                AlertHelper.showAlert(Alert.AlertType.ERROR, owner, "No encontrado",
+                        "Usuario o contraseña incorrecta");
+            }
+        } catch (Exception e) {
+            AlertHelper.showAlert(Alert.AlertType.ERROR, owner, "Error", e.getMessage());
         }
     }
 
@@ -84,6 +90,8 @@ public class Login extends MusicUI {
         } catch (MessagingException e) {
             AlertHelper.showAlert(Alert.AlertType.ERROR, owner, "Error",
                     "No se encontro al usuario");
+        } catch (Exception e) {
+            AlertHelper.showAlert(Alert.AlertType.ERROR, owner, "Error", e.getMessage());
         }
     }
 }

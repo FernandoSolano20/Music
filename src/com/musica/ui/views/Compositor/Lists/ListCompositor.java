@@ -67,7 +67,7 @@ public class ListCompositor extends MusicUI implements Initializable {
         super.logout(event);
     }
 
-    public void showInfo() {
+    public void showInfo() throws Exception {
         List<String> songs = controller.getAllCompositor();
         ObservableList<String> details = FXCollections.observableArrayList(songs);
         columnName.setCellValueFactory(c -> new SimpleStringProperty(c.getValue().split(",")[1] + " " + c.getValue().split(",")[2]));
@@ -97,7 +97,7 @@ public class ListCompositor extends MusicUI implements Initializable {
                                 try {
                                     ListCompositor.super.uComp(t, btnCell.getIdBtn());
                                 } catch (IOException e) {
-                                    e.printStackTrace();
+                                    AlertHelper.showAlert(Alert.AlertType.ERROR, "Error", e.getMessage());
                                 }
                             }
                         };
@@ -140,8 +140,8 @@ public class ListCompositor extends MusicUI implements Initializable {
                                         AlertHelper.showAlert(Alert.AlertType.ERROR, owner, "Error", "El Compositor no se puede eliminar");
                                     }
 
-                                } catch (IOException e) {
-                                    e.printStackTrace();
+                                } catch (Exception e) {
+                                    AlertHelper.showAlert(Alert.AlertType.ERROR, "Error", e.getMessage());
                                 }
                             }
                         };
@@ -189,7 +189,11 @@ public class ListCompositor extends MusicUI implements Initializable {
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
-        showInfo();
+        try {
+            showInfo();
+        } catch (Exception e) {
+            AlertHelper.showAlert(Alert.AlertType.ERROR, "Error", e.getMessage());
+        }
     }
 
     @FXML

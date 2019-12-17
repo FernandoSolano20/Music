@@ -21,21 +21,32 @@ public class UpdateRL extends MusicUI {
     @Override
     public void transferId(String message) {
         super.transferId(message);
-        String[] list = controller.searchReproductionListById(Integer.parseInt(getId())).split(",");
-        name.setText(list[2]);
+        String[] list = new String[0];
+        try {
+            list = controller.searchReproductionListById(Integer.parseInt(getId())).split(",");
+            name.setText(list[2]);
+        } catch (Exception e) {
+            AlertHelper.showAlert(Alert.AlertType.ERROR, "Error", e.getMessage());
+        }
     }
 
     @FXML
     public void save(ActionEvent event) throws IOException {
         Window owner = save.getScene().getWindow();
-        String name = this.name.getText();
-        boolean response = controller.updateReproductionListId(Integer.parseInt(getId()), name);
-        if (response){
-            AlertHelper.showAlert(Alert.AlertType.CONFIRMATION, owner, "Exitoso", "Cancion almacenado");
-            super.lists(event);
-        }
-        else {
-            AlertHelper.showAlert(Alert.AlertType.ERROR, owner, "Error", "La cancion no se pudo almacenar");
+        try {
+            String name = this.name.getText();
+            boolean response = false;
+            response = controller.updateReproductionListId(Integer.parseInt(getId()), name);
+
+            if (response){
+                AlertHelper.showAlert(Alert.AlertType.CONFIRMATION, owner, "Exitoso", "Cancion almacenado");
+                super.lists(event);
+            }
+            else {
+                AlertHelper.showAlert(Alert.AlertType.ERROR, owner, "Error", "La cancion no se pudo almacenar");
+            }
+        } catch (Exception e) {
+            AlertHelper.showAlert(Alert.AlertType.ERROR, owner, "Error", e.getMessage());
         }
     }
 }

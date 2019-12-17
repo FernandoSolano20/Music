@@ -25,20 +25,27 @@ public class Register extends MusicUI {
     protected void save(ActionEvent event) throws IOException {
         Window owner = save.getScene().getWindow();
         //System.out.println(name.getText());
-        String name = this.name.getText();
-        int year = Integer.parseInt(this.year.getText());
-        int month = Integer.parseInt(this.month.getText());
-        int day = Integer.parseInt(this.day.getText());
-        String[] songs = this.songs.getText().split(",");
+        try {
+            String name = this.name.getText();
+            int year = Integer.parseInt(this.year.getText());
+            int month = Integer.parseInt(this.month.getText());
+            int day = Integer.parseInt(this.day.getText());
+            String[] songs = this.songs.getText().split(",");
 
 
-        boolean response = controller.registerReproductionList(name,year,month,day,songs);
-        if (response){
-            AlertHelper.showAlert(Alert.AlertType.CONFIRMATION, owner, "Exitoso", "Cancion almacenado");
-            super.index(event);
-        }
-        else {
-            AlertHelper.showAlert(Alert.AlertType.ERROR, owner, "Error", "La cancion no se pudo almacenar");
+            boolean response = false;
+
+            response = controller.registerReproductionList(name,year,month,day,songs);
+
+            if (response){
+                AlertHelper.showAlert(Alert.AlertType.CONFIRMATION, owner, "Exitoso", "Cancion almacenado");
+                super.index(event);
+            }
+            else {
+                AlertHelper.showAlert(Alert.AlertType.ERROR, owner, "Error", "La cancion no se pudo almacenar");
+            }
+        } catch (Exception e) {
+            AlertHelper.showAlert(Alert.AlertType.ERROR, owner, "Error", e.getMessage());
         }
     }
 

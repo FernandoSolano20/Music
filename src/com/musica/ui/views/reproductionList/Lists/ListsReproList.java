@@ -80,10 +80,14 @@ public class ListsReproList extends MusicUI implements Initializable {
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
-        showReproductionList();
+        try {
+            showReproductionList();
+        } catch (Exception e) {
+            AlertHelper.showAlert(Alert.AlertType.ERROR, "Error", e.getMessage());
+        }
     }
 
-    public void showReproductionList(){
+    public void showReproductionList() throws Exception {
         List<String> list = controller.searchReproductionListByUser();
 
         ObservableList<String> details = FXCollections.observableArrayList(list);
@@ -114,7 +118,7 @@ public class ListsReproList extends MusicUI implements Initializable {
                                 try {
                                     ListsReproList.super.adminSongsReproductionList(t,btnCell.getIdBtn());
                                 } catch (IOException e) {
-                                    e.printStackTrace();
+                                    AlertHelper.showAlert(Alert.AlertType.ERROR, "Error", e.getMessage());
                                 }
                             }
                         };
@@ -149,7 +153,7 @@ public class ListsReproList extends MusicUI implements Initializable {
                                 try {
                                     ListsReproList.super.updateReproductionList(t,btnCell.getIdBtn());
                                 } catch (IOException e) {
-                                    e.printStackTrace();
+                                    AlertHelper.showAlert(Alert.AlertType.ERROR, "Error", e.getMessage());
                                 }
                             }
                         };
@@ -192,8 +196,8 @@ public class ListsReproList extends MusicUI implements Initializable {
                                         AlertHelper.showAlert(Alert.AlertType.ERROR, owner, "Error", "La lista aun tiene canciones");
                                     }
 
-                                } catch (IOException e) {
-                                    e.printStackTrace();
+                                } catch (Exception e) {
+                                    AlertHelper.showAlert(Alert.AlertType.ERROR, "Error", e.getMessage());
                                 }
                             }
                         };

@@ -50,39 +50,45 @@ public class Register extends MusicUI {
     @FXML
     protected void save(ActionEvent event) throws IOException {
         Window owner = save.getScene().getWindow();
+        try {
+            String name = this.name.getText();
+            String lastName = this.lastName.getText();
+            int dayBorn = Integer.parseInt(this.dayBorn.getText());
+            int monthBorn = Integer.parseInt(this.monthBorn.getText());
+            int yearBorn = Integer.parseInt(this.yearBorn.getText());
+            LocalDate dateBorn = LocalDate.of(yearBorn,monthBorn,dayBorn);
+            String country = this.country.getValue().toString();
+            String artistName = this.artistName.getText();
+            String dayDead = this.dayDead.getText();
+            String monthDead = this.monthDead.getText();
+            String yearDead = this.yearDead.getText();
+            LocalDate dateDead = null;
+            if(!dayDead.isEmpty() && !monthDead.isEmpty() && !yearDead.isEmpty()){
+                dateDead = LocalDate.of(Integer.parseInt(yearDead),Integer.parseInt(monthDead),Integer.parseInt(dayDead));
+            }
+            String reference = this.reference.getText();
+            String description = this.description.getText();
+            String gender = this.gender.getText();
 
-        String name = this.name.getText();
-        String lastName = this.lastName.getText();
-        int dayBorn = Integer.parseInt(this.dayBorn.getText());
-        int monthBorn = Integer.parseInt(this.monthBorn.getText());
-        int yearBorn = Integer.parseInt(this.yearBorn.getText());
-        LocalDate dateBorn = LocalDate.of(yearBorn,monthBorn,dayBorn);
-        String country = this.country.getValue().toString();
-        String artistName = this.artistName.getText();
-        int dayDead = Integer.parseInt(this.dayDead.getText());
-        int monthDead = Integer.parseInt(this.monthDead.getText());
-        int yearDead = Integer.parseInt(this.yearDead.getText());
-        LocalDate dateDead = null;
-        if(dayDead != 0 && monthDead != 0 && yearDead != 0){
-            dateDead = LocalDate.of(yearDead,monthDead,dayDead);
-        }
-        String reference = this.reference.getText();
-        String description = this.description.getText();
-        String gender = this.gender.getText();
+            boolean response = false;
 
-        boolean response = controller.registerArtist(name,lastName,country,dateBorn,dateDead,reference,description,gender,artistName);
-        if (response == true){
-            AlertHelper.showAlert(Alert.AlertType.CONFIRMATION, owner, "Exitoso", "Artisita almacenado");
-            if(controller.userType() == "Administrador"){
-                super.rArt(event);
+                response = controller.registerArtist(name,lastName,country,dateBorn,dateDead,reference,description,gender,artistName);
+
+            if (response == true){
+                AlertHelper.showAlert(Alert.AlertType.CONFIRMATION, owner, "Exitoso", "Artisita almacenado");
+                if(controller.userType() == "Administrador"){
+                    super.rArt(event);
+                }
+                else {
+                    Stage stage = (Stage) save.getScene().getWindow();
+                    stage.close();
+                }
             }
             else {
-                Stage stage = (Stage) save.getScene().getWindow();
-                stage.close();
+                AlertHelper.showAlert(Alert.AlertType.ERROR, owner, "Error", "El Artisita no se pudo almacenar");
             }
-        }
-        else {
-            AlertHelper.showAlert(Alert.AlertType.ERROR, owner, "Error", "El Artisita no se pudo almacenar");
+        } catch (Exception e) {
+            AlertHelper.showAlert(Alert.AlertType.ERROR, owner, "Error", e.getMessage());
         }
     }
 }

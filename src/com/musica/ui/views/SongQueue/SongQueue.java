@@ -1,5 +1,6 @@
 package com.musica.ui.views.SongQueue;
 
+import com.musica.ui.AlertHelper;
 import com.musica.ui.ButtonCell;
 import com.musica.ui.MusicUI;
 import com.sun.prism.impl.Disposer;
@@ -14,6 +15,7 @@ import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.*;
+import javafx.stage.Window;
 import javafx.util.Callback;
 
 import javazoom.jl.decoder.JavaLayerException;
@@ -89,18 +91,20 @@ public class SongQueue extends MusicUI implements Initializable {
         try {
             showMedia();
         } catch (MalformedURLException e) {
-            e.printStackTrace();
+            AlertHelper.showAlert(Alert.AlertType.ERROR, "Error", e.getMessage());
         } catch (FileNotFoundException e) {
-            e.printStackTrace();
+            AlertHelper.showAlert(Alert.AlertType.ERROR,  "Error", e.getMessage());
         } catch (JavaLayerException e) {
-            e.printStackTrace();
+            AlertHelper.showAlert(Alert.AlertType.ERROR,  "Error", e.getMessage());
         } catch (BasicPlayerException e) {
-            e.printStackTrace();
+            AlertHelper.showAlert(Alert.AlertType.ERROR,  "Error", e.getMessage());
         }
     }
 
     private void showMedia() throws MalformedURLException, FileNotFoundException, JavaLayerException, BasicPlayerException {
-        List<String> list = controller.showMediaUser();
+        List<String> list = null;
+        try {
+            list = controller.showMediaUser();
         ObservableList<String> details = FXCollections.observableArrayList(list);
 
         columnName.setCellValueFactory(c -> {
@@ -139,10 +143,11 @@ public class SongQueue extends MusicUI implements Initializable {
             return new SimpleStringProperty(element);
         });
         columnAdd.setCellValueFactory(c -> new SimpleBooleanProperty(c.getValue() != null));
-        columnAdd.setCellFactory(
+            List<String> finalList = list;
+            columnAdd.setCellFactory(
                 new Callback<TableColumn<Disposer.Record, Boolean>, TableCell<Disposer.Record, Boolean>>() {
                     int i = -2;
-                    List<String> elements = list;
+                    List<String> elements = finalList;
                     @Override
                     public TableCell<Disposer.Record, Boolean> call(TableColumn<Disposer.Record, Boolean> p) {
                         String path = "";
@@ -151,7 +156,7 @@ public class SongQueue extends MusicUI implements Initializable {
                         if (countAdd < table.getItems().size() && countAdd >= 0) {
                             for (int j = 0; j < elements.size(); j++){
                                 String[] item = elements.get(j).split(",");
-                                if (item[0].equals("Song")) {
+                                if (elements.get(countAdd).split(",")[0].equals("Song")) {
                                     if(table.getItems().get(countAdd).split(",")[30].equals(item[30])){
                                         path = item[30];
                                         break;
@@ -159,6 +164,7 @@ public class SongQueue extends MusicUI implements Initializable {
                                 }
                                 else if(table.getItems().get(countAdd).split(",")[1].equals(item[1])) {
                                     path = item[1];
+                                    break;
                                 }
                             }
                         }
@@ -173,9 +179,14 @@ public class SongQueue extends MusicUI implements Initializable {
                                 }
                                 else {
                                     int idList = Integer.parseInt(btnCell.getIdBtn());
-                                    List<String> songs = controller.searchSongsByReproductionListId(idList);
-                                    for (String item:songs) {
-                                        MusicUI.setQueue(item.split(",")[29]);
+                                    List<String> songs = null;
+                                    try {
+                                        songs = controller.searchSongsByReproductionListId(idList);
+                                        for (String item:songs) {
+                                            MusicUI.setQueue(item.split(",")[29]);
+                                        }
+                                    } catch (Exception e) {
+                                        AlertHelper.showAlert(Alert.AlertType.ERROR, "Error", e.getMessage());
                                     }
                                 }
 
@@ -232,6 +243,9 @@ public class SongQueue extends MusicUI implements Initializable {
         sortedData.comparatorProperty().bind(table.comparatorProperty());
 
         table.setItems(sortedData);
+        } catch (Exception e) {
+            AlertHelper.showAlert(Alert.AlertType.ERROR, "Error", e.getMessage());
+        }
     }
 
     boolean tryParseInt(String value) {

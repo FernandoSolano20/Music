@@ -25,26 +25,37 @@ public class UpdateGender extends MusicUI {
     @FXML
     protected void save(ActionEvent event) throws IOException {
         Window owner = save.getScene().getWindow();
+        try {
+            String name = this.name.getText();
+            String description = this.description.getText();
 
-        String name = this.name.getText();
-        String description = this.description.getText();
+            boolean response = false;
 
-        boolean response = controller.updateGender(idGender,name,description);
-        if (response == true){
-            AlertHelper.showAlert(Alert.AlertType.CONFIRMATION, owner, "Exitoso", "Genero almacenado");
-            super.rGender(event);
-        }
-        else {
-            AlertHelper.showAlert(Alert.AlertType.ERROR, owner, "Error", "El genero no se pudo almacenar");
+            response = controller.updateGender(idGender,name,description);
+
+            if (response == true){
+                AlertHelper.showAlert(Alert.AlertType.CONFIRMATION, owner, "Exitoso", "Genero almacenado");
+                super.rGender(event);
+            }
+            else {
+                AlertHelper.showAlert(Alert.AlertType.ERROR, owner, "Error", "El genero no se pudo almacenar");
+            }
+        } catch (Exception e) {
+            AlertHelper.showAlert(Alert.AlertType.ERROR, owner, "Error", e.getMessage());
         }
     }
 
     @Override
     public void transferId(String message) {
         super.transferId(message);
-        String song[] = controller.getGenderById(Integer.parseInt(getId())).split(",");
-        idGender = Integer.parseInt(song[0]);
-        name.setText(song[1]);
-        description.setText(song[2]);
+        try {
+            String song[] = new String[0];
+            song = controller.getGenderById(Integer.parseInt(getId())).split(",");
+            idGender = Integer.parseInt(song[0]);
+            name.setText(song[1]);
+            description.setText(song[2]);
+        } catch (Exception e) {
+            AlertHelper.showAlert(Alert.AlertType.ERROR, "Error", e.getMessage());
+        }
     }
 }

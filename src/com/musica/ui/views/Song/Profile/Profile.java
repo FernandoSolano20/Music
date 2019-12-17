@@ -1,11 +1,14 @@
 package com.musica.ui.views.Song.Profile;
 
+import com.musica.ui.AlertHelper;
 import com.musica.ui.MusicUI;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.scene.control.Alert;
 import javafx.scene.control.Label;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
+import javafx.stage.Window;
 
 import java.io.ByteArrayInputStream;
 import java.io.File;
@@ -55,15 +58,20 @@ public class Profile extends MusicUI {
     @Override
     public void transferId(String message) {
         super.transferId(message);
-        String song[] = controller.getSongById(Integer.parseInt(getId())).split(",");
-        name.setText(song[1]);
-        gender.setText(song[3]);
-        album.setText(song[25]);
-        comp.setText(song[19] + " " + song[20]);
-        art.setText(song[17] + " (" + song[6] + " " + song[7] + ")");
-        score.setText(song[28]);
-        release.setText(song[23]);
-        showImage(song);
+        String song[] = new String[0];
+        try {
+            song = controller.getSongById(Integer.parseInt(getId())).split(",");
+            name.setText(song[1]);
+            gender.setText(song[3]);
+            album.setText(song[25]);
+            comp.setText(song[19] + " " + song[20]);
+            art.setText(song[17] + " (" + song[6] + " " + song[7] + ")");
+            score.setText(song[28]);
+            release.setText(song[23]);
+            showImage(song);
+        } catch (Exception e) {
+            AlertHelper.showAlert(Alert.AlertType.ERROR, "Error", e.getMessage());
+        }
     }
 
     private void showImage(String[] song){
@@ -72,7 +80,7 @@ public class Profile extends MusicUI {
         try {
             btImagen = Files.readAllBytes(file.toPath());
         } catch (IOException e) {
-            e.printStackTrace();
+            AlertHelper.showAlert(Alert.AlertType.ERROR, "Error", e.getMessage());
         }
         ByteArrayInputStream imgByteArray = new ByteArrayInputStream(btImagen);
         Image img = new Image(imgByteArray, 199, 199, false, false);;

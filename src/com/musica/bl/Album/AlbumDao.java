@@ -4,6 +4,7 @@ import com.musica.bl.Gender.Gender;
 import com.musica.bl.Musican.Artist.Artist;
 import com.musica.bl.Song.SongDao;
 import com.musica.dl.DataAccess;
+import com.musica.dl.LogError;
 
 import java.sql.Date;
 import java.sql.ResultSet;
@@ -14,7 +15,7 @@ import java.util.List;
 public class AlbumDao implements IAlbumDao {
     private DataAccess dataAccess = new DataAccess();
     @Override
-    public List<Album> getAll() {
+    public List<Album> getAll() throws Exception {
         List<Album> albums = new ArrayList<>();
         Album album = null;
         String queryString = "SELECT * FROM Album";
@@ -59,7 +60,8 @@ public class AlbumDao implements IAlbumDao {
                     }
                 }
                 catch (Exception e){
-                    artist = null;
+                    LogError.getLogger().info("Error " + e.getMessage());
+                    throw new Exception("Error al obtener la informacion en la base de datos");
                 }
                 SongDao songDao = new SongDao();
                 album.setSongs(songDao.searchSongByAlbumId(album.getId()));
@@ -67,39 +69,42 @@ public class AlbumDao implements IAlbumDao {
             }
         }
         catch (Exception e){
-            albums = null;
+            LogError.getLogger().info("Error " + e.getMessage());
+            throw new Exception("Error al obtener la informacion en la base de datos");
         }
         return albums;
     }
 
     @Override
-    public int save(Album album) {
+    public int save(Album album) throws Exception {
         int message = -1;
         String queryString = "INSERT INTO Album(name, releaseDate, image) " +
                 "VALUES('"+ album.getName() + "', '" + album.getReleaseDate() + "', '" + album.getImage()  + "')";
         try {
             message = dataAccess.insertIntoData(queryString);
         } catch (Exception e) {
-            message = -1;
+            LogError.getLogger().info("Error " + e.getMessage());
+            throw new Exception("Error al guardar la informacion en la base de datos");
         }
         return message;
     }
 
     @Override
-    public boolean update(Album album) {
+    public boolean update(Album album) throws Exception {
         boolean message = false;
         String queryString = "UPDATE Album SET name= '"+ album.getName() +"', releaseDate= '" + album.getReleaseDate() + "', image= '" + album.getImage() + "' " +
                 "WHERE id= " + album.getId() + "";
         try {
             message = dataAccess.insertData(queryString);
         } catch (Exception e) {
-            message = false;
+            LogError.getLogger().info("Error " + e.getMessage());
+            throw new Exception("Error al actualizar la informacion en la base de datos");
         }
         return message;
     }
 
     @Override
-    public boolean delete(Album album) {
+    public boolean delete(Album album) throws Exception {
         boolean message = false;
         String queryString = "DELETE FROM AlbumArtist " +
                 "WHERE idAlbum = "+ album.getId();
@@ -110,15 +115,17 @@ public class AlbumDao implements IAlbumDao {
             try {
                 message = dataAccess.insertData(queryString);
             } catch (Exception e) {
-                message = false;
+                LogError.getLogger().info("Error " + e.getMessage());
+                throw new Exception("Error al borrar la informacion en la base de datos");
             }
         } catch (Exception e) {
-            message = false;
+            LogError.getLogger().info("Error " + e.getMessage());
+            throw new Exception("Error al borrar la informacion en la base de datos");
         }
         return message;
     }
 
-    public boolean saveArtists(Album album){
+    public boolean saveArtists(Album album) throws Exception {
         boolean message = false;
         ArrayList<Artist> artists = album.getArtists();
         for (Artist artist:artists) {
@@ -127,14 +134,15 @@ public class AlbumDao implements IAlbumDao {
             try {
                 message = dataAccess.insertData(queryString);
             } catch (Exception e) {
-                message = false;
+                LogError.getLogger().info("Error " + e.getMessage());
+                throw new Exception("Error al guardar la informacion en la base de datos");
             }
         }
         return message;
     }
 
     @Override
-    public Album searchAlbumByName(String name) {
+    public Album searchAlbumByName(String name) throws Exception {
         Album album = null;
         String queryString = "SELECT * FROM Album " +
                 "WHERE name = '" + name + "'";
@@ -181,18 +189,20 @@ public class AlbumDao implements IAlbumDao {
                     }
                 }
                 catch (Exception e){
-                    artist = null;
+                    LogError.getLogger().info("Error " + e.getMessage());
+                    throw new Exception("Error al obtener la informacion en la base de datos");
                 }
             }
         }
         catch (Exception e){
-            album = null;
+            LogError.getLogger().info("Error " + e.getMessage());
+            throw new Exception("Error al obtener la informacion en la base de datos");
         }
         return album;
     }
 
     @Override
-    public Album searchAlbumById(int id){
+    public Album searchAlbumById(int id) throws Exception {
         Album album = null;
         String queryString = "SELECT * FROM Album " +
                 "WHERE id = " + id + "";
@@ -239,12 +249,14 @@ public class AlbumDao implements IAlbumDao {
                     }
                 }
                 catch (Exception e){
-                    artist = null;
+                    LogError.getLogger().info("Error " + e.getMessage());
+                    throw new Exception("Error al obtener la informacion en la base de datos");
                 }
             }
         }
         catch (Exception e){
-            album = null;
+            LogError.getLogger().info("Error " + e.getMessage());
+            throw new Exception("Error al obtener la informacion en la base de datos");
         }
         return album;
     }

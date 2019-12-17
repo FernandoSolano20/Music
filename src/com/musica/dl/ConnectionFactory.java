@@ -12,11 +12,12 @@ public class ConnectionFactory {
 
     private static ConnectionFactory connectionFactory = null;
 
-    private ConnectionFactory() {
+    private ConnectionFactory() throws Exception {
         try {
             Class.forName(driverClassName);
         } catch (ClassNotFoundException e) {
-            e.printStackTrace();
+            LogError.getLogger().info("Error " + e.getMessage());
+            throw new Exception("Error con conexion");
         }
     }
 
@@ -26,7 +27,7 @@ public class ConnectionFactory {
         return conn;
     }
 
-    public static ConnectionFactory getInstance() {
+    public static ConnectionFactory getInstance() throws Exception {
         if (connectionFactory == null) {
             connectionFactory = new ConnectionFactory();
         }

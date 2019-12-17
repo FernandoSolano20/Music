@@ -6,6 +6,7 @@ import com.musica.bl.Song.Song;
 import com.musica.bl.Song.SongDao;
 import com.musica.bl.User.User;
 import com.musica.dl.DataAccess;
+import com.musica.dl.LogError;
 
 import java.sql.ResultSet;
 import java.time.LocalDate;
@@ -16,7 +17,7 @@ import java.util.List;
 public class ReproductionListDao implements IReproductionListDao {
     private DataAccess dataAccess = new DataAccess();
     @Override
-    public List<ReproductionList> getAll() {
+    public List<ReproductionList> getAll() throws Exception {
         List<ReproductionList> reproductionLists = new ArrayList<>();
         ReproductionList reproductionList = null;
         String queryString = "SELECT * FROM ReproductionList as rl " +
@@ -48,19 +49,21 @@ public class ReproductionListDao implements IReproductionListDao {
                     }
                 }
                 catch (Exception e){
-                    song = null;
+                    LogError.getLogger().info("Error " + e.getMessage());
+                    throw new Exception("Error al obtener la informacion en la base de datos");
                 }
                 reproductionLists.add(reproductionList);
             }
         }
         catch (Exception e){
-            reproductionLists = null;
+            LogError.getLogger().info("Error " + e.getMessage());
+            throw new Exception("Error al obtener la informacion en la base de datos");
         }
         return reproductionLists;
     }
 
     @Override
-    public int save(ReproductionList reproductionList) {
+    public int save(ReproductionList reproductionList) throws Exception {
         int message = -1;
         String queryString = "INSERT INTO music.reproductionlist(reproductionlist.create, reproductionlist.name, reproductionlist.score, reproductionlist.idUser) " +
                 "VALUES('"+ reproductionList.getCreate() +"', '"+ reproductionList.getName() +"', "+ reproductionList.getScore() +
@@ -68,38 +71,41 @@ public class ReproductionListDao implements IReproductionListDao {
         try {
             message = dataAccess.insertIntoData(queryString);
         } catch (Exception e) {
-            message = -1;
+            LogError.getLogger().info("Error " + e.getMessage());
+            throw new Exception("Error al guardar la informacion en la base de datos");
         }
         return message;
     }
 
     @Override
-    public boolean update(ReproductionList reproductionList) {
+    public boolean update(ReproductionList reproductionList) throws Exception {
         boolean message = false;
         String queryString = "UPDATE ReproductionList SET name= '"+ reproductionList.getName() +"' " +
                 "WHERE id = "+ reproductionList.getId() +"";
         try {
             message = dataAccess.insertData(queryString);
         } catch (Exception e) {
-            message = false;
+            LogError.getLogger().info("Error " + e.getMessage());
+            throw new Exception("Error al actualizar la informacion en la base de datos");
         }
         return message;
     }
 
     @Override
-    public boolean delete(ReproductionList reproductionList) {
+    public boolean delete(ReproductionList reproductionList) throws Exception {
         boolean message = false;
         String queryString = "DELETE FROM ReproductionList " +
                 "WHERE id = "+ reproductionList.getId() +"";
         try {
             message = dataAccess.insertData(queryString);
         } catch (Exception e) {
-            message = false;
+            LogError.getLogger().info("Error " + e.getMessage());
+            throw new Exception("Error al borrar la informacion en la base de datos");
         }
         return message;
     }
 
-    public boolean saveSongs(ReproductionList reproductionList){
+    public boolean saveSongs(ReproductionList reproductionList) throws Exception {
         boolean message = false;
         List<Song> songs = reproductionList.getSongs();
         for (Song song:songs) {
@@ -108,25 +114,27 @@ public class ReproductionListDao implements IReproductionListDao {
             try {
                 message = dataAccess.insertData(queryString);
             } catch (Exception e) {
-                message = false;
+                LogError.getLogger().info("Error " + e.getMessage());
+                throw new Exception("Error al guardar la informacion en la base de datos");
             }
         }
         return message;
     }
 
-    public boolean deleteSongs(int idSong, int idReproduction){
+    public boolean deleteSongs(int idSong, int idReproduction) throws Exception {
         boolean message = false;
             String queryString = "DELETE FROM ReproductionListSong " +
                     "WHERE idReproductionList = "+ idReproduction + " AND idSong = " + idSong + "";
             try {
                 message = dataAccess.insertData(queryString);
             } catch (Exception e) {
-                message = false;
+                LogError.getLogger().info("Error " + e.getMessage());
+                throw new Exception("Error al borrar la informacion en la base de datos");
             }
         return message;
     }
 
-    public List<ReproductionList> searchReproductionListByUser(int id){
+    public List<ReproductionList> searchReproductionListByUser(int id) throws Exception {
         List<ReproductionList> reproductionLists = new ArrayList<>();
         ReproductionList reproductionList = null;
         String queryString = "SELECT * FROM ReproductionList as rl " +
@@ -159,18 +167,20 @@ public class ReproductionListDao implements IReproductionListDao {
                     }
                 }
                 catch (Exception e){
-                    song = null;
+                    LogError.getLogger().info("Error " + e.getMessage());
+                    throw new Exception("Error al obtener la informacion en la base de datos");
                 }
                 reproductionLists.add(reproductionList);
             }
         }
         catch (Exception e){
-            reproductionLists = null;
+            LogError.getLogger().info("Error " + e.getMessage());
+            throw new Exception("Error al obtener la informacion en la base de datos");
         }
         return reproductionLists;
     }
 
-    public List<Song> searchSongsByReproductionListId(int id){
+    public List<Song> searchSongsByReproductionListId(int id) throws Exception {
         List<Song> songs = new ArrayList<>();
         String queryStringGender = "SELECT * FROM ReproductionListSong as rls " +
                 "INNER JOIN Song as s " +
@@ -187,13 +197,14 @@ public class ReproductionListDao implements IReproductionListDao {
             }
         }
         catch (Exception e){
-            songs = null;
+            LogError.getLogger().info("Error " + e.getMessage());
+            throw new Exception("Error al obtener la informacion en la base de datos");
         }
         return songs;
     }
 
     @Override
-    public ReproductionList searchReproductionListById(int id) {
+    public ReproductionList searchReproductionListById(int id) throws Exception {
         ReproductionList reproductionList = null;
         String queryStringGender = "SELECT * FROM ReproductionList " +
                 "WHERE id = " + id;
@@ -209,7 +220,8 @@ public class ReproductionListDao implements IReproductionListDao {
             }
         }
         catch (Exception e){
-            reproductionList = null;
+            LogError.getLogger().info("Error " + e.getMessage());
+            throw new Exception("Error al obtener la informacion en la base de datos");
         }
         return reproductionList;
     }

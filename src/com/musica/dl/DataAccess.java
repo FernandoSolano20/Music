@@ -5,17 +5,24 @@ import com.sun.rowset.CachedRowSetImpl;
 
 import java.sql.*;
 import java.util.ArrayList;
+import java.util.logging.Logger;
 
 public class DataAccess {
     Connection connection = null;
 
-    private Connection getConnection() throws SQLException {
-        Connection conn;
-        conn = ConnectionFactory.getInstance().getConnection();
-        return conn;
+    private Connection getConnection() throws Exception {
+        try {
+            Connection conn;
+            conn = ConnectionFactory.getInstance().getConnection();
+            return conn;
+        }
+        catch (Exception e){
+            LogError.getLogger().info("Error " + e.getMessage());
+            throw new Exception("Error en base de datos");
+        }
     }
 
-    public int insertIntoData(String statement){
+    public int insertIntoData(String statement) throws Exception {
         int id = -1;
         try {
             connection = getConnection();
@@ -34,11 +41,12 @@ public class DataAccess {
         }
         catch (Exception e)
         {
-            return -1;
+            LogError.getLogger().info("Error " + e.getMessage());
+            throw new Exception("Error en base de datos");
         }
     }
 
-    public boolean insertData(String statement){
+    public boolean insertData(String statement) throws Exception {
         try {
             connection = getConnection();
             Statement st = connection.createStatement();
@@ -50,11 +58,12 @@ public class DataAccess {
         }
         catch (Exception e)
         {
-            return false;
+            LogError.getLogger().info("Error " + e.getMessage());
+            throw new Exception("Error en base de datos");
         }
     }
 
-    public ResultSet selectData(String statement){
+    public ResultSet selectData(String statement) throws Exception {
         ResultSet resultSet = null;
         Statement st = null;
         CachedRowSetImpl crs = null;
@@ -67,7 +76,8 @@ public class DataAccess {
         }
         catch (Exception e)
         {
-            resultSet = null;
+            LogError.getLogger().info("Error " + e.getMessage());
+            throw new Exception("Error en base de datos");
         }
         finally {
             try {
@@ -82,7 +92,8 @@ public class DataAccess {
                 }
             }
             catch (Exception e){
-                e.getMessage();
+                LogError.getLogger().info("Error " + e.getMessage());
+                throw new Exception("Error en base de datos");
             }
         }
         return crs;
