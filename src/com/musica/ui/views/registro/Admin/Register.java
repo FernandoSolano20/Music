@@ -6,9 +6,11 @@ import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.scene.Scene;
 import javafx.scene.control.*;
 import javafx.scene.input.MouseEvent;
 import javafx.stage.FileChooser;
+import javafx.stage.Stage;
 import javafx.stage.Window;
 
 import javax.mail.MessagingException;
@@ -28,14 +30,19 @@ public class Register extends MusicUI {
     @FXML private TextField userName;
     @FXML private Button image;
     @FXML private Button save;
+    private String pathImage;
 
     @FXML
     protected void uploadImage(ActionEvent event){
+        Scene scene = save.getScene();
+        Window window = scene.getWindow();
+        Stage stage = (Stage) window;
+
         FileChooser fileChooser = new FileChooser();
-        fileChooser.setInitialDirectory(new File("C:\\Users\\fersolano\\Desktop"));
-        fileChooser.getExtensionFilters().addAll(
-                new FileChooser.ExtensionFilter("Images", "*.png", "*.jpg", "*.jpeg", "*.gif", "*.png"));
-        File selectedFile = fileChooser.showOpenDialog(null);
+
+        fileChooser.getExtensionFilters().addAll(new FileChooser.ExtensionFilter("Image Files","*.bmp", "*.png", "*.jpg", "*.gif"));
+        File selectedFile = fileChooser.showOpenDialog(stage);
+        pathImage = selectedFile.toPath().toString().replace("\\", "\\\\");
     }
 
     @FXML
@@ -54,10 +61,9 @@ public class Register extends MusicUI {
                 return;
             }
             String userName = this.userName.getText();
-            String image = this.image.getText();
             boolean response = false;
 
-                response = controller.registerAdmin(id,name,lastName,email,pass,userName,image);
+                response = controller.registerAdmin(id,name,lastName,email,pass,userName,pathImage);
             if (response == true){
                 AlertHelper.showAlert(Alert.AlertType.CONFIRMATION, owner, "Exitoso", "Usuario almacenado");
                 show.ShowWindow(event,"./views/login/login.fxml", "Iniciar Sesión");

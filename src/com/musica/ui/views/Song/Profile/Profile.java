@@ -4,8 +4,13 @@ import com.musica.ui.MusicUI;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.Label;
+import javafx.scene.image.Image;
+import javafx.scene.image.ImageView;
 
+import java.io.ByteArrayInputStream;
+import java.io.File;
 import java.io.IOException;
+import java.nio.file.Files;
 
 public class Profile extends MusicUI {
     @FXML private Label name;
@@ -15,6 +20,7 @@ public class Profile extends MusicUI {
     @FXML private Label art;
     @FXML private Label score;
     @FXML private Label release;
+    @FXML private ImageView imageAlbum;
 
     @FXML
     protected void index(ActionEvent event) throws IOException {
@@ -57,5 +63,19 @@ public class Profile extends MusicUI {
         art.setText(song[17] + " (" + song[6] + " " + song[7] + ")");
         score.setText(song[28]);
         release.setText(song[23]);
+        showImage(song);
+    }
+
+    private void showImage(String[] song){
+        File file = new File(song[27]);
+        byte[] btImagen = new byte[0];
+        try {
+            btImagen = Files.readAllBytes(file.toPath());
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+        ByteArrayInputStream imgByteArray = new ByteArrayInputStream(btImagen);
+        Image img = new Image(imgByteArray, 199, 199, false, false);;
+        imageAlbum.setImage(img);
     }
 }

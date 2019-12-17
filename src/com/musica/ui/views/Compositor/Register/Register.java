@@ -2,9 +2,12 @@ package com.musica.ui.views.Compositor.Register;
 
 import com.musica.ui.AlertHelper;
 import com.musica.ui.MusicUI;
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.*;
+import javafx.scene.input.MouseEvent;
 import javafx.stage.FileChooser;
 import javafx.stage.FileChooser.ExtensionFilter;
 import javafx.stage.Stage;
@@ -13,9 +16,12 @@ import javafx.stage.Window;
 import java.io.File;
 import java.io.IOException;
 import java.time.LocalDate;
+import java.util.Locale;
+import java.util.stream.Collectors;
+import java.util.stream.Stream;
 
 
-    public class Register extends MusicUI {
+public class Register extends MusicUI {
 
         @FXML
         private TextField name;
@@ -26,12 +32,21 @@ import java.time.LocalDate;
         @FXML private Button save;
 
         @FXML
+        public void listarPaises(MouseEvent mouseEvent) throws IOException {
+            ObservableList<String> countries = Stream.of(Locale.getISOCountries())
+                    .map(locales -> new Locale("", locales))
+                    .map(Locale::getDisplayCountry)
+                    .collect(Collectors.toCollection(FXCollections::observableArrayList));
+            country.setItems(countries);
+        }
+
+        @FXML
         protected void save(ActionEvent event) throws IOException {
             Window owner = save.getScene().getWindow();
 
             String name = this.name.getText();
             String lastName = this.lastName.getText();
-            String country = "Country";//this.country.getText();
+            String country = this.country.getValue().toString();
             int old = Integer.parseInt(this.old.getText());
 
             String[] genders = this.genders.getText().split(",");

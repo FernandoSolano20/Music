@@ -2,9 +2,12 @@ package com.musica.ui.views.Artist.Register;
 
 import com.musica.ui.AlertHelper;
 import com.musica.ui.MusicUI;
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.*;
+import javafx.scene.input.MouseEvent;
 import javafx.stage.FileChooser;
 import javafx.stage.FileChooser.ExtensionFilter;
 import javafx.stage.Stage;
@@ -13,6 +16,9 @@ import javafx.stage.Window;
 import java.io.File;
 import java.io.IOException;
 import java.time.LocalDate;
+import java.util.Locale;
+import java.util.stream.Collectors;
+import java.util.stream.Stream;
 
 
 public class Register extends MusicUI {
@@ -33,6 +39,15 @@ public class Register extends MusicUI {
     @FXML private Button save;
 
     @FXML
+    public void listarPaises(MouseEvent mouseEvent) throws IOException {
+        ObservableList<String> countries = Stream.of(Locale.getISOCountries())
+                .map(locales -> new Locale("", locales))
+                .map(Locale::getDisplayCountry)
+                .collect(Collectors.toCollection(FXCollections::observableArrayList));
+        country.setItems(countries);
+    }
+
+    @FXML
     protected void save(ActionEvent event) throws IOException {
         Window owner = save.getScene().getWindow();
 
@@ -42,7 +57,7 @@ public class Register extends MusicUI {
         int monthBorn = Integer.parseInt(this.monthBorn.getText());
         int yearBorn = Integer.parseInt(this.yearBorn.getText());
         LocalDate dateBorn = LocalDate.of(yearBorn,monthBorn,dayBorn);
-        String country = "Country";//this.country.getText();
+        String country = this.country.getValue().toString();
         String artistName = this.artistName.getText();
         int dayDead = Integer.parseInt(this.dayDead.getText());
         int monthDead = Integer.parseInt(this.monthDead.getText());

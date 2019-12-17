@@ -2,16 +2,22 @@ package com.musica.ui.views.Artist.Update;
 
 import com.musica.ui.AlertHelper;
 import com.musica.ui.MusicUI;
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
 import javafx.scene.control.ChoiceBox;
 import javafx.scene.control.TextField;
+import javafx.scene.input.MouseEvent;
 import javafx.stage.Window;
 
 import java.io.IOException;
 import java.time.LocalDate;
+import java.util.Locale;
+import java.util.stream.Collectors;
+import java.util.stream.Stream;
 
 public class UpdateArtist extends MusicUI {
     @FXML
@@ -30,6 +36,16 @@ public class UpdateArtist extends MusicUI {
     @FXML private TextField gender;
     @FXML private Button save;
     private int idArt;
+    private String countryName;
+
+    @FXML
+    public void listarPaises(MouseEvent mouseEvent) throws IOException {
+        ObservableList<String> countries = Stream.of(Locale.getISOCountries())
+                .map(locales -> new Locale("", locales))
+                .map(Locale::getDisplayCountry)
+                .collect(Collectors.toCollection(FXCollections::observableArrayList));
+        country.setItems(countries);
+    }
 
     @FXML
     protected void save(ActionEvent event) throws IOException {
@@ -41,7 +57,10 @@ public class UpdateArtist extends MusicUI {
         int monthBorn = Integer.parseInt(this.monthBorn.getText());
         int yearBorn = Integer.parseInt(this.yearBorn.getText());
         LocalDate dateBorn = LocalDate.of(yearBorn,monthBorn,dayBorn);
-        String country = "Country";//this.country.getText();
+        String country = this.country.getValue().toString();
+        if(country == ""){
+            country = countryName;
+        }
         String artistName = this.artistName.getText();
         int dayDead = Integer.parseInt(this.dayDead.getText());
         int monthDead = Integer.parseInt(this.monthDead.getText());
@@ -74,7 +93,7 @@ public class UpdateArtist extends MusicUI {
         dayBorn.setText(element[5].split("-")[2]);
         monthBorn.setText(element[5].split("-")[1]);
         yearBorn.setText(element[5].split("-")[0]);
-        country.setValue(element[3]);
+        countryName = element[3];
         artistName.setText(element[12]);
         if(element[6] != "" || element[6] != "null"){
             dayDead.setText(element[6].split("-")[2]);

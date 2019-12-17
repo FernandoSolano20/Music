@@ -64,7 +64,8 @@ public class SongDao implements ISongDao {
         boolean message = false;
         String queryString = "UPDATE Song SET name='"+ song.getName() +"', releaseDay='"+ song.getRelease() +"', score="+ song.getScore() +", " +
                 "idGender="+ song.getGender().getId() + ", idCompositor="+ song.getCompositor().getId() + ", idArtist="+ song.getArtist().getId() +", " +
-                "idAlbum="+ song.getAlbum().getId() + ", songPath='"+ song.getSong() + "', price="+ song.getPrice() + "";
+                "idAlbum="+ song.getAlbum().getId() + ", songPath='"+ song.getSong() + "', price="+ song.getPrice() + " " +
+                "WHERE id = " + song.getId() + "";
         try {
             message = dataAccess.insertData(queryString);
         } catch (Exception e) {

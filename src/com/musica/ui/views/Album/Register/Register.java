@@ -4,6 +4,7 @@ import com.musica.ui.AlertHelper;
 import com.musica.ui.MusicUI;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.scene.Scene;
 import javafx.scene.control.*;
 import javafx.stage.FileChooser;
 import javafx.stage.FileChooser.ExtensionFilter;
@@ -24,14 +25,19 @@ public class Register extends MusicUI {
     @FXML private TextField artists;
     @FXML private Button image;
     @FXML private Button save;
+    private String pathImage;
 
     @FXML
     protected void uploadImage(ActionEvent event){
+        Scene scene = save.getScene();
+        Window window = scene.getWindow();
+        Stage stage = (Stage) window;
+
         FileChooser fileChooser = new FileChooser();
-        fileChooser.setInitialDirectory(new File("C:\\Users\\fersolano\\Desktop"));
-        fileChooser.getExtensionFilters().addAll(
-                new ExtensionFilter("Images", "*.png", "*.jpg", "*.jpeg", "*.gif", "*.png"));
-        File selectedFile = fileChooser.showOpenDialog(null);
+
+        fileChooser.getExtensionFilters().addAll(new FileChooser.ExtensionFilter("Image Files","*.bmp", "*.png", "*.jpg", "*.gif"));
+        File selectedFile = fileChooser.showOpenDialog(stage);
+        pathImage = selectedFile.toPath().toString().replace("\\", "\\\\");
     }
 
     @FXML
@@ -43,10 +49,9 @@ public class Register extends MusicUI {
         int month = Integer.parseInt(this.month.getText());
         int year = Integer.parseInt(this.year.getText());
         LocalDate release = LocalDate.of(year,month,day);
-        String image = "Image path"; //this.lastName.getText();
         String[] artists = this.artists.getText().split(",");
 
-        boolean response = controller.registerAlbum(name,release,image,artists);
+        boolean response = controller.registerAlbum(name,release,pathImage,artists);
         if (response == true){
             AlertHelper.showAlert(Alert.AlertType.CONFIRMATION, owner, "Exitoso", "Album almacenado");
             if(controller.userType() == "Administrador"){

@@ -4,6 +4,7 @@ import com.musica.ui.AlertHelper;
 import com.musica.ui.MusicUI;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.scene.Scene;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
 import javafx.scene.control.TextField;
@@ -29,14 +30,20 @@ public class UpdateSong extends MusicUI {
     @FXML private Button song;
     @FXML private Button save;
     int idSong;
+    String songPath;
+    String path;
 
     @FXML
     protected void uploadSong(ActionEvent event){
+        Scene scene = save.getScene();
+        Window window = scene.getWindow();
+        Stage stage = (Stage) window;
+
         FileChooser fileChooser = new FileChooser();
-        fileChooser.setInitialDirectory(new File("C:\\Users\\fersolano\\Desktop"));
-        fileChooser.getExtensionFilters().addAll(
-                new FileChooser.ExtensionFilter("Images", "*.mp3"));
-        File selectedFile = fileChooser.showOpenDialog(null);
+
+        fileChooser.getExtensionFilters().addAll(new FileChooser.ExtensionFilter("Song","*.mp3"));
+        File selectedFile = fileChooser.showOpenDialog(stage);
+        songPath = selectedFile.toPath().toString().replace("\\", "\\\\");
     }
 
     @FXML
@@ -53,9 +60,10 @@ public class UpdateSong extends MusicUI {
         String album = this.album.getText();
         int price = Integer.parseInt(this.price.getText());
         int score = Integer.parseInt(this.score.getText());
-        String song = "Path";
-
-        int response = controller.updateSong(idSong,name,gender,artist,nameComp,year,month,day,album,score,song,price);
+        if(songPath == null){
+            songPath = path;
+        }
+        int response = controller.updateSong(idSong,name,gender,artist,nameComp,year,month,day,album,score,songPath,price);
         if (response == 1){
             AlertHelper.showAlert(Alert.AlertType.CONFIRMATION, owner, "Exitoso", "Cancion almacenado");
             if(controller.userType() == "Administrador"){
@@ -86,5 +94,6 @@ public class UpdateSong extends MusicUI {
         album.setText(song[25]);
         score.setText(song[28]);
         price.setText(song[30]);
+        path = song[29];
     }
 }

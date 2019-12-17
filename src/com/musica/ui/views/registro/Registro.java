@@ -38,20 +38,15 @@ public class Registro extends MusicUI {
 
     @FXML
     protected void uploadImage(ActionEvent event){
-        /*FileChooser fileChooser = new FileChooser();
-        fileChooser.setInitialDirectory(new File("C:\\Users\\fersolano\\Desktop"));
-        fileChooser.getExtensionFilters().addAll(
-                new ExtensionFilter("Images", "*.png", "*.jpg", "*.jpeg", "*.gif", "*.png"));
-        File selectedFile = fileChooser.showOpenDialog(null);*/
         Scene scene = save.getScene();
         Window window = scene.getWindow();
         Stage stage = (Stage) window;
 
         FileChooser fileChooser = new FileChooser();
 
-        fileChooser.getExtensionFilters().addAll(new FileChooser.ExtensionFilter("Image Files",".bmp", ".png", ".jpg", ".gif"));
+        fileChooser.getExtensionFilters().addAll(new FileChooser.ExtensionFilter("Image Files","*.bmp", "*.png", "*.jpg", "*.gif"));
         File selectedFile = fileChooser.showOpenDialog(stage);
-        pathImage = selectedFile.toPath().toString();
+        pathImage = selectedFile.toPath().toString().replace("\\", "\\\\");
     }
 
     @FXML
@@ -79,7 +74,7 @@ public class Registro extends MusicUI {
                 return;
             }
 
-            String country = (String) this.country.getValue();
+            String country = this.country.getValue().toString();
             String email = this.email.getText();
             String pass = this.pass.getText();
 

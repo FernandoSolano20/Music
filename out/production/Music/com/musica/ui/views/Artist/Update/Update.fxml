@@ -61,7 +61,7 @@
                 <Font size="20.0" />
             </font>
         </Label>
-        <ChoiceBox fx:id="country" prefHeight="31.0" prefWidth="193.0" GridPane.columnIndex="2" GridPane.rowIndex="14">
+        <ChoiceBox fx:id="country" onMouseClicked="#listarPaises" prefHeight="31.0" prefWidth="193.0" GridPane.columnIndex="2" GridPane.rowIndex="14">
             <items>
                 <FXCollections fx:factory="observableArrayList">
                     <String fx:value="2 minutes" />
@@ -74,7 +74,7 @@
         <Label alignment="CENTER" prefHeight="21.0" prefWidth="206.0" text="Año nacimiento" GridPane.columnIndex="2" GridPane.rowIndex="11" />
         <TextField fx:id="monthBorn" GridPane.columnIndex="2" GridPane.rowIndex="10" />
         <TextField fx:id="yearBorn" GridPane.columnIndex="2" GridPane.rowIndex="12" />
-        <Label  alignment="CENTER" prefHeight="21.0" prefWidth="203.0" text="Año muerte" GridPane.columnIndex="4" GridPane.rowIndex="7" />
+        <Label alignment="CENTER" prefHeight="21.0" prefWidth="203.0" text="Año muerte" GridPane.columnIndex="4" GridPane.rowIndex="7" />
         <TextField fx:id="yearDead" GridPane.columnIndex="4" GridPane.rowIndex="8" />
         <TextField fx:id="monthDead" GridPane.columnIndex="4" GridPane.rowIndex="6" />
         <TextField fx:id="gender" GridPane.columnIndex="4" GridPane.rowIndex="14" />

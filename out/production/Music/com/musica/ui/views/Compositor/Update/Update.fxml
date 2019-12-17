@@ -47,6 +47,6 @@
       <Label prefHeight="21.0" prefWidth="307.0" text="Apellidos" GridPane.columnIndex="2" GridPane.rowIndex="8" />
       <TextField fx:id="lastName" GridPane.columnIndex="2" GridPane.rowIndex="9" />
       <Label prefHeight="21.0" prefWidth="200.0" text="Pais" GridPane.columnIndex="4" GridPane.rowIndex="8" />
-      <ChoiceBox fx:id="country" prefHeight="31.0" prefWidth="198.0" GridPane.columnIndex="4" GridPane.rowIndex="9" />
+      <ChoiceBox fx:id="country" onMouseClicked="#listarPaises" prefHeight="31.0" prefWidth="198.0" GridPane.columnIndex="4" GridPane.rowIndex="9" />
     </children>
 </GridPane>
