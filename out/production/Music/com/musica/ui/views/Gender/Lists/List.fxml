@@ -24,9 +24,10 @@
     <Button fx:id="catalogs" mnemonicParsing="false" onAction="#listSong" prefHeight="31.0" prefWidth="84.0" text="Cancion" translateX="400.0" GridPane.rowIndex="1" />
     <Button mnemonicParsing="false" onAction="#rAlbum" text="Album" translateX="500.0" GridPane.rowIndex="1" />
     <Button mnemonicParsing="false" onAction="#rGender" text="Generos" translateX="50.0" GridPane.rowIndex="1" />
-   <TextField fx:id="search" maxWidth="231.0" prefHeight="31.0" prefWidth="208.0" translateX="100.0" GridPane.rowIndex="2" />
-   <Label text="Buscar" GridPane.rowIndex="2" />
+   <TextField fx:id="search" maxWidth="231.0" prefHeight="31.0" prefWidth="208.0" translateX="200.0" GridPane.rowIndex="2" />
+   <Label text="Buscar" translateX="130.0" GridPane.rowIndex="2" />
    <Button mnemonicParsing="false" onAction="#cGender" text="Crear" translateX="500.0" GridPane.rowIndex="2" />
+   <Button mnemonicParsing="false" onAction="#logout" text="Cerrar Sesion" GridPane.rowIndex="2" />
     <columnConstraints>
         <ColumnConstraints />
         <ColumnConstraints />

@@ -8,7 +8,7 @@
 <?import javafx.scene.layout.RowConstraints?>
 
 <GridPane fx:id="rootPane" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/8.0.999-ea" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.musica.ui.views.index.user.Index">
-    <TableView fx:id="table" prefHeight="385.0" prefWidth="600.0" GridPane.rowIndex="2">
+    <TableView fx:id="table" prefHeight="385.0" prefWidth="600.0" GridPane.rowIndex="3">
         <columns>
             <TableColumn fx:id="columnName" prefWidth="155.0" text="Nombre" />
             <TableColumn fx:id="columnCreate" prefWidth="190.0" text="Fecha de creacion" />
@@ -23,11 +23,13 @@
    <Button mnemonicParsing="false" onAction="#albums" text="Albumes" translateX="340.0" GridPane.rowIndex="1" />
    <Button mnemonicParsing="false" onAction="#reproductions" text="Cola de reproduccion" translateX="430.0" GridPane.rowIndex="1" />
    <Button mnemonicParsing="false" onAction="#index" text="Inicio" translateX="3.0" GridPane.rowIndex="1" />
+   <Button mnemonicParsing="false" onAction="#logout" text="Cerrar Sesion" GridPane.rowIndex="2" />
    <columnConstraints>
       <ColumnConstraints />
       <ColumnConstraints />
    </columnConstraints>
    <rowConstraints>
+      <RowConstraints />
       <RowConstraints />
       <RowConstraints />
       <RowConstraints />

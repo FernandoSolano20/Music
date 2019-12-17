@@ -119,4 +119,9 @@ public class Index extends MusicUI implements Initializable {
     protected void reproductions(ActionEvent event) throws IOException {
         super.reproductions(event);
     }
+
+    @FXML
+    protected void logout(ActionEvent event) throws IOException {
+        super.logout(event);
+    }
 }

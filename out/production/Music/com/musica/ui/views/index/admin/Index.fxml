@@ -41,6 +41,6 @@
       <Button mnemonicParsing="false" onAction="#rArt" prefHeight="31.0" prefWidth="105.0" text="Artistas" GridPane.columnIndex="3" GridPane.rowIndex="3" />
       <Button mnemonicParsing="false" onAction="#listSong" prefHeight="31.0" prefWidth="103.0" text="Canción" GridPane.columnIndex="4" GridPane.rowIndex="3" />
       <Button mnemonicParsing="false" onAction="#rAlbum" prefHeight="31.0" prefWidth="102.0" text="Album" GridPane.columnIndex="5" GridPane.rowIndex="3" />
-      <Button fx:id="logout" mnemonicParsing="false" prefHeight="31.0" prefWidth="130.0" text="Cerrar Sesión" GridPane.columnIndex="3" GridPane.rowIndex="13" />
+      <Button fx:id="logout" mnemonicParsing="false" onAction="#logout" prefHeight="31.0" prefWidth="130.0" text="Cerrar Sesión" GridPane.columnIndex="3" GridPane.rowIndex="13" />
    </children>
 </GridPane>
