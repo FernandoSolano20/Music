@@ -2,6 +2,8 @@ package com.musica.ui;
 
 import com.musica.bl.Song.Song;
 import com.musica.tl.Controller;
+import com.musica.ui.views.Album.Lists.Client.ListAlbumUser;
+import com.musica.ui.views.Album.Lists.Client.Song.ListSongAlbumUser;
 import com.musica.ui.views.Album.Lists.Songs.ListSongAlbum;
 import com.musica.ui.views.Album.Update.UpdateAlbum;
 import com.musica.ui.views.Artist.Update.UpdateArtist;
@@ -25,14 +27,14 @@ public class MusicUI {
     protected ShowView show = new ShowView();
     protected Controller controller = new Controller();
     private String id;
-    private List<String> queue = new ArrayList<>();
+    private static List<String> queue = new ArrayList<>();
 
-    public List<String> getQueue() {
+    public static List<String> getQueue() {
         return queue;
     }
 
-    public void setQueue(String song) {
-        this.queue.add(song);
+    public static void setQueue(String song) {
+        queue.add(song);
     }
 
     public String getId() {
@@ -41,6 +43,10 @@ public class MusicUI {
 
     protected void cGender(ActionEvent event) throws IOException {
         show.ShowWindow(event, "views/Gender/Register/Register.fxml", "Crear Género");
+    }
+
+    protected void cGenderOnSong(ActionEvent event) throws IOException {
+        show.ShowNewWindow(event, "views/Gender/Register/Register.fxml", "Crear Género");
     }
 
     protected void rGender(ActionEvent event) throws IOException {
@@ -63,6 +69,10 @@ public class MusicUI {
         show.ShowWindow(event, "views/Compositor/Register/Register.fxml", "Crear Compositor");
     }
 
+    protected void cCompOnSong(ActionEvent event) throws IOException {
+        show.ShowNewWindow(event, "views/Compositor/Register/Register.fxml", "Crear Compositor");
+    }
+
     protected void rComp(ActionEvent event) throws IOException {
         show.ShowWindow(event, "views/Compositor/Lists/List.fxml", "Listar Compositor");
     }
@@ -81,6 +91,10 @@ public class MusicUI {
 
     protected void cArt(ActionEvent event) throws IOException {
         show.ShowWindow(event, "views/Artist/Register/Register.fxml", "Crear Artista");
+    }
+
+    protected void cArtOnSong(ActionEvent event) throws IOException {
+        show.ShowNewWindow(event, "views/Artist/Register/Register.fxml", "Crear Artista");
     }
 
     protected void rArt(ActionEvent event) throws IOException {
@@ -185,6 +199,7 @@ public class MusicUI {
     }
 
     protected void albums(ActionEvent event) throws IOException {
+        show.ShowWindow(event,"views/Album/Lists/Client/List.fxml","Txt");
     }
 
     protected void reproductions(ActionEvent event) throws IOException {
@@ -207,7 +222,15 @@ public class MusicUI {
         show.ShowWindow(event,"views/Album/Lists/Songs/List.fxml","Txt",id,new ListSongAlbum());
     }
 
+    public void clientSongsAlbumList(ActionEvent event, String id) throws IOException {
+        show.ShowWindow(event,"views/Album/Lists/Client/Song/List.fxml","Txt",id,new ListSongAlbumUser());
+    }
+
     protected void createReproductionList(ActionEvent event) throws IOException {
         show.ShowWindow(event,"views/reproductionList/Register/Register.fxml", "Crear Lista de reproduccion");
+    }
+
+    protected void changePass(ActionEvent event) throws IOException {
+        show.ShowWindow(event,"views/ChangePass/ChangePass.fxml", "Crear Lista de reproduccion");
     }
 }

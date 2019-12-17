@@ -11,8 +11,8 @@ public class Client extends User {
     private String country;
     private List<Song> catalog = new ArrayList<>();
 
-    public Client(int id, String userName, String name, String lastName, String email, String pass, String image, int old, String country) {
-        super(id, userName, name, lastName, email, pass, image);
+    public Client(int id, String userName, String name, String lastName, String email, String pass, String image, String randomPass, int old, String country) {
+        super(id, userName, name, lastName, email, pass, image, randomPass);
         setType("Cliente");
         this.old = old;
         this.country = country;

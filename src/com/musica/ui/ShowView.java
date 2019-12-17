@@ -39,4 +39,25 @@ public class ShowView {
         stage.setTitle(title);
         stage.show();
     }
+
+    public void ShowNewWindow(ActionEvent event, String path, String title) throws IOException {
+
+        Parent root = FXMLLoader.load(getClass().getResource(path));
+        Stage stage = new Stage();
+        stage.setTitle("My New Stage Title");
+        stage.setScene(new Scene(root));
+        stage.show();
+        // Hide this current window (if this is what you want)
+        //((Node)(event.getSource())).getScene().getWindow().hide();
+        /*
+        FXMLLoader loader = new FXMLLoader(getClass().getResource(path));
+        Parent root = loader.load();
+
+
+        //Show scene 2 in new window
+        Stage stage = (Stage)((Node)event.getSource()).getScene().getWindow();
+        stage.setScene(new Scene(root));
+        stage.setTitle(title);
+        stage.show();*/
+    }
 }

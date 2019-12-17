@@ -11,6 +11,7 @@ import javafx.scene.control.TextField;
 import javafx.scene.layout.GridPane;
 import javafx.stage.Window;
 
+import javax.mail.MessagingException;
 import java.io.IOException;
 
 public class Login extends MusicUI {
@@ -47,9 +48,14 @@ public class Login extends MusicUI {
 
         String type = controller.login(email,pass);
         if(type != null){
-            AlertHelper.showAlert(Alert.AlertType.CONFIRMATION, owner, "Bienvenido!",
-                    "Bienvenido " + emailField.getText());
-            super.index(event);
+            if(controller.isFirstTime()){
+                super.changePass(event);
+            }
+            else {
+                AlertHelper.showAlert(Alert.AlertType.CONFIRMATION, owner, "Bienvenido!",
+                        "Bienvenido " + emailField.getText());
+                super.index(event);
+            }
         }
         else{
             AlertHelper.showAlert(Alert.AlertType.ERROR, owner, "No encontrado",
@@ -60,6 +66,25 @@ public class Login extends MusicUI {
     @FXML
     protected void showRegisterView(ActionEvent event) throws IOException{
         show.ShowWindow(event,"views/registro/registro.fxml", "Registro");
+    }
+
+    @FXML
+    protected void forget(ActionEvent event){
+        Window owner = submitButton.getScene().getWindow();
+        try {
+            String email = emailField.getText();
+            if(controller.forgetPass(email)){
+                AlertHelper.showAlert(Alert.AlertType.CONFIRMATION, owner, "Revise el correo!",
+                        "Revise el correo  con la nueva contraseña");
+            }
+            else {
+                AlertHelper.showAlert(Alert.AlertType.ERROR, owner, "Error",
+                        "No se encontro al usuario");
+            }
+        } catch (MessagingException e) {
+            AlertHelper.showAlert(Alert.AlertType.ERROR, owner, "Error",
+                    "No se encontro al usuario");
+        }
     }
 }
 

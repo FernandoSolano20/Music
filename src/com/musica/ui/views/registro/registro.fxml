@@ -63,7 +63,7 @@
             <Font size="20.0" />
          </font>
       </Label>
-      <ChoiceBox fx:id="country" prefHeight="31.0" prefWidth="193.0" GridPane.columnIndex="2" GridPane.rowIndex="13">
+      <ChoiceBox fx:id="country" onMouseClicked="#listarPaises" prefHeight="31.0" prefWidth="193.0" GridPane.columnIndex="2" GridPane.rowIndex="13">
        <items>
            <FXCollections fx:factory="observableArrayList">
                <String fx:value="2 minutes" />

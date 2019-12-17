@@ -11,5 +11,6 @@
     <orderEntry type="library" name="basicplayer3.0" level="project" />
     <orderEntry type="library" name="commons-logging-api" level="project" />
     <orderEntry type="library" name="jl1.0.1" level="project" />
+    <orderEntry type="library" name="javax.mail" level="project" />
   </component>
 </module>

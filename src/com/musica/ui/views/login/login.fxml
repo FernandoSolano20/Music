@@ -44,5 +44,6 @@
          </opaqueInsets>
       </Button>
       <Button alignment="CENTER" contentDisplay="RIGHT" mnemonicParsing="false" onAction="#showRegisterView" text="Registrarse" translateX="125.0" GridPane.columnIndex="3" GridPane.rowIndex="11" />
+      <Button mnemonicParsing="false" onAction="#forget" prefHeight="31.0" prefWidth="224.0" text="Olvidar contraseña" GridPane.columnIndex="3" GridPane.rowIndex="13" />
    </children>
 </GridPane>

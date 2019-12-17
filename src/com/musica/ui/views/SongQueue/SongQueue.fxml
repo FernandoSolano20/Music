@@ -27,6 +27,7 @@
     <Button mnemonicParsing="false" onAction="#index" text="Inicio" translateX="3.0" GridPane.columnIndex="1" GridPane.rowIndex="1" />
    <TextField fx:id="search" maxWidth="150.0" minWidth="10.0" prefHeight="31.0" prefWidth="150.0" translateX="95.0" GridPane.columnIndex="1" GridPane.rowIndex="2" />
    <Button fx:id="btnSearch" mnemonicParsing="false" text="Buscar" GridPane.columnIndex="1" GridPane.rowIndex="2" />
+   <Button mnemonicParsing="false" onAction="#playSongQueue" text="Reproducir" translateX="450.0" GridPane.columnIndex="1" GridPane.rowIndex="2" />
     <columnConstraints>
         <ColumnConstraints />
         <ColumnConstraints />

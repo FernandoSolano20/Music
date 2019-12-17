@@ -25,8 +25,8 @@
     <Button mnemonicParsing="false" onAction="#reproductions" text="Cola de reproduccion" translateX="430.0" GridPane.rowIndex="1" />
     <Button mnemonicParsing="false" onAction="#index" text="Inicio" translateX="3.0" GridPane.rowIndex="1" />
    <Button fx:id="create" mnemonicParsing="false" onAction="#createReproductionList" text="Crear Lista" GridPane.rowIndex="3" />
-   <TextField maxWidth="-Infinity" prefHeight="31.0" prefWidth="199.0" translateX="400.0" GridPane.rowIndex="3" />
-   <Button fx:id="search" mnemonicParsing="false" text="Buscar" translateX="330.0" GridPane.rowIndex="3" />
+   <TextField fx:id="search" maxWidth="-Infinity" prefHeight="31.0" prefWidth="199.0" translateX="400.0" GridPane.rowIndex="3" />
+   <Button fx:id="" mnemonicParsing="false" text="Buscar" translateX="330.0" GridPane.rowIndex="3" />
     <columnConstraints>
         <ColumnConstraints />
         <ColumnConstraints />

@@ -54,18 +54,27 @@ public class Register extends MusicUI {
         String song = "Path";
 
         int response = controller.registerSong(name,gender,artist,nameComp,year,month,day,album,score,song,price);
-        if (response == 1){
+        if (response != -1){
             AlertHelper.showAlert(Alert.AlertType.CONFIRMATION, owner, "Exitoso", "Cancion almacenado");
             if(controller.userType() == "Administrador"){
                 super.rSongAdmin(event);
             }
             else {
-                Stage stage = (Stage) save.getScene().getWindow();
-                stage.close();
+                controller.buy(response);
+                super.buy(event);
             }
         }
         else {
             AlertHelper.showAlert(Alert.AlertType.ERROR, owner, "Error", "La cancion no se pudo almacenar");
+            if(response == -1){
+                super.cCompOnSong(event);
+            }
+            else if(response == -2){
+                super.cArtOnSong(event);
+            }
+            else if(response == -3){
+                super.cGenderOnSong(event);
+            }
         }
     }
 

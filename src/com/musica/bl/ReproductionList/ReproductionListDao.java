@@ -9,6 +9,7 @@ import com.musica.dl.DataAccess;
 
 import java.sql.ResultSet;
 import java.time.LocalDate;
+import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -189,5 +190,27 @@ public class ReproductionListDao implements IReproductionListDao {
             songs = null;
         }
         return songs;
+    }
+
+    @Override
+    public ReproductionList searchReproductionListById(int id) {
+        ReproductionList reproductionList = null;
+        String queryStringGender = "SELECT * FROM ReproductionList " +
+                "WHERE id = " + id;
+        ResultSet resultSong = dataAccess.selectData(queryStringGender);
+        try{
+            while (resultSong.next())
+            {
+                int idRepro = resultSong.getInt("id");
+                LocalDate create = resultSong.getDate("create").toLocalDate();
+                String name = resultSong.getString("name");
+                double score = resultSong.getDouble("score");
+                reproductionList = new ReproductionList(id,create,name,score);
+            }
+        }
+        catch (Exception e){
+            reproductionList = null;
+        }
+        return reproductionList;
     }
 }

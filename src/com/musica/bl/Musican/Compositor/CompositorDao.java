@@ -122,7 +122,7 @@ public class CompositorDao implements ICompositorDao {
     public Compositor searchCompositorByNameAndLastName(String name) {
         Compositor compositor = null;
         String queryString = "SELECT * FROM Compositor " +
-                "WHERE name + ' ' + lastName = '" + name + "'";
+                "WHERE CONCAT(name , ' ' , lastName) = '" + name + "'";
         ResultSet result = dataAccess.selectData(queryString);
         try{
             while (result.next())

@@ -21,6 +21,8 @@ public class UpdateRL extends MusicUI {
     @Override
     public void transferId(String message) {
         super.transferId(message);
+        String[] list = controller.searchReproductionListById(Integer.parseInt(getId())).split(",");
+        name.setText(list[2]);
     }
 
     @FXML

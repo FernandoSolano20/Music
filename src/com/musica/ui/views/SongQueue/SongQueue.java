@@ -1,9 +1,7 @@
 package com.musica.ui.views.SongQueue;
 
-import com.musica.bl.Song.Song;
 import com.musica.ui.ButtonCell;
 import com.musica.ui.MusicUI;
-import com.musica.ui.views.index.user.Index;
 import com.sun.prism.impl.Disposer;
 import javafx.beans.property.SimpleBooleanProperty;
 import javafx.beans.property.SimpleStringProperty;
@@ -16,34 +14,20 @@ import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.*;
-import javafx.scene.media.Media;
-import javafx.scene.media.MediaPlayer;
-import javafx.scene.media.MediaView;
 import javafx.util.Callback;
-import javax.sound.sampled.DataLine.Info;
 
-import javafx.util.Duration;
 import javazoom.jl.decoder.JavaLayerException;
 import javazoom.jl.player.advanced.AdvancedPlayer;
-import javazoom.jl.player.advanced.PlaybackEvent;
-import javazoom.jl.player.advanced.PlaybackListener;
-import javazoom.jlgui.basicplayer.BasicPlayer;
 import javazoom.jlgui.basicplayer.BasicPlayerException;
 
-import javax.sound.sampled.*;
-import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.net.MalformedURLException;
 import java.net.URL;
-import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;
 import java.util.ResourceBundle;
-import java.io.File;
 
-import static javax.sound.sampled.AudioSystem.getAudioInputStream;
-import static javax.sound.sampled.AudioFormat.Encoding.PCM_SIGNED;
 
 public class SongQueue extends MusicUI implements Initializable {
     @FXML
@@ -62,9 +46,9 @@ public class SongQueue extends MusicUI implements Initializable {
     private Button btnSearch;
     @FXML
     private TextField search;
+    static MyAudioPlayer thePlayer;
     int countAdd = -2;
 
-    List<String> songsQue = new ArrayList<String>();
     Iterator<String> iterator;
     private static  AdvancedPlayer player;
     private static int pausedOnFrame = 0;
@@ -116,20 +100,13 @@ public class SongQueue extends MusicUI implements Initializable {
     }
 
     private void showMedia() throws MalformedURLException, FileNotFoundException, JavaLayerException, BasicPlayerException {
-        songsQue.add("C:/Users/fersolano/Desktop/Slipknot-BeforeIForget.mp3");
-        songsQue.add("C:/Users/fersolano/Desktop/Metallica-One.mp3");
-        iterator = songsQue.iterator();
-        //play();
-        MyAudioPlayer thePlayer = new MyAudioPlayer(iterator, true);
-        thePlayer.start();
-
         List<String> list = controller.showMediaUser();
         ObservableList<String> details = FXCollections.observableArrayList(list);
 
         columnName.setCellValueFactory(c -> {
             String[] result = c.getValue().split(",");
             String element = "";
-            if(result[0] == "Song") {
+            if(result[0].equals("Song")) {
                 element = result[2];
             }
             else {
@@ -175,12 +152,12 @@ public class SongQueue extends MusicUI implements Initializable {
                             for (int j = 0; j < elements.size(); j++){
                                 String[] item = elements.get(j).split(",");
                                 if (item[0].equals("Song")) {
-                                    if(table.getItems().get(countAdd).split(",")[0].equals(item[30])){
+                                    if(table.getItems().get(countAdd).split(",")[30].equals(item[30])){
                                         path = item[30];
                                         break;
                                     }
                                 }
-                                else if(table.getItems().get(countAdd).split(",")[0].equals(item[1])) {
+                                else if(table.getItems().get(countAdd).split(",")[1].equals(item[1])) {
                                     path = item[1];
                                 }
                             }
@@ -192,13 +169,13 @@ public class SongQueue extends MusicUI implements Initializable {
                             public void handle(ActionEvent t) {
                                 System.out.println(btnCell.getIdBtn());
                                 if(!tryParseInt(btnCell.getIdBtn())){
-                                    SongQueue.super.setQueue(btnCell.getIdBtn());
+                                    MusicUI.setQueue(btnCell.getIdBtn());
                                 }
                                 else {
                                     int idList = Integer.parseInt(btnCell.getIdBtn());
                                     List<String> songs = controller.searchSongsByReproductionListId(idList);
                                     for (String item:songs) {
-                                        SongQueue.super.setQueue(item.split(",")[29]);
+                                        MusicUI.setQueue(item.split(",")[29]);
                                     }
                                 }
 
@@ -243,6 +220,7 @@ public class SongQueue extends MusicUI implements Initializable {
                         return false; // Does not match.
                 }
             });
+            countAdd = -1;
             table.refresh();
         });
 
@@ -265,67 +243,13 @@ public class SongQueue extends MusicUI implements Initializable {
         }
     }
 
-    /*public void play() throws BasicPlayerException, FileNotFoundException, JavaLayerException, MalformedURLException {
-        while(true) {
-            String s = iterator.next();
-            if(!s.equals("")) {
-                if(!playing) {
-                    playing = true;
-                    playSong(s);
-                }
-                else {
-                    if(player != null)
-                        player.stop();
-                }
-            }
+    @FXML
+    private void playSongQueue(){
+        iterator = MusicUI.getQueue().iterator();
+        if(SongQueue.thePlayer != null){
+            SongQueue.thePlayer.close();
         }
-    }*/
-
-    public void playSong(String filePath) throws MalformedURLException, JavaLayerException, FileNotFoundException {
-        /*try {
-            player = new BasicPlayer(); // Llamo la clase de la libreria Basic Player, que reproduce
-            player.open(new File(filePath));// Dentro las "" va la                     ruta de tu archivo mp3.
-            player.play();// Llama al método Reproducir también existen los métodos  stop,resume.
-            player.
-        } catch (BasicPlayerException ex) {
-            System.out.print("-------Error-----"+ex.getMessage());
-        }// Fin try
-
-         */
-        /*AdvancedPlayer player = new AdvancedPlayer(fis);
-        player.setPlayBackListener(new PlaybackListener() {
-            @Override
-            public void playbackFinished(PlaybackEvent event) {
-                pausedOnFrame = event.getFrame();
-            }
-        });
-        player.play();*/
-        FileInputStream fis = new FileInputStream(filePath);
-        player = new AdvancedPlayer(fis);
-        new Thread()
-        {
-            public void run()
-            {
-                try {
-                    if(player.play(1,1)) {
-                        player.setPlayBackListener(new PlaybackListener()  {
-                            @Override
-                            public void playbackFinished(PlaybackEvent event) {
-                                pausedOnFrame = event.getFrame();
-                                System.out.println(pausedOnFrame);
-                                playing = false;
-                            }
-                        });
-                        player.play(pausedOnFrame, Integer.MAX_VALUE);
-                    }
-                    else {
-                        player.stop();
-                    }
-                }
-                catch (Exception e) {
-                    System.out.println(e);
-                }
-            }
-        }.start();
+        SongQueue.thePlayer = new MyAudioPlayer(iterator, true);
+        SongQueue.thePlayer.start();
     }
 }

@@ -47,6 +47,13 @@ public class ReproductionList {
 
     }
 
+    public ReproductionList(int id, LocalDate create, String name, double score) {
+        this.id = id;
+        this.create = create;
+        this.name = name;
+        this.score = score;
+    }
+
     public int getId() {
         return id;
     }

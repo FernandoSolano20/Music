@@ -36,10 +36,10 @@ public class UserDao implements IUserDao {
     @Override
     public int save(User user) {
         boolean message = false;
-        String queryString = "INSERT INTO User(id, name, lastName, email, password, userName, image, type";
+        String queryString = "INSERT INTO User(id, name, lastName, email, password, userName, image, type, firstTime, randomPass";
 
         String queryValues = ") VALUES("+ user.getId() +", '"+ user.getName() +"', '"+ user.getLastName() +"', '"+ user.getEmail() +"', '"+ user.getPass() +
-                "', '"+ user.getUserName() +"', '"+ user.getImage() +"', '"+ user.getType() +"'";
+                "', '"+ user.getUserName() +"', '"+ user.getImage() +"', '"+ user.getType() +"', "+ user.isFirstTime() +", '"+ user.getRandomPass() +"'";
 
         if(user.getType() == "Cliente" && user instanceof Client){
             queryString += ", yearsOld, country";
@@ -58,7 +58,15 @@ public class UserDao implements IUserDao {
 
     @Override
     public boolean update(User user) {
-        return false;
+        boolean message = false;
+        String queryString = "UPDATE User SET password= '" + user.getPass() + "', firstTime=" + user.isFirstTime() + ", randomPass= '" + user.getRandomPass() + "' " +
+                "WHERE id = " + user.getId() + "";
+        try {
+            message = dataAccess.insertData(queryString);
+        } catch (Exception e) {
+            message = false;
+        }
+        return message;
     }
 
     @Override
@@ -101,6 +109,42 @@ public class UserDao implements IUserDao {
         return user;
     }
 
+    @Override
+    public User getUserById(int id) {
+        String queryString = "SELECT * FROM User " +
+                "WHERE id = " + id + "";
+        ResultSet result = dataAccess.selectData(queryString);
+        User user = null;
+        try{
+            while (result.next())
+            {
+                user = createUser(result);
+            }
+        }
+        catch (Exception e){
+            user = null;
+        }
+        return user;
+    }
+
+    @Override
+    public User getUserByEmail(String email) {
+        User user = null;
+        String queryString = "SELECT * FROM User " +
+                "WHERE email = '"+ email +"'";
+        ResultSet result = dataAccess.selectData(queryString);
+        try{
+            while (result.next())
+            {
+                user = createUser(result);
+            }
+        }
+        catch (Exception e){
+            return user;
+        }
+        return user;
+    }
+
     private User createUser(ResultSet result) throws SQLException {
         User user = null;
         int id = result.getInt("id");
@@ -111,13 +155,14 @@ public class UserDao implements IUserDao {
         String userName = result.getString("userName");
         String type = result.getString("type");
         String image = result.getString("image");
+        String random = result.getString("randomPass");
         int old = 0;
         String country = "";
 
         if(type.equals("Cliente")){
             old = result.getInt("yearsOld");
             country = result.getString("country");
-            user = new Client(id, userName, name, lastName, email, pass, image, old, country);
+            user = new Client(id, userName, name, lastName, email, pass, image, random, old, country);
 
             List<Song> songs = new ArrayList<>();
             Song song = null;
@@ -138,8 +183,9 @@ public class UserDao implements IUserDao {
             }
         }
         else {
-            user = new Admin(id, userName, name, lastName, email, pass, image);
+            user = new Admin(id, userName, name, lastName, email, pass, image, random);
         }
+        user.setFirstTime(result.getBoolean("firstTime"));
         return user;
     }
 }

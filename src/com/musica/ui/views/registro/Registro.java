@@ -2,15 +2,24 @@ package com.musica.ui.views.registro;
 
 import com.musica.ui.AlertHelper;
 import com.musica.ui.MusicUI;
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.scene.Scene;
 import javafx.scene.control.*;
+import javafx.scene.input.MouseEvent;
 import javafx.stage.FileChooser;
 import javafx.stage.FileChooser.ExtensionFilter;
+import javafx.stage.Stage;
 import javafx.stage.Window;
 
+import javax.mail.MessagingException;
 import java.io.File;
 import java.io.IOException;
+import java.util.Locale;
+import java.util.stream.Collectors;
+import java.util.stream.Stream;
 
 
 public class Registro extends MusicUI {
@@ -25,51 +34,76 @@ public class Registro extends MusicUI {
     @FXML private TextField userName;
     @FXML private Button image;
     @FXML private Button save;
+    private String pathImage;
 
     @FXML
     protected void uploadImage(ActionEvent event){
-        FileChooser fileChooser = new FileChooser();
+        /*FileChooser fileChooser = new FileChooser();
         fileChooser.setInitialDirectory(new File("C:\\Users\\fersolano\\Desktop"));
         fileChooser.getExtensionFilters().addAll(
                 new ExtensionFilter("Images", "*.png", "*.jpg", "*.jpeg", "*.gif", "*.png"));
-        File selectedFile = fileChooser.showOpenDialog(null);
+        File selectedFile = fileChooser.showOpenDialog(null);*/
+        Scene scene = save.getScene();
+        Window window = scene.getWindow();
+        Stage stage = (Stage) window;
+
+        FileChooser fileChooser = new FileChooser();
+
+        fileChooser.getExtensionFilters().addAll(new FileChooser.ExtensionFilter("Image Files",".bmp", ".png", ".jpg", ".gif"));
+        File selectedFile = fileChooser.showOpenDialog(stage);
+        pathImage = selectedFile.toPath().toString();
+    }
+
+    @FXML
+    public void listarPaises(MouseEvent mouseEvent) throws IOException {
+        ObservableList<String> countries = Stream.of(Locale.getISOCountries())
+                .map(locales -> new Locale("", locales))
+                .map(Locale::getDisplayCountry)
+                .collect(Collectors.toCollection(FXCollections::observableArrayList));
+        country.setItems(countries);
     }
 
     @FXML
     protected void save(ActionEvent event) throws IOException {
         Window owner = save.getScene().getWindow();
-        //System.out.println(name.getText());
-        int id = Integer.parseInt(this.id.getText());
-        String name = this.name.getText();
-        String lastName = this.lastName.getText();
-        int old = Integer.parseInt(this.old.getText());
+        try {
+            //System.out.println(name.getText());
+            int id = Integer.parseInt(this.id.getText());
+            String name = this.name.getText();
+            String lastName = this.lastName.getText();
+            int old = Integer.parseInt(this.old.getText());
 
-        if (!controller.validateYears(old)){
-            AlertHelper.showAlert(Alert.AlertType.ERROR, owner, "Error!",
-                    "Usted no es mayor a 18 años");
-            return;
-        }
+            if (!controller.validateYears(old)){
+                AlertHelper.showAlert(Alert.AlertType.ERROR, owner, "Error!",
+                        "Usted no es mayor a 18 años");
+                return;
+            }
 
-        String country = (String) this.country.getValue();
-        String email = this.email.getText();
-        String pass = this.pass.getText();
+            String country = (String) this.country.getValue();
+            String email = this.email.getText();
+            String pass = this.pass.getText();
 
-        if (!controller.validatePassword(pass)){
-            AlertHelper.showAlert(Alert.AlertType.ERROR, owner, "Error!",
-                    "La contraseña no cumple con formato");
-            return;
-        }
+            if (!controller.validatePassword(pass)){
+                AlertHelper.showAlert(Alert.AlertType.ERROR, owner, "Error!",
+                        "La contraseña no cumple con formato");
+                return;
+            }
 
-        String userName = this.userName.getText();
-        String image = this.image.getText();
+            String userName = this.userName.getText();
 
-        boolean response = controller.registerClient(id,name,lastName,old,country,email,pass,userName,image);
-        if (response == true){
-            AlertHelper.showAlert(Alert.AlertType.CONFIRMATION, owner, "Exitoso", "Usuario almacenado");
-            show.ShowWindow(event,"./views/login/login.fxml", "Iniciar Sesión");
-        }
-        else {
-            AlertHelper.showAlert(Alert.AlertType.ERROR, owner, "Error", "El usuario no se pudo almacenar");
+            boolean response = false;
+
+            response = controller.registerClient(id,name,lastName,old,country,email,pass,userName,pathImage);
+
+            if (response == true){
+                AlertHelper.showAlert(Alert.AlertType.CONFIRMATION, owner, "Exitoso", "Usuario almacenado");
+                show.ShowWindow(event,"./views/login/login.fxml", "Iniciar Sesión");
+            }
+            else {
+                AlertHelper.showAlert(Alert.AlertType.ERROR, owner, "Error", "El usuario no se pudo almacenar");
+            }
+        } catch (MessagingException e) {
+            AlertHelper.showAlert(Alert.AlertType.ERROR, owner, "Error", "Hubo un error");
         }
     }
 }

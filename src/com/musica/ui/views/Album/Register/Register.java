@@ -53,8 +53,7 @@ public class Register extends MusicUI {
                 super.rAlbum(event);
             }
             else {
-                Stage stage = (Stage) save.getScene().getWindow();
-                stage.close();
+                super.albums(event);
             }
         }
         else {

@@ -5,6 +5,7 @@ import com.musica.bl.Album.IAlbumDao;
 import com.musica.bl.BibliotecaMusical;
 import com.musica.bl.Gender.Gender;
 import com.musica.bl.Gender.IGenderDao;
+import com.musica.bl.Mail.SendMail;
 import com.musica.bl.Musican.Artist.Artist;
 import com.musica.bl.Musican.Artist.IArtistDao;
 import com.musica.bl.Musican.Compositor.Compositor;
@@ -21,15 +22,17 @@ import com.musica.bl.User.User;
 import com.musica.bl.factory.DaoFactory;
 import sun.java2d.loops.GeneralRenderer;
 
+import javax.mail.MessagingException;
 import java.time.LocalDate;
 import java.time.Year;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Random;
 
 import static java.time.temporal.ChronoUnit.YEARS;
 
 public class Controller {
-
+    private Random rnd = new Random();
     private DaoFactory factory;
     private IUserDao userDao;
     private IClientDao clientDao;
@@ -54,9 +57,15 @@ public class Controller {
 
     BibliotecaMusical logic = new BibliotecaMusical();
 
-    public boolean registerClient(int id, String name, String lastName, int old, String country, String email, String pass, String userName, String image){
-        Client client = new Client(id,userName,name,lastName,email,pass,image,old,country);
-        return userDao.save(client) == 1 ? true : false;
+    public boolean registerClient(int id, String name, String lastName, int old, String country, String email, String pass, String userName, String image) throws MessagingException {
+        String randomNum = ""+(100000 + rnd.nextInt(900000));
+        Client client = new Client(id,userName,name,lastName,email,randomNum,image,randomNum,old,country);
+        client.setFirstTime(true);
+        if (userDao.save(client) == 1){
+            SendMail.sendMail(client.getEmail(), "Codigo Verficacion", "Su codigo de verificacion es: "+ client.getRandomPass() +"");
+            return true;
+        }
+        return false;
     }
 
     public List<String> getAllUser(){
@@ -72,9 +81,15 @@ public class Controller {
         return userDao.isAdminOnDB();
     }
 
-    public boolean registerAdmin(int id, String name, String lastName, String email, String pass, String userName, String image) {
-        Admin admin = new Admin(id,userName,name,lastName,email,pass,image);
-        return userDao.save(admin) == 1 ? true : false;
+    public boolean registerAdmin(int id, String name, String lastName, String email, String pass, String userName, String image) throws MessagingException {
+        String randomNum = ""+(100000 + rnd.nextInt(900000));
+        Admin admin = new Admin(id,userName,name,lastName,email,randomNum,image,randomNum);
+        admin.setFirstTime(true);
+        if (userDao.save(admin) == 1){
+            SendMail.sendMail(admin.getEmail(), "Codigo Verficacion", "Su codigo de verificacion es: "+ admin.getRandomPass() +"");
+            return true;
+        }
+        return false;
     }
 
     public String login(String email, String pass) {
@@ -87,6 +102,16 @@ public class Controller {
         return response;
     }
 
+    public boolean isFirstTime() {
+        User user = userDao.getUserById(User.getActualUser().getId());
+        return user.isFirstTime();
+    }
+
+    public boolean validateCode(String code) {
+        User user = User.getActualUser();
+        return user.getRandomPass().equals(code);
+    }
+
     public boolean validateYears(int old){
         return old <= 18;
     }
@@ -95,7 +120,28 @@ public class Controller {
         return true;
     }
 
+    public boolean updateUser(String pass, boolean firstTime){
+        User user = User.getActualUser();
+        user.setPass(pass);
+        user.setFirstTime(firstTime);
+        boolean response = false;
+        response = userDao.update(user);
+        return response;
+    }
 
+    public boolean forgetPass(String email) throws MessagingException {
+        String randomNum = ""+(100000 + rnd.nextInt(900000));
+        User user = userDao.getUserByEmail(email);
+        if(user != null){
+            user.setRandomPass(randomNum);
+            user.setFirstTime(true);
+            user.setPass(randomNum);
+            boolean response = userDao.update(user);
+            SendMail.sendMail(user.getEmail(),"Olvido la contraseña","Su nueva contraseña es: " + randomNum);
+            return response;
+        }
+        return false;
+    }
     /**
      *
      * Song section
@@ -110,7 +156,7 @@ public class Controller {
                     Compositor compositor1 = compositorDao.searchCompositorByNameAndLastName(nameCompositor);
                     if(compositor1 != null){
                         Song song = new Song(name,gen,artist1,compositor1, LocalDate.of(year,month,day),album1,score,pathSong,User.getActualUser(),price);
-                        int response  = songDao.save(song) != -1 ? 1 : 0;
+                        int response  = songDao.save(song);
                         return response;
                     }
                     return -1;
@@ -466,6 +512,15 @@ public class Controller {
         return result;
     }
 
+    public String searchReproductionListById(int id){
+        ReproductionList reproductionList = reproductionListDao.searchReproductionListById(id);
+        String result = "";
+        if(reproductionList != null){
+            return  reproductionList.toString();
+        }
+        return result;
+    }
+
     public boolean deleteSongsReproductionList(int idReproduction, int idSong){
         boolean response = reproductionListDao.deleteSongs(idReproduction,idSong);
         return response;
@@ -506,8 +561,8 @@ public class Controller {
     }
 
     public List<String> getCatalog() {
-        User user = User.getActualUser();
-        List<Song> catalog = ((Client)user).getCatalog();
+        User user = userDao.getUserById(User.getActualUser().getId());
+        List<Song> catalog = user != null ? ((Client)user).getCatalog() : new ArrayList<>();
         List<String> response = new ArrayList<>();
         for (Song song:catalog) {
             response.add(song.toString());

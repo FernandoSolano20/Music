@@ -8,6 +8,8 @@ import javafx.beans.property.SimpleBooleanProperty;
 import javafx.beans.property.SimpleStringProperty;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
+import javafx.collections.transformation.FilteredList;
+import javafx.collections.transformation.SortedList;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.fxml.FXML;
@@ -34,7 +36,12 @@ public class ListsReproList extends MusicUI implements Initializable {
     @FXML
     private TableColumn<Disposer.Record, Boolean> columnDelete;
     @FXML
+    private TextField search;
+    @FXML
     private Button create;
+    int countDelete = -2;
+    int countEdit = -2;
+    int countAdd = -2;
 
     @FXML
     protected void createReproductionList(ActionEvent event) throws IOException {
@@ -89,10 +96,15 @@ public class ListsReproList extends MusicUI implements Initializable {
                     List<String> elements = list;
                     @Override
                     public TableCell<Disposer.Record, Boolean> call(TableColumn<Disposer.Record, Boolean> p) {
-                        i++;
+                        countAdd++;
                         String id = "";
-                        if(i < elements.size() && i >= 0){
-                            id = elements.get(i).split(",")[0];
+                        if (countAdd < table.getItems().size() && countAdd >= 0) {
+                            for (int j = 0; j < elements.size(); j++){
+                                if(table.getItems().get(countAdd).split(",")[0].equals(elements.get(j).split(",")[0])){
+                                    id = elements.get(j).split(",")[0];
+                                    break;
+                                }
+                            }
                         }
                         ButtonCell btnCell = new ButtonCell(id, "Administrar");
                         EventHandler<ActionEvent> event = new EventHandler<ActionEvent>(){
@@ -119,10 +131,15 @@ public class ListsReproList extends MusicUI implements Initializable {
                     List<String> elements = list;
                     @Override
                     public TableCell<Disposer.Record, Boolean> call(TableColumn<Disposer.Record, Boolean> p) {
-                        i++;
+                        countEdit++;
                         String id = "";
-                        if(i < elements.size() && i >= 0){
-                            id = elements.get(i).split(",")[0];
+                        if (countEdit < table.getItems().size() && countEdit >= 0) {
+                            for (int j = 0; j < elements.size(); j++){
+                                if(table.getItems().get(countEdit).split(",")[0].equals(elements.get(j).split(",")[0])){
+                                    id = elements.get(j).split(",")[0];
+                                    break;
+                                }
+                            }
                         }
                         ButtonCell btnCell = new ButtonCell(id, "Actualizar");
                         EventHandler<ActionEvent> event = new EventHandler<ActionEvent>(){
@@ -149,10 +166,15 @@ public class ListsReproList extends MusicUI implements Initializable {
                     List<String> elements = list;
                     @Override
                     public TableCell<Disposer.Record, Boolean> call(TableColumn<Disposer.Record, Boolean> p) {
-                        i++;
+                        countDelete++;
                         String id = "";
-                        if(i < elements.size() && i >= 0){
-                            id = elements.get(i).split(",")[0];
+                        if (countDelete < table.getItems().size() && countDelete >= 0) {
+                            for (int j = 0; j < elements.size(); j++){
+                                if(table.getItems().get(countDelete).split(",")[0].equals(elements.get(j).split(",")[0])){
+                                    id = elements.get(j).split(",")[0];
+                                    break;
+                                }
+                            }
                         }
                         ButtonCell btnCell = new ButtonCell(id, "Borrar");
                         EventHandler<ActionEvent> event = new EventHandler<ActionEvent>(){
@@ -181,6 +203,38 @@ public class ListsReproList extends MusicUI implements Initializable {
 
                 });
 
-        table.setItems(details);
+        FilteredList<String> filteredData = new FilteredList<>(details, b -> true);
+
+        search.textProperty().addListener((observable, oldValue, newValue) -> {
+            filteredData.setPredicate(item -> {
+                // If filter text is empty, display all persons.
+
+                if (newValue == null || newValue.isEmpty()) {
+                    return true;
+                }
+
+                // Compare first name and last name of every person with filter text.
+                String lowerCaseFilter = newValue.toLowerCase();
+                String[] result = item.split(",");
+                if (result[2].toLowerCase().indexOf(lowerCaseFilter) != -1 ) {
+                    return true; // Filter matches first name.
+                }
+                else
+                    return false; // Does not match.
+            });
+            countAdd = -1;
+            countDelete = -1;
+            countEdit = -1;
+            table.refresh();
+        });
+
+        // 3. Wrap the FilteredList in a SortedList.
+        SortedList<String> sortedData = new SortedList<>(filteredData);
+
+        // 4. Bind the SortedList comparator to the TableView comparator.
+        // 	  Otherwise, sorting the TableView would have no effect.
+        sortedData.comparatorProperty().bind(table.comparatorProperty());
+
+        table.setItems(sortedData);
     }
 }

@@ -1,7 +1,7 @@
 package com.musica.ui.views.SongQueue;
 
+import com.musica.ui.MusicUI;
 import javazoom.jl.player.Player;
-import javazoom.jl.player.advanced.AdvancedPlayer;
 
 import java.io.FileInputStream;
 import java.util.Iterator;
@@ -20,13 +20,20 @@ public class MyAudioPlayer extends Thread {
     public void run() {
 
         try {
+            int i = 0;
             do {
                 if(fileLocation.hasNext()){
-                    FileInputStream buff = new FileInputStream(fileLocation.next());
+                    FileInputStream buff = new FileInputStream(MusicUI.getQueue().get(i));
                     prehravac = new Player(buff);
+                    MusicUI.getQueue().remove(i);
                     prehravac.play();
+                    i++;
+                }
+                else {
+                    loop = false;
                 }
             } while (loop);
+            close();
         } catch (Exception ioe) {
             System.out.println(ioe);
             // TODO error handling

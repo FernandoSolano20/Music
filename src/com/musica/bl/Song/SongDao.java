@@ -182,21 +182,24 @@ public class SongDao implements ISongDao {
         String userName = result.getString(22);
         String image = result.getString(23);
         String type = result.getString(24);
+        boolean firstTime = result.getBoolean("firstTime");
+        String randomPass = result.getString("randomPass");
         User creator = null;
         if(type == "Cliente"){
             int old = result.getInt(20);
             String countryCreator = result.getString(21);
-            creator = new Client(creatorId,userName,nameCreator,lastName,email,pass,image,old,countryCreator);
+            creator = new Client(creatorId,userName,nameCreator,lastName,email,pass,image,randomPass,old,countryCreator);
         }
         else{
-            creator = new Admin(creatorId,userName,nameCreator,lastName,email,pass,image);
+            creator = new Admin(creatorId,userName,nameCreator,lastName,email,pass,image,randomPass);
         }
+        creator.setFirstTime(firstTime);
 
         int idCompositor = result.getInt("idCompositor");
-        String nameComp = result.getString(26);
-        String lastNameComp = result.getString(27);
-        String countComp = result.getString(28);
-        int oldComp = result.getInt(29);
+        String nameComp = result.getString(28);
+        String lastNameComp = result.getString(29);
+        String countComp = result.getString(30);
+        int oldComp = result.getInt(31);
         Compositor compositor = new Compositor(idCompositor,nameComp,lastNameComp,countComp,oldComp);
 
         Gender genderComp = null;
@@ -221,28 +224,28 @@ public class SongDao implements ISongDao {
 
 
         int idArtist = result.getInt("idArtist");
-        String nameArt = result.getString(31);
-        String lastNameArt = result.getString(32);
-        LocalDate bornArt = result.getDate(33).toLocalDate();
-        Date dead = result.getDate(34);
+        String nameArt = result.getString(33);
+        String lastNameArt = result.getString(34);
+        LocalDate bornArt = result.getDate(35).toLocalDate();
+        Date dead = result.getDate(36);
         LocalDate deadArt = null;
         if(dead != null){
             deadArt = dead.toLocalDate();
         }
-        String countArt = result.getString(35);
-        int oldArt = result.getInt(36);
-        String refeArt = result.getString(37);
-        String descripArt = result.getString(38);
-        String artName = result.getString(40);
-        Gender genderArt = new Gender(result.getInt(39),
-                result.getString(41),
-                result.getString(42));
+        String countArt = result.getString(37);
+        int oldArt = result.getInt(38);
+        String refeArt = result.getString(39);
+        String descripArt = result.getString(40);
+        String artName = result.getString(42);
+        Gender genderArt = new Gender(result.getInt(43),
+                result.getString(44),
+                result.getString(45));
         Artist artist = new Artist(idArtist,nameArt,lastNameArt,countArt,oldArt,bornArt,deadArt,refeArt,descripArt,genderArt,artName);
 
         int idAlbum = result.getInt("idAlbum");
-        String nameAlbum = result.getString(45);
-        LocalDate releaseDayAlbum = result.getDate(46).toLocalDate();
-        String imageAlbum = result.getString(47);
+        String nameAlbum = result.getString(47);
+        LocalDate releaseDayAlbum = result.getDate(48).toLocalDate();
+        String imageAlbum = result.getString(49);
         Album album = new Album(idAlbum,nameAlbum,releaseDayAlbum,imageAlbum);
 
         Artist artistAlbum = null;

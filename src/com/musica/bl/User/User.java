@@ -11,13 +11,16 @@ public class User extends Person {
     private String image;
     private String type;
     public static User actualUser;
+    private boolean firstTime;
+    private String randomPass;
 
-    public User(int id, String userName, String name, String lastName, String email, String pass, String image) {
+    public User(int id, String userName, String name, String lastName, String email, String pass, String image, String randomPass) {
         super(id,name,lastName);
         this.userName = userName;
         this.email = email;
         this.pass = pass;
         this.image = image;
+        this.randomPass = randomPass;
     }
 
     public User(int id) {
@@ -70,6 +73,22 @@ public class User extends Person {
 
     public static void setActualUser(User actualUser) {
         User.actualUser = actualUser;
+    }
+
+    public boolean isFirstTime() {
+        return firstTime;
+    }
+
+    public void setFirstTime(boolean firstTime) {
+        this.firstTime = firstTime;
+    }
+
+    public String getRandomPass() {
+        return randomPass;
+    }
+
+    public void setRandomPass(String randomPass) {
+        this.randomPass = randomPass;
     }
 
     @Override
