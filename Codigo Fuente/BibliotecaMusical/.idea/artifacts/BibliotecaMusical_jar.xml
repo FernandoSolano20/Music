@@ -1,0 +1,10 @@
+<component name="ArtifactManager">
+  <artifact type="jar" name="BibliotecaMusical:jar">
+    <output-path>$PROJECT_DIR$/out/artifacts/BibliotecaMusical_jar</output-path>
+    <root id="archive" name="BibliotecaMusical.jar">
+      <element id="module-output" name="BibliotecaMusical" />
+      <element id="extracted-dir" path="$PROJECT_DIR$/../jars/javax.mail.jar" path-in-jar="/" />
+      <element id="extracted-dir" path="$PROJECT_DIR$/../jars/AccesoDatos.jar" path-in-jar="/" />
+    </root>
+  </artifact>
+</component>

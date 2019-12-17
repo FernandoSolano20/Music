@@ -66,6 +66,12 @@ public class UpdateSong extends MusicUI {
             if(songPath.isEmpty()){
                 songPath = path;
             }
+
+            if(score > 5 || score < 0){
+                AlertHelper.showAlert(Alert.AlertType.ERROR, owner, "Error", "La cancion puntacion no valida");
+                return;
+            }
+
             int response = 0;
 
                 response = controller.updateSong(idSong,name,gender,artist,nameComp,year,month,day,album,score,songPath,price);

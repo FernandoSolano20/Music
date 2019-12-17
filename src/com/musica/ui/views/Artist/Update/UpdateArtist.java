@@ -57,17 +57,17 @@ public class UpdateArtist extends MusicUI {
             int monthBorn = Integer.parseInt(this.monthBorn.getText());
             int yearBorn = Integer.parseInt(this.yearBorn.getText());
             LocalDate dateBorn = LocalDate.of(yearBorn,monthBorn,dayBorn);
-            String country = this.country.getValue().toString();
-            if(country == ""){
+            String country = (String) this.country.getValue();
+            if(country == null){
                 country = countryName;
             }
             String artistName = this.artistName.getText();
-            int dayDead = Integer.parseInt(this.dayDead.getText());
-            int monthDead = Integer.parseInt(this.monthDead.getText());
-            int yearDead = Integer.parseInt(this.yearDead.getText());
+            String dayDead = this.dayDead.getText();
+            String monthDead = this.monthDead.getText();
+            String yearDead = this.yearDead.getText();
             LocalDate dateDead = null;
-            if(dayDead != 0 && monthDead != 0 && yearDead != 0){
-                dateDead = LocalDate.of(yearDead,monthDead,dayDead);
+            if(!dayDead.isEmpty() && !monthDead.isEmpty() && !yearDead.isEmpty()){
+                dateDead = LocalDate.of(Integer.parseInt(yearDead),Integer.parseInt(monthDead),Integer.parseInt(dayDead));
             }
             String reference = this.reference.getText();
             String description = this.description.getText();
@@ -102,7 +102,7 @@ public class UpdateArtist extends MusicUI {
             yearBorn.setText(element[5].split("-")[0]);
             countryName = element[3];
             artistName.setText(element[12]);
-            if(element[6] != "" || element[6] != "null"){
+            if(!element[6].equals("null")){
                 dayDead.setText(element[6].split("-")[2]);
                 monthDead.setText(element[6].split("-")[1]);
                 yearDead.setText(element[6].split("-")[0]);

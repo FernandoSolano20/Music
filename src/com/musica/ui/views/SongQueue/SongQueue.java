@@ -263,7 +263,13 @@ public class SongQueue extends MusicUI implements Initializable {
         if(SongQueue.thePlayer != null){
             SongQueue.thePlayer.close();
         }
-        SongQueue.thePlayer = new MyAudioPlayer(iterator, true);
-        SongQueue.thePlayer.start();
+        if(MusicUI.getQueue().size() != 0){
+            SongQueue.thePlayer = new MyAudioPlayer(iterator, true);
+            SongQueue.thePlayer.start();
+        }
+    }
+
+    public static MyAudioPlayer getThePlayer() {
+        return thePlayer;
     }
 }

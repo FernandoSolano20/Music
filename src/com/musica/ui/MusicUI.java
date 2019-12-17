@@ -12,12 +12,14 @@ import com.musica.ui.views.Gender.Update.UpdateGender;
 import com.musica.ui.views.Song.Lists.ListsSong;
 import com.musica.ui.views.Song.Profile.Profile;
 import com.musica.ui.views.Song.Update.UpdateSong;
+import com.musica.ui.views.SongQueue.SongQueue;
 import com.musica.ui.views.reproductionList.Lists.ListsReproList;
 import com.musica.ui.views.reproductionList.Lists.Song.AddSongReproduction;
 import com.musica.ui.views.reproductionList.Lists.Song.ListsSongsRL;
 import com.musica.ui.views.reproductionList.Update.UpdateRL;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.scene.control.Alert;
 
 import java.io.IOException;
 import java.util.ArrayList;
@@ -162,7 +164,19 @@ public class MusicUI {
     }
 
     protected void logout(ActionEvent event) throws IOException {
-        show.ShowWindow(event, "views/login/login.fxml", "Iniciar Sesion");
+        try {
+            if (controller.userType() == "Cliente") {
+                if (SongQueue.getThePlayer() != null) {
+                    SongQueue.getThePlayer().close();
+                }
+            }
+        }
+        catch (Exception e){
+            AlertHelper.showAlert(Alert.AlertType.ERROR,"Error","Ocurrio un error");
+        }
+        finally {
+            show.ShowWindow(event, "views/login/login.fxml", "Iniciar Sesion");
+        }
     }
 
     protected void login(ActionEvent event) throws IOException {

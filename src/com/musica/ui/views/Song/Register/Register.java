@@ -66,10 +66,15 @@ public class Register extends MusicUI {
                 return;
             }
 
+            if(score > 5 || score < 0){
+                AlertHelper.showAlert(Alert.AlertType.ERROR, owner, "Error", "La cancion puntacion no valida");
+                return;
+            }
+
             int response = 0;
             response = controller.registerSong(name,gender,artist,nameComp,year,month,day,album,score,songPath,price);
 
-            if (response != -1){
+            if (response > 0){
                 AlertHelper.showAlert(Alert.AlertType.CONFIRMATION, owner, "Exitoso", "Cancion almacenado");
                 if(controller.userType() == "Administrador"){
                     super.rSongAdmin(event);

@@ -1,1 +1,2 @@
 com.mysql.jdbc.Driver;jdbc:mysql://127.0.0.1:3306/Music?useSSL=false&allowPublicKeyRetrieval=true;root;password123$
+lsolanom1@ucenfotec.ac.cr;pass;smtp.gmail.com

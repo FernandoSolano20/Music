@@ -1,0 +1,9 @@
+<component name="ArtifactManager">
+  <artifact type="jar" name="AccesoDatos:jar">
+    <output-path>$PROJECT_DIR$/out/artifacts/AccesoDatos_jar</output-path>
+    <root id="archive" name="AccesoDatos.jar">
+      <element id="module-output" name="AccesoDatos" />
+      <element id="extracted-dir" path="$PROJECT_DIR$/../jars/mysql-connector-java-5.1.48.jar" path-in-jar="/" />
+    </root>
+  </artifact>
+</component>

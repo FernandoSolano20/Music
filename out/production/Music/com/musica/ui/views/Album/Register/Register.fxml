@@ -40,23 +40,44 @@
     <children>
         <Label alignment="CENTER" prefHeight="21.0" prefWidth="195.0" text="Nombre" GridPane.columnIndex="2" GridPane.rowIndex="3" />
         <TextField fx:id="name" GridPane.columnIndex="2" GridPane.rowIndex="4" />
-        <Label alignment="CENTER" prefHeight="21.0" prefWidth="197.0" text="Dia lanzamiento" GridPane.columnIndex="2" GridPane.rowIndex="9" />
-        <TextField fx:id="day" GridPane.columnIndex="2" GridPane.rowIndex="10" />
-        <Button fx:id="save" mnemonicParsing="false" onAction="#save" prefHeight="31.0" prefWidth="200.0" text="Guardar" GridPane.columnIndex="3" GridPane.rowIndex="13" />
+        <Label alignment="CENTER" prefHeight="21.0" prefWidth="197.0" text="Dia lanzamiento" GridPane.columnIndex="2" GridPane.rowIndex="6" />
+        <TextField fx:id="day" GridPane.columnIndex="2" GridPane.rowIndex="7" />
+        <Button fx:id="save" mnemonicParsing="false" onAction="#save" prefHeight="31.0" prefWidth="200.0" text="Guardar" GridPane.columnIndex="3" GridPane.rowIndex="17" />
         <Label alignment="CENTER" prefHeight="21.0" prefWidth="111.0" text="Registro" GridPane.columnIndex="3" GridPane.rowIndex="1">
             <font>
                 <Font size="20.0" />
             </font>
         </Label>
-        <Label alignment="CENTER" prefHeight="21.0" prefWidth="194.0" text="Mes lanzamiento" GridPane.columnIndex="4" GridPane.rowIndex="6" />
-        <Label alignment="CENTER" prefHeight="21.0" prefWidth="206.0" text="Año lanzamiento" GridPane.columnIndex="4" GridPane.rowIndex="3" />
-        <TextField fx:id="month" GridPane.columnIndex="4" GridPane.rowIndex="7" />
-        <TextField fx:id="year" GridPane.columnIndex="4" GridPane.rowIndex="4" />
-        <TextField fx:id="artists" GridPane.columnIndex="4" GridPane.rowIndex="10" />
-        <Label alignment="CENTER" prefHeight="21.0" prefWidth="191.0" text="Nombre artistas (separar por comas)" GridPane.columnIndex="4" GridPane.rowIndex="9">
+        <Label alignment="CENTER" prefHeight="21.0" prefWidth="194.0" text="Mes lanzamiento" GridPane.columnIndex="2" GridPane.rowIndex="8" />
+        <Label alignment="CENTER" prefHeight="21.0" prefWidth="206.0" text="Año lanzamiento" GridPane.columnIndex="2" GridPane.rowIndex="10" />
+        <TextField fx:id="month" GridPane.columnIndex="2" GridPane.rowIndex="9" />
+        <TextField fx:id="year" GridPane.columnIndex="2" GridPane.rowIndex="11" />
+        <TextField fx:id="artists" GridPane.columnIndex="2" GridPane.rowIndex="13" />
+        <Label alignment="CENTER" prefHeight="21.0" prefWidth="191.0" text="Nombre artistas (separar por comas)" GridPane.columnIndex="2" GridPane.rowIndex="12">
          <font>
             <Font size="11.0" />
          </font></Label>
-      <Button fx:id="image" mnemonicParsing="false" onAction="#uploadImage" prefHeight="31.0" prefWidth="209.0" text="Imagen" GridPane.columnIndex="2" GridPane.rowIndex="7" />
+      <Button fx:id="image" mnemonicParsing="false" onAction="#uploadImage" prefHeight="31.0" prefWidth="209.0" text="Imagen" GridPane.columnIndex="2" GridPane.rowIndex="5" />
+      <Label text="Album" GridPane.columnIndex="2" GridPane.rowIndex="1" />
+      <Label text="Cancion" GridPane.columnIndex="4" GridPane.rowIndex="1" />
+      <Label text="Nombre" GridPane.columnIndex="4" GridPane.rowIndex="3" />
+      <Label text="Genero" GridPane.columnIndex="4" GridPane.rowIndex="5" />
+      <Label text="Artista" GridPane.columnIndex="4" GridPane.rowIndex="7" />
+      <Label text="Precio" GridPane.columnIndex="4" GridPane.rowIndex="9" />
+      <Label text="Compositor" GridPane.columnIndex="4" GridPane.rowIndex="11" />
+      <Label text="Calificacion" GridPane.columnIndex="4" GridPane.rowIndex="13" />
+      <Label text="Año lanzamiento cancion" GridPane.columnIndex="4" GridPane.rowIndex="15" />
+      <Label text="Dia lanzamiento cancion" GridPane.columnIndex="2" GridPane.rowIndex="14" />
+      <Button mnemonicParsing="false" onAction="#uploadSong" prefHeight="31.0" prefWidth="120.0" text="Cancion" translateX="50.0" GridPane.columnIndex="4" GridPane.rowIndex="17" />
+      <Label text="Mes lanzamiento cancion" GridPane.columnIndex="2" GridPane.rowIndex="16" />
+      <TextField fx:id="nameSong" GridPane.columnIndex="4" GridPane.rowIndex="4" />
+      <TextField fx:id="gender" GridPane.columnIndex="4" GridPane.rowIndex="6" />
+      <TextField fx:id="art" GridPane.columnIndex="4" GridPane.rowIndex="8" />
+      <TextField fx:id="price" GridPane.columnIndex="4" GridPane.rowIndex="10" />
+      <TextField fx:id="comp" GridPane.columnIndex="4" GridPane.rowIndex="12" />
+      <TextField fx:id="score" GridPane.columnIndex="4" GridPane.rowIndex="14" />
+      <TextField fx:id="yearSong" GridPane.columnIndex="4" GridPane.rowIndex="16" />
+      <TextField fx:id="daySong" GridPane.columnIndex="2" GridPane.rowIndex="15" />
+      <TextField fx:id="monthSong" GridPane.columnIndex="2" GridPane.rowIndex="17" />
     </children>
 </GridPane>

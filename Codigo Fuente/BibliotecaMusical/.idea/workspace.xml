@@ -1,0 +1,430 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ArtifactsWorkspaceSettings">
+    <artifacts-to-build>
+      <artifact name="BibliotecaMusical:jar" />
+    </artifacts-to-build>
+  </component>
+  <component name="ChangeListManager">
+    <list default="true" id="b64174ec-1241-4e52-abd5-5315d23f565a" name="Default Changelist" comment="">
+      <change afterPath="$PROJECT_DIR$/../AccesoDatos/.idea/libraries/mysql_connector_java_5_1_48.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../AccesoDatos/.idea/misc.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../AccesoDatos/.idea/modules.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../AccesoDatos/.idea/vcs.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../AccesoDatos/.idea/workspace.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../AccesoDatos/AccesoDatos.iml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/libraries/AccesoDatos.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/libraries/javax_mail.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/modules.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/vcs.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/BibliotecaMusical.iml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../ArchivoErrores.log" beforeDir="false" afterPath="$PROJECT_DIR$/../ArchivoErrores.log" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Configuration.txt" beforeDir="false" afterPath="$PROJECT_DIR$/../Configuration.txt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Music.mwb" beforeDir="false" afterPath="$PROJECT_DIR$/../Music.mwb" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Music.mwb.bak" beforeDir="false" afterPath="$PROJECT_DIR$/../Music.mwb.bak" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Music.sql" beforeDir="false" afterPath="$PROJECT_DIR$/../Music.sql" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../out/production/Music/META-INF/Music.kotlin_module" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../out/production/Music/com/musica/bl/Album/Album.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../out/production/Music/com/musica/bl/Album/AlbumDao.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../out/production/Music/com/musica/bl/Album/IAlbumDao.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../out/production/Music/com/musica/bl/BibliotecaMusical.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../out/production/Music/com/musica/bl/Dao.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../out/production/Music/com/musica/bl/Gender/Gender.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../out/production/Music/com/musica/bl/Gender/GenderDao.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../out/production/Music/com/musica/bl/Gender/IGenderDao.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../out/production/Music/com/musica/bl/Mail/SendMail$1.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../out/production/Music/com/musica/bl/Mail/SendMail.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../out/production/Music/com/musica/bl/Musican/Artist/Artist.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../out/production/Music/com/musica/bl/Musican/Artist/ArtistDao.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../out/production/Music/com/musica/bl/Musican/Artist/IArtistDao.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../out/production/Music/com/musica/bl/Musican/Compositor/Compositor.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../out/production/Music/com/musica/bl/Musican/Compositor/CompositorDao.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../out/production/Music/com/musica/bl/Musican/Compositor/ICompositorDao.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../out/production/Music/com/musica/bl/Musican/Musican.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../out/production/Music/com/musica/bl/Person.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../out/production/Music/com/musica/bl/ReproductionList/IReproductionListDao.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../out/production/Music/com/musica/bl/ReproductionList/ReproductionList.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../out/production/Music/com/musica/bl/ReproductionList/ReproductionListDao.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../out/production/Music/com/musica/bl/Song/ISongDao.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../out/production/Music/com/musica/bl/Song/Song.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../out/production/Music/com/musica/bl/Song/SongDao.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../out/production/Music/com/musica/bl/User/Admin/Admin.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../out/production/Music/com/musica/bl/User/Client/Client.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../out/production/Music/com/musica/bl/User/Client/ClientDao.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../out/production/Music/com/musica/bl/User/Client/IClientDao.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../out/production/Music/com/musica/bl/User/IUserDao.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../out/production/Music/com/musica/bl/User/User.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../out/production/Music/com/musica/bl/User/UserDao.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../out/production/Music/com/musica/bl/factory/DaoFactory.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../out/production/Music/com/musica/bl/factory/MySqlDaoFactory.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../out/production/Music/com/musica/dl/ConnectionFactory.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../out/production/Music/com/musica/dl/DataAccess.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../out/production/Music/com/musica/dl/LogError.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../out/production/Music/com/musica/tl/Controller.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../out/production/Music/com/musica/ui/AlertHelper.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../out/production/Music/com/musica/ui/ButtonCell$1.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../out/production/Music/com/musica/ui/ButtonCell.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../out/production/Music/com/musica/ui/Main.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../out/production/Music/com/musica/ui/MusicUI.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../out/production/Music/com/musica/ui/ShowView.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../out/production/Music/com/musica/ui/views/Album/Lists/Client/List.fxml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../out/production/Music/com/musica/ui/views/Album/Lists/Client/ListAlbumUser$1$1.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../out/production/Music/com/musica/ui/views/Album/Lists/Client/ListAlbumUser$1.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../out/production/Music/com/musica/ui/views/Album/Lists/Client/ListAlbumUser.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../out/production/Music/com/musica/ui/views/Album/Lists/Client/Song/List.fxml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../out/production/Music/com/musica/ui/views/Album/Lists/Client/Song/ListSongAlbumUser.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../out/production/Music/com/musica/ui/views/Album/Lists/List.fxml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../out/production/Music/com/musica/ui/views/Album/Lists/ListAlbum$1$1.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../out/production/Music/com/musica/ui/views/Album/Lists/ListAlbum$1.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../out/production/Music/com/musica/ui/views/Album/Lists/ListAlbum$2$1.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../out/production/Music/com/musica/ui/views/Album/Lists/ListAlbum$2.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../out/production/Music/com/musica/ui/views/Album/Lists/ListAlbum$3$1.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../out/production/Music/com/musica/ui/views/Album/Lists/ListAlbum$3.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../out/production/Music/com/musica/ui/views/Album/Lists/ListAlbum.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../out/production/Music/com/musica/ui/views/Album/Lists/Songs/List.fxml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../out/production/Music/com/musica/ui/views/Album/Lists/Songs/ListSongAlbum$1$1.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../out/production/Music/com/musica/ui/views/Album/Lists/Songs/ListSongAlbum$1.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../out/production/Music/com/musica/ui/views/Album/Lists/Songs/ListSongAlbum.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../out/production/Music/com/musica/ui/views/Album/Register/Register.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../out/production/Music/com/musica/ui/views/Album/Register/Register.fxml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../out/production/Music/com/musica/ui/views/Album/Update/Update.fxml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../out/production/Music/com/musica/ui/views/Album/Update/UpdateAlbum.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../out/production/Music/com/musica/ui/views/Artist/Lists/List.fxml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../out/production/Music/com/musica/ui/views/Artist/Lists/ListArtist$1$1.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../out/production/Music/com/musica/ui/views/Artist/Lists/ListArtist$1.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../out/production/Music/com/musica/ui/views/Artist/Lists/ListArtist$2$1.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../out/production/Music/com/musica/ui/views/Artist/Lists/ListArtist$2.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../out/production/Music/com/musica/ui/views/Artist/Lists/ListArtist.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../out/production/Music/com/musica/ui/views/Artist/Register/Register.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../out/production/Music/com/musica/ui/views/Artist/Register/Register.fxml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../out/production/Music/com/musica/ui/views/Artist/Update/Update.fxml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../out/production/Music/com/musica/ui/views/Artist/Update/UpdateArtist.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../out/production/Music/com/musica/ui/views/Catalog/Catalog.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../out/production/Music/com/musica/ui/views/Catalog/Catalog.fxml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../out/production/Music/com/musica/ui/views/ChangePass/ChangePass.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../out/production/Music/com/musica/ui/views/ChangePass/ChangePass.fxml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../out/production/Music/com/musica/ui/views/Compositor/Lists/List.fxml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../out/production/Music/com/musica/ui/views/Compositor/Lists/ListCompositor$1$1.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../out/production/Music/com/musica/ui/views/Compositor/Lists/ListCompositor$1.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../out/production/Music/com/musica/ui/views/Compositor/Lists/ListCompositor$2$1.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../out/production/Music/com/musica/ui/views/Compositor/Lists/ListCompositor$2.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../out/production/Music/com/musica/ui/views/Compositor/Lists/ListCompositor.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../out/production/Music/com/musica/ui/views/Compositor/Register/Register.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../out/production/Music/com/musica/ui/views/Compositor/Register/Register.fxml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../out/production/Music/com/musica/ui/views/Compositor/Update/Update.fxml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../out/production/Music/com/musica/ui/views/Compositor/Update/UpdateCompositor.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../out/production/Music/com/musica/ui/views/Gender/Lists/List.fxml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../out/production/Music/com/musica/ui/views/Gender/Lists/ListGender$1$1.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../out/production/Music/com/musica/ui/views/Gender/Lists/ListGender$1.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../out/production/Music/com/musica/ui/views/Gender/Lists/ListGender$2$1.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../out/production/Music/com/musica/ui/views/Gender/Lists/ListGender$2.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../out/production/Music/com/musica/ui/views/Gender/Lists/ListGender.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../out/production/Music/com/musica/ui/views/Gender/Register/Register.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../out/production/Music/com/musica/ui/views/Gender/Register/Register.fxml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../out/production/Music/com/musica/ui/views/Gender/Update/Update.fxml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../out/production/Music/com/musica/ui/views/Gender/Update/UpdateGender.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../out/production/Music/com/musica/ui/views/Song/Lists/Admin/List.fxml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../out/production/Music/com/musica/ui/views/Song/Lists/Admin/ListAdminSong$1$1.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../out/production/Music/com/musica/ui/views/Song/Lists/Admin/ListAdminSong$1.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../out/production/Music/com/musica/ui/views/Song/Lists/Admin/ListAdminSong$2$1.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../out/production/Music/com/musica/ui/views/Song/Lists/Admin/ListAdminSong$2.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../out/production/Music/com/musica/ui/views/Song/Lists/Admin/ListAdminSong.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../out/production/Music/com/musica/ui/views/Song/Lists/List.fxml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../out/production/Music/com/musica/ui/views/Song/Lists/ListsSong$1$1.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../out/production/Music/com/musica/ui/views/Song/Lists/ListsSong$1.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../out/production/Music/com/musica/ui/views/Song/Lists/ListsSong.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../out/production/Music/com/musica/ui/views/Song/Profile/Profile.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../out/production/Music/com/musica/ui/views/Song/Profile/Profile.fxml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../out/production/Music/com/musica/ui/views/Song/Register/Register.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../out/production/Music/com/musica/ui/views/Song/Register/Register.fxml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../out/production/Music/com/musica/ui/views/Song/Update/Update.fxml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../out/production/Music/com/musica/ui/views/Song/Update/UpdateSong.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../out/production/Music/com/musica/ui/views/SongQueue/MyAudioPlayer.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../out/production/Music/com/musica/ui/views/SongQueue/SongQueue$1$1.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../out/production/Music/com/musica/ui/views/SongQueue/SongQueue$1.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../out/production/Music/com/musica/ui/views/SongQueue/SongQueue.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../out/production/Music/com/musica/ui/views/SongQueue/SongQueue.fxml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../out/production/Music/com/musica/ui/views/buy/Buy$1$1.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../out/production/Music/com/musica/ui/views/buy/Buy$1.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../out/production/Music/com/musica/ui/views/buy/Buy.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../out/production/Music/com/musica/ui/views/buy/Buy.fxml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../out/production/Music/com/musica/ui/views/index/admin/Index.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../out/production/Music/com/musica/ui/views/index/admin/Index.fxml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../out/production/Music/com/musica/ui/views/index/user/Index$1$1.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../out/production/Music/com/musica/ui/views/index/user/Index$1.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../out/production/Music/com/musica/ui/views/index/user/Index.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../out/production/Music/com/musica/ui/views/index/user/Index.fxml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../out/production/Music/com/musica/ui/views/login/Login.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../out/production/Music/com/musica/ui/views/login/login.fxml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../out/production/Music/com/musica/ui/views/registro/Admin/Register.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../out/production/Music/com/musica/ui/views/registro/Admin/Register.fxml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../out/production/Music/com/musica/ui/views/registro/Registro.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../out/production/Music/com/musica/ui/views/registro/registro.fxml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../out/production/Music/com/musica/ui/views/reproductionList/Lists/Lists.fxml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../out/production/Music/com/musica/ui/views/reproductionList/Lists/ListsReproList$1$1.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../out/production/Music/com/musica/ui/views/reproductionList/Lists/ListsReproList$1.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../out/production/Music/com/musica/ui/views/reproductionList/Lists/ListsReproList$2$1.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../out/production/Music/com/musica/ui/views/reproductionList/Lists/ListsReproList$2.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../out/production/Music/com/musica/ui/views/reproductionList/Lists/ListsReproList$3$1.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../out/production/Music/com/musica/ui/views/reproductionList/Lists/ListsReproList$3.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../out/production/Music/com/musica/ui/views/reproductionList/Lists/ListsReproList.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../out/production/Music/com/musica/ui/views/reproductionList/Lists/Song/AddSong.fxml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../out/production/Music/com/musica/ui/views/reproductionList/Lists/Song/AddSongReproduction.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../out/production/Music/com/musica/ui/views/reproductionList/Lists/Song/Lists.fxml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../out/production/Music/com/musica/ui/views/reproductionList/Lists/Song/ListsSongsRL$1$1.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../out/production/Music/com/musica/ui/views/reproductionList/Lists/Song/ListsSongsRL$1.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../out/production/Music/com/musica/ui/views/reproductionList/Lists/Song/ListsSongsRL.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../out/production/Music/com/musica/ui/views/reproductionList/Register/Register.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../out/production/Music/com/musica/ui/views/reproductionList/Register/Register.fxml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../out/production/Music/com/musica/ui/views/reproductionList/Update/Update.fxml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../out/production/Music/com/musica/ui/views/reproductionList/Update/UpdateRL.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../src/com/musica/bl/Album/Album.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../src/com/musica/bl/Album/AlbumDao.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../src/com/musica/bl/Album/IAlbumDao.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../src/com/musica/bl/BibliotecaMusical.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../src/com/musica/bl/Dao.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../src/com/musica/bl/Gender/Gender.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../src/com/musica/bl/Gender/GenderDao.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../src/com/musica/bl/Gender/IGenderDao.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../src/com/musica/bl/Mail/SendMail.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../src/com/musica/bl/Musican/Artist/Artist.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../src/com/musica/bl/Musican/Artist/ArtistDao.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../src/com/musica/bl/Musican/Artist/IArtistDao.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../src/com/musica/bl/Musican/Compositor/Compositor.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../src/com/musica/bl/Musican/Compositor/CompositorDao.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../src/com/musica/bl/Musican/Compositor/ICompositorDao.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../src/com/musica/bl/Musican/Musican.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../src/com/musica/bl/Person.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../src/com/musica/bl/ReproductionList/IReproductionListDao.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../src/com/musica/bl/ReproductionList/ReproductionList.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../src/com/musica/bl/ReproductionList/ReproductionListDao.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../src/com/musica/bl/Song/ISongDao.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../src/com/musica/bl/Song/Song.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../src/com/musica/bl/Song/SongDao.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../src/com/musica/bl/User/Admin/Admin.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../src/com/musica/bl/User/Client/Client.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../src/com/musica/bl/User/Client/ClientDao.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../src/com/musica/bl/User/Client/IClientDao.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../src/com/musica/bl/User/IUserDao.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../src/com/musica/bl/User/User.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../src/com/musica/bl/User/UserDao.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../src/com/musica/bl/factory/DaoFactory.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../src/com/musica/bl/factory/MySqlDaoFactory.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../src/com/musica/dl/ConnectionFactory.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../src/com/musica/dl/DataAccess.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../src/com/musica/dl/LogError.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../src/com/musica/tl/Controller.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../src/com/musica/ui/MusicUI.java" beforeDir="false" afterPath="$PROJECT_DIR$/../src/com/musica/ui/MusicUI.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../src/com/musica/ui/views/Album/Register/Register.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/../src/com/musica/ui/views/Album/Register/Register.fxml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../src/com/musica/ui/views/Album/Register/Register.java" beforeDir="false" afterPath="$PROJECT_DIR$/../src/com/musica/ui/views/Album/Register/Register.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../src/com/musica/ui/views/Artist/Update/UpdateArtist.java" beforeDir="false" afterPath="$PROJECT_DIR$/../src/com/musica/ui/views/Artist/Update/UpdateArtist.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../src/com/musica/ui/views/ChangePass/ChangePass.java" beforeDir="false" afterPath="$PROJECT_DIR$/../src/com/musica/ui/views/ChangePass/ChangePass.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../src/com/musica/ui/views/Compositor/Update/UpdateCompositor.java" beforeDir="false" afterPath="$PROJECT_DIR$/../src/com/musica/ui/views/Compositor/Update/UpdateCompositor.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../src/com/musica/ui/views/Song/Register/Register.java" beforeDir="false" afterPath="$PROJECT_DIR$/../src/com/musica/ui/views/Song/Register/Register.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../src/com/musica/ui/views/Song/Update/UpdateSong.java" beforeDir="false" afterPath="$PROJECT_DIR$/../src/com/musica/ui/views/Song/Update/UpdateSong.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../src/com/musica/ui/views/SongQueue/MyAudioPlayer.java" beforeDir="false" afterPath="$PROJECT_DIR$/../src/com/musica/ui/views/SongQueue/MyAudioPlayer.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../src/com/musica/ui/views/SongQueue/SongQueue.java" beforeDir="false" afterPath="$PROJECT_DIR$/../src/com/musica/ui/views/SongQueue/SongQueue.java" afterDir="false" />
+    </list>
+    <ignored path="$PROJECT_DIR$/out/" />
+    <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
+    <option name="SHOW_DIALOG" value="false" />
+    <option name="HIGHLIGHT_CONFLICTS" value="true" />
+    <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
+    <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="DefaultGradleProjectSettings">
+    <option name="testRunner" value="GRADLE" />
+    <option name="delegatedBuild" value="true" />
+  </component>
+  <component name="FileEditorManager">
+    <leaf />
+  </component>
+  <component name="Git.Settings">
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$/.." />
+  </component>
+  <component name="ProjectFrameBounds" extendedState="6">
+    <option name="x" value="-188" />
+    <option name="y" value="-9" />
+    <option name="width" value="1939" />
+    <option name="height" value="1049" />
+  </component>
+  <component name="ProjectLevelVcsManager" settingsEditedManually="true" />
+  <component name="ProjectView">
+    <navigator proportions="" version="1">
+      <foldersAlwaysOnTop value="true" />
+    </navigator>
+    <panes>
+      <pane id="Scope" />
+      <pane id="PackagesPane" />
+      <pane id="ProjectPane">
+        <subPane>
+          <expand>
+            <path>
+              <item name="BibliotecaMusical" type="b2602c69:ProjectViewProjectNode" />
+              <item name="BibliotecaMusical" type="462c0819:PsiDirectoryNode" />
+            </path>
+          </expand>
+          <select />
+        </subPane>
+      </pane>
+    </panes>
+  </component>
+  <component name="PropertiesComponent">
+    <property name="SHARE_PROJECT_CONFIGURATION_FILES" value="true" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/../jars/javax.mail.jar!/" />
+    <property name="project.structure.last.edited" value="Artifacts" />
+    <property name="project.structure.proportion" value="0.15429688" />
+    <property name="project.structure.side.proportion" value="0.2586605" />
+  </component>
+  <component name="RunDashboard">
+    <option name="ruleStates">
+      <list>
+        <RuleState>
+          <option name="name" value="ConfigurationTypeDashboardGroupingRule" />
+        </RuleState>
+        <RuleState>
+          <option name="name" value="StatusDashboardGroupingRule" />
+        </RuleState>
+      </list>
+    </option>
+  </component>
+  <component name="SvnConfiguration">
+    <configuration />
+  </component>
+  <component name="TaskManager">
+    <task active="true" id="Default" summary="Default task">
+      <changelist id="b64174ec-1241-4e52-abd5-5315d23f565a" name="Default Changelist" comment="" />
+      <created>1576579013206</created>
+      <option name="number" value="Default" />
+      <option name="presentableId" value="Default" />
+      <updated>1576579013206</updated>
+    </task>
+    <servers />
+  </component>
+  <component name="ToolWindowManager">
+    <frame x="-7" y="-7" width="1550" height="838" extended-state="6" />
+    <layout>
+      <window_info id="Favorites" side_tool="true" />
+      <window_info id="Image Layers" />
+      <window_info id="Designer" />
+      <window_info id="UI Designer" />
+      <window_info id="Capture Tool" />
+      <window_info id="Learn" />
+      <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.24966443" />
+      <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
+      <window_info anchor="bottom" id="Version Control" />
+      <window_info anchor="bottom" id="Terminal" />
+      <window_info anchor="bottom" id="Event Log" side_tool="true" />
+      <window_info anchor="bottom" id="Messages" />
+      <window_info anchor="bottom" id="Message" order="0" />
+      <window_info anchor="bottom" id="Find" order="1" />
+      <window_info anchor="bottom" id="Run" order="2" />
+      <window_info anchor="bottom" id="Debug" order="3" weight="0.4" />
+      <window_info anchor="bottom" id="Cvs" order="4" weight="0.25" />
+      <window_info anchor="bottom" id="Inspection" order="5" weight="0.4" />
+      <window_info anchor="bottom" id="TODO" order="6" />
+      <window_info anchor="right" id="Palette" />
+      <window_info anchor="right" id="Theme Preview" />
+      <window_info anchor="right" id="Maven" />
+      <window_info anchor="right" id="Capture Analysis" />
+      <window_info anchor="right" id="Palette&#9;" />
+      <window_info anchor="right" id="Commander" internal_type="SLIDING" order="0" type="SLIDING" weight="0.4" />
+      <window_info anchor="right" id="Ant Build" order="1" weight="0.25" />
+      <window_info anchor="right" content_ui="combo" id="Hierarchy" order="2" weight="0.25" />
+    </layout>
+  </component>
+  <component name="editorHistoryManager">
+    <entry file="file://$PROJECT_DIR$/src/com/musica/bl/Album/Album.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="68">
+          <caret line="10" column="13" selection-start-line="10" selection-start-column="13" selection-end-line="10" selection-end-column="13" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/com/musica/bl/Mail/SendMail.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="68">
+          <caret line="11" column="13" selection-start-line="11" selection-start-column="13" selection-end-line="11" selection-end-column="13" />
+        </state>
+      </provider>
+    </entry>
+  </component>
+  <component name="masterDetails">
+    <states>
+      <state key="ArtifactsStructureConfigurable.UI">
+        <settings>
+          <artifact-editor />
+          <last-edited>BibliotecaMusical:jar</last-edited>
+          <splitter-proportions>
+            <option name="proportions">
+              <list>
+                <option value="0.2586605" />
+                <option value="0.5" />
+              </list>
+            </option>
+          </splitter-proportions>
+        </settings>
+      </state>
+      <state key="FacetStructureConfigurable.UI">
+        <settings>
+          <last-edited>No facets are configured</last-edited>
+          <splitter-proportions>
+            <option name="proportions">
+              <list>
+                <option value="0.2586605" />
+              </list>
+            </option>
+          </splitter-proportions>
+        </settings>
+      </state>
+      <state key="GlobalLibrariesConfigurable.UI">
+        <settings>
+          <splitter-proportions>
+            <option name="proportions">
+              <list>
+                <option value="0.2" />
+              </list>
+            </option>
+          </splitter-proportions>
+        </settings>
+      </state>
+      <state key="JdkListConfigurable.UI">
+        <settings>
+          <splitter-proportions>
+            <option name="proportions">
+              <list>
+                <option value="0.2" />
+              </list>
+            </option>
+          </splitter-proportions>
+        </settings>
+      </state>
+      <state key="ModuleStructureConfigurable.UI">
+        <settings>
+          <splitter-proportions>
+            <option name="proportions">
+              <list>
+                <option value="0.2" />
+              </list>
+            </option>
+          </splitter-proportions>
+        </settings>
+      </state>
+      <state key="ProjectLibrariesConfigurable.UI">
+        <settings>
+          <last-edited>javax.mail</last-edited>
+          <splitter-proportions>
+            <option name="proportions">
+              <list>
+                <option value="0.2586605" />
+              </list>
+            </option>
+          </splitter-proportions>
+        </settings>
+      </state>
+    </states>
+  </component>
+</project>

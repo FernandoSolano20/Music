@@ -18,6 +18,11 @@ public class ChangePass extends MusicUI {
 
         boolean response = false;
         try {
+            if (!controller.validatePassword(pass.getText())){
+                AlertHelper.showAlert(Alert.AlertType.ERROR, owner, "Error!",
+                        "La contraseña no cumple con formato");
+                return;
+            }
             response = controller.updateUser(pass.getText(),false);
 
             if(response){

@@ -23,11 +23,13 @@ public class MyAudioPlayer extends Thread {
             int i = 0;
             do {
                 if(fileLocation.hasNext()){
-                    FileInputStream buff = new FileInputStream(MusicUI.getQueue().get(i));
-                    prehravac = new Player(buff);
-                    MusicUI.getQueue().remove(i);
-                    prehravac.play();
-                    i++;
+                    if(MusicUI.getQueue().get(i) != null){
+                        FileInputStream buff = new FileInputStream(MusicUI.getQueue().get(i));
+                        prehravac = new Player(buff);
+                        MusicUI.getQueue().remove(i);
+                        prehravac.play();
+                        i++;
+                    }
                 }
                 else {
                     loop = false;

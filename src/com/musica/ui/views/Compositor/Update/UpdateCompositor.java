@@ -43,8 +43,8 @@ public class UpdateCompositor extends MusicUI {
         try {
             String name = this.name.getText();
             String lastName = this.lastName.getText();
-            String country = this.country.getValue().toString();
-            if(country.isEmpty()){
+            String country = (String) this.country.getValue();
+            if(country == null){
                 country = countryName;
             }
             int old = Integer.parseInt(this.old.getText());

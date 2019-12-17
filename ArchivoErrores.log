@@ -1,4 +1,4 @@
-Dec 17, 2019 12:30:12 AM com.musica.dl.DataAccess getConnection
-INFO: Error Access denied for user 'rot'@'localhost' (using password: YES)
-Dec 17, 2019 12:30:13 AM com.musica.dl.DataAccess selectData
+Dec 17, 2019 5:00:27 AM com.musica.dl.DataAccess getConnection
+INFO: Error Unknown database 'music'
+Dec 17, 2019 5:00:27 AM com.musica.dl.DataAccess selectData
 INFO: Error Error en base de datos
